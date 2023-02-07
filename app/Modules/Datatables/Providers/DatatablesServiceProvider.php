@@ -29,19 +29,5 @@ class DatatablesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->initSettingsPage();
-    }
-
-    public function initSettingsPage(){
-        if(!Cache::has("setting_values")){
-            Cache::rememberForever('setting_values', function (){
-                $db =  DB::table("settings")->get(['key','value']);
-                $result = [];
-                foreach ($db as $item){
-                    $result[$item->key] = $item->value;
-                }
-                return $result;
-            });
-        }
     }
 }

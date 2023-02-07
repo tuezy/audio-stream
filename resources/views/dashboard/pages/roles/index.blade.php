@@ -96,8 +96,8 @@
                     }
                 }).then(function (response) {
                     console.log(response.data);
-                    document.getElementById('updateContentEditRole').innerHTML = response.data;
-                    console.log(response.data, document.getElementById('updateContentEditRole'));
+                    document.getElementById('updateContentEdit').innerHTML = response.data;
+                    console.log(response.data, document.getElementById('updateContentEdit'));
                     let myModal = new bootstrap.Modal(document.getElementById('showUpdateModal'), {
                         keyboard: false
                     });

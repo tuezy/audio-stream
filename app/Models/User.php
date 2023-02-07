@@ -48,6 +48,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class,'users_roles');
     }
 
+    public function getRole(){
+        return $this->roles()->first();
+    }
+
     public function isRoot(){
         return $this->id === 1;
     }

@@ -14,9 +14,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/login', [\App\Http\Controllers\Index\AuthController::class, "login"])->name("index.login");
+Route::get('/', [\App\Http\Controllers\Index\HomeController::class, "home"])->name("index");
 
-Route::get('/', function () {
-   return view('welcome');
-})->name("index");
 
 

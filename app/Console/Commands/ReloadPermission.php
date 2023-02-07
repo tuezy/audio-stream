@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -54,6 +55,7 @@ class ReloadPermission extends Command
         $now = Carbon::now();
         $stt = 0;
         foreach ($routes as $route){
+            if(!isset($route->defaults['_config']['permission_title'])) continue;
             $name = $route->getName();
             $group = explode('.', $name);
             DB::table('permissions')->insert([
@@ -68,11 +70,14 @@ class ReloadPermission extends Command
         }
 
         //restore old permission
-
+        $old = [];
         foreach ($roles as $role){
             if($role->permissions->isEmpty()) continue;
             foreach ($role->permissions as $permission){
-                $role->permissions()->attach($permission);
+                if(!isset($old[$permission->code])){
+                    $old[$permission->code] = Permission::where('code', '=', $permission->code)->first();
+                }
+                $role->permissions()->attach($old[$permission->code]);
             }
 
         }

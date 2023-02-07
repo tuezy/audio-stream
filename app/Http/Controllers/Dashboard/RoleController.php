@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 
 class RoleController extends Controller{
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(RoleData $datatables){
         return $datatables->render("dashboard.pages.roles.index");
     }
@@ -20,6 +26,7 @@ class RoleController extends Controller{
         $role = Role::with('permissions')->findOrFail($id);
 
         $permissions = \App\Models\Permission::all(['id', 'code', 'title', 'group']);
+
         if(request()->ajax()){
             return view("dashboard.pages.roles.partials.edit", [
                 'role' => $role,
@@ -32,7 +39,6 @@ class RoleController extends Controller{
     public function update($id, Request $request){
         $role = Role::with('permissions')->findOrFail($id);
         $role->permissions()->sync($request->get('permissions'));
-
         Artisan::call("cache:clear");
         return redirect()->back();
     }
@@ -40,7 +46,6 @@ class RoleController extends Controller{
     public function store(Request $request){
 
         $title = $request->get('title');
-
 
         $role = Role::create([
             'code'          => Str::slug($title, '_'),
@@ -53,6 +58,7 @@ class RoleController extends Controller{
         }
 
         Artisan::call("cache:clear");
+
         return redirect()->back();
     }
 

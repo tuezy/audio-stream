@@ -13,8 +13,11 @@ class SettingController extends Controller
     protected $settings;
 
     protected $settingRepository;
+
+
     public function __construct(SettingRepositoryContract $settingRepository)
     {
+        $this->middleware('auth');
         $this->settings = config('settings');
         $this->settingRepository = $settingRepository;
     }
@@ -30,9 +33,9 @@ class SettingController extends Controller
 
         $validated = $request->validated();
 
-        $settingsValues = Cache::get("setting_values");
+        $settingsValues = Cache::get("settings");
 
-        Cache::forget('setting_values');
+        Cache::forget('settings');
 
         $updateValues = array_diff_assoc($validated, $settingsValues);
 
@@ -48,8 +51,6 @@ class SettingController extends Controller
                 $updateValues[$key] = 'true';
             }
 
-
-
             $this->settingRepository->updateOrCreate(
                 [
                     'key' => $key
@@ -58,7 +59,9 @@ class SettingController extends Controller
                     'value' => $updateValues[$key]
                 ]);
         }
+
         Session::flash("alert_success", "Settings Updated!");
+
         return redirect()->route('dashboard.settings.index');
     }
 }

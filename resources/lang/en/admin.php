@@ -6,7 +6,10 @@ return [
             'cache_time_title' =>  'Repository Cache time'
         ],
         'general' => [
-            'site_title' => 'Website Title'
+            'site_title' => 'Website Title',
+            'hotline'   => 'Hotline',
+            'address'   => 'Address',
+            'email'     => 'Email'
         ]
     ]
 ];

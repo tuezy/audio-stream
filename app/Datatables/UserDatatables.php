@@ -60,6 +60,20 @@ class UserDatatables extends DatatablesService{
         ]);
 
         $this->addColumn([
+        'data' => 'roles',
+        'name' => 'roles',
+        'title' => 'Role',
+        'searchable' => true,
+        'orderable' => true,
+        'exportable' => true,
+        'printable' => false,
+        'class' => 'dt-date',
+        'render' => function($value){
+            return $value->getRole()->title ?? '';
+        },
+    ]);
+
+        $this->addColumn([
             'data' => 'created_at',
             'name' => 'created_at',
             'title' => 'Join at',

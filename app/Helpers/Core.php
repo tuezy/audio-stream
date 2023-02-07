@@ -197,6 +197,6 @@ class Core
     }
 
     public function getSetting(string $key, $default = null){
-       return Cache::get("setting_values")[$key];
+       return Cache::get("settings")[$key];
     }
 }

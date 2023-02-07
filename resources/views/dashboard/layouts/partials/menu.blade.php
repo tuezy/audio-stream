@@ -1,9 +1,17 @@
 @can("dashboard.settings.index")
-<li class="nav-item">
-    <a class="nav-link menu-link" href="{{ route('dashboard.settings.index') }}">
-        <i class="ri-honour-line"></i> <span data-key="t-widgets">Settings</span>
-    </a>
-</li>
+    <li class="nav-item">
+        <a class="nav-link menu-link" href="{{ route('dashboard.index') }}">
+            <i class="ri-dashboard-2-line"></i> <span data-key="t-widgets">Dashboard</span>
+        </a>
+    </li>
+@endcan
+
+@can("dashboard.cms.index")
+    <li class="nav-item">
+        <a class="nav-link menu-link" href="{{ route('dashboard.cms.index') }}">
+            <i class="ri-pages-line"></i> <span data-key="t-widgets">CMS</span>
+        </a>
+    </li>
 @endcan
 
 @canany(['dashboard.roles.index', 'dashboard.permissions.index', 'dashboard.users.index'])
@@ -25,13 +33,15 @@
                 </a>
             </li>
             @endcan
-            @can("dashboard.permissions.index")
-            <li class="nav-item">
-                <a href="/roles" class="nav-link" data-key="t-basic"> Permissions
-                </a>
-            </li>
-            @endcan
         </ul>
     </div>
 </li>
 @endcanany
+
+@can("dashboard.settings.index")
+    <li class="nav-item">
+        <a class="nav-link menu-link" href="{{ route('dashboard.settings.index') }}">
+            <i class="ri-honour-line"></i> <span data-key="t-widgets">Settings</span>
+        </a>
+    </li>
+@endcan

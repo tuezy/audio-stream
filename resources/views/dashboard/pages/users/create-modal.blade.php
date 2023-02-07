@@ -11,42 +11,39 @@
                 <div class="modal-body">
                     <input type="hidden" id="id-field" />
                     <div class="mb-3">
-                        <label for="customername-field" class="form-label">Title</label>
-                        <input type="text" name='title' id="customername-field" class="form-control" placeholder="Enter Title" required />
-                        <div class="invalid-feedback">Please enter a name.</div>
+                        <label for="customername-field" class="form-label">Name</label>
+                        <input type="text" name='name' id="customername-field" class="form-control" placeholder="Name" required />
+                        <div class="invalid-feedback">Please enter name of user.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="permisson-fields" class="form-label">Permissions</label>
-                        @php
-                            $permissions = \App\Models\Permission::all(['id','code', 'title', 'group']);
-                            $permissions = $permissions->groupBy('group');
-                        @endphp
-                        <div class="row">
-                        @foreach($permissions as $group => $values)
-                            <div class="col-lg-4 col-sm-6">
-                                <h5>{{ $group }}</h5>
-                                @foreach($values as $permission)
-                                    <div class="form-check form-switch">
-                                        <label for="{{ $permission->code }}" class="form-label">{{ $permission->title }}</label>
-                                        <input name="permissions[]"
-                                               class="form-check-input"
-                                               type="checkbox"
-                                               role="switch"
-                                               id="{{ $permission->code }}"
-                                               value="{{$permission->id}}"
-                                        >
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endforeach
-                        </div>
+                        <label for="customername-field" class="form-label">Email</label>
+                        <input type="email" name='email' id="customername-field" class="form-control" placeholder="Email" required />
+                        <div class="invalid-feedback">Please enter email user.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="customername-field" class="form-label">Role</label>
+                        <select name="role" class="form-select">
+                            @php
+                                $roles = \App\Models\Role::all(['id','code', 'title']);
+                            @endphp
+                            @foreach($roles as $role)
+                                <option value="{{ $role->id }}" @if($role->code == 'member') selected @endif> {{ $role->title }}</option>
+                            @endforeach
+                        </select>
+                        <div class="invalid-feedback">Please enter email user.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="customername-field" class="form-label">Password</label>
+                        <input type="password" name='password' id="customername-field" class="form-control" placeholder="Password" required />
+                        <div class="invalid-feedback">Please enter password.</div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div class="hstack gap-2 justify-content-end">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" id="add-btn">Add Role</button>
-                        <!-- <button type="button" class="btn btn-success" id="edit-btn">Update</button> -->
+                        <button type="submit" class="btn btn-success" id="add-btn">Add Users</button>
                     </div>
                 </div>
             </form>

@@ -53,8 +53,8 @@
             </div>
         </div>
     </div>
-    @include("dashboard.pages.roles.create-modal")
-    @include("dashboard.pages.roles.update-permission")
+    @include("dashboard.pages.users.create-modal")
+    @include("dashboard.pages.users.update-users")
 @endsection
 @section("script")
     {{ $datatables->includeScript() }}
@@ -96,8 +96,8 @@
                     }
                 }).then(function (response) {
                     console.log(response.data);
-                    document.getElementById('updateContentEditRole').innerHTML = response.data;
-                    console.log(response.data, document.getElementById('updateContentEditRole'));
+                    document.getElementById('updateContentEdit').innerHTML = response.data;
+                    console.log(response.data, document.getElementById('updateContentEdit'));
                     let myModal = new bootstrap.Modal(document.getElementById('showUpdateModal'), {
                         keyboard: false
                     });
