@@ -152,7 +152,7 @@ Route::name('dashboard.')
                 'permission_title' => 'Delete CMS'
             ])->name('cms.delete');
 
-        Route::get('/playlist/make/{id}', [PlaylistController::class, 'make'])->name('make.playlist');
+        Route::get('/playlist/make/{id}', [\App\Http\Controllers\Dashboard\PlaylistController::class, 'make'])->name('make.playlist');
 
         foreach ([
             'category',
