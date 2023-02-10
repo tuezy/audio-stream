@@ -63,7 +63,7 @@ class MakePlaylist extends Command
             }
             $cmd .= ' -filter_complex \'[0:0][1:0]concat=n='.count($playlist->audio).':v=0:a=1[out]\' -map \'[out]\' -vn -ac 2 -acodec aac -start_number 0 -hls_time 10 -hls_list_size 0 -f hls ';
 
-            $cmd .= $hlsDir . DIRECTORY_SEPARATOR .$playlist->type .'.m3u8';
+            $cmd .= $hlsDir . DIRECTORY_SEPARATOR .$playlist->broadcast_on .'.m3u8';
             $this->info($cmd);
             $process = Process::fromShellCommandline($cmd);
             $process->run();
