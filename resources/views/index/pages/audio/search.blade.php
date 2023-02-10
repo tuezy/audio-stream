@@ -1,7 +1,8 @@
-<form action="">
+<form action="{{ route("index.timkiem") }}" method="GET">
+    @csrf
     <div class="media-form">
         <label for="media_type">Buổi phát</label>
-        <select type="text" class="form-control" id="media_type">
+        <select type="text" class="form-control" id="media_type" name="broadcast_on">
             <option value="0">Chọn buổi phát</option>
             @foreach(\App\Models\Playlist::PLAYLIST_TYPES as $type => $playlist)
                 <option value="{{ $playlist }}">@lang("translation.".$type)</option>
@@ -12,7 +13,7 @@
     <div class="media-form">
         <label for="media_type">Ngày phát</label>
         <div class="input-group" id="media_type">
-            <input type="text" name="start_date"
+            <input type="text" name="broadcast_date"
                    class="form-control border-0 dash-filter-picker shadow  flatpickr-input"
                    data-provider="flatpickr"
                    data-date-format="d-m-Y"

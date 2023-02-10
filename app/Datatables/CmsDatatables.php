@@ -9,7 +9,7 @@ class CmsDatatables extends DatatablesService{
     public function query()
     {
         $query = Cms::query();
-        return $query->orderBy('id', 'asc');
+        return $query->orderBy('id', 'desc');
     }
 
     public function columns()

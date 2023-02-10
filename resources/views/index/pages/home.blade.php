@@ -42,7 +42,7 @@
                                     <div class="btn-more-pos"><span class="btn-more"></span></div>
                                 </div>
                                 <div class="content mt-2">
-                                    {{ $item->content }}
+                                    {!! $item->content !!}
                                 </div>
                             </div>
                         </div>

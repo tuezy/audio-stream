@@ -5,7 +5,7 @@
       data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="enable">
 <head>
     <meta charset="utf-8" />
-    <title>{{ $pageTitle ?? 'Starter' }}</title>
+    <title>{{ core()->getSetting('site_title') ?? 'Starter' }}</title>
     <meta name="viewport" content="width=1366">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />

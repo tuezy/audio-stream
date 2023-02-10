@@ -21,8 +21,6 @@ class AuthController extends Controller
         return view('index.pages.auth.reset-pass');
     }
 
-
-
     public function login(Request $request){
 
         $credentials = $request->validate([

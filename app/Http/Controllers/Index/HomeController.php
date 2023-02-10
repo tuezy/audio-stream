@@ -22,7 +22,7 @@ class HomeController extends IndexController
         $user = Auth::guard("customers")->user();
         $playlists = $user->playlist()->where('broadcast_on','=',$broadcast_on)->limit(10)->get();
 
-        $cms = Cms::query()->select('title', 'content')->limit(6)->get();
+        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content')->limit(6)->get();
 
         return view("index.pages.home", [
             'cms' => $cms,
@@ -34,7 +34,7 @@ class HomeController extends IndexController
     public function morning(Request $request){
         $broadcast_on = "phat-thanh-buoi-sang";
 
-        $cms = Cms::query()->select('title', 'content')->limit(6)->get();
+        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content')->limit(6)->get();
         return view("index.pages.home", [
             'cms' => $cms,
             'user' => $this->user(),
@@ -45,7 +45,7 @@ class HomeController extends IndexController
     public function afternoon(Request $request){
         $broadcast_on = "phat-thanh-buoi-trua";
 
-        $cms = Cms::query()->select('title', 'content')->limit(6)->get();
+        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content')->limit(6)->get();
         return view("index.pages.home", [
             'cms' => $cms,
             'user' => $this->user(),
@@ -56,7 +56,7 @@ class HomeController extends IndexController
     public function evening(Request $request){
         $broadcast_on = "phat-thanh-buoi-toi";
 
-        $cms = Cms::query()->select('title', 'content')->limit(6)->get();
+        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content')->limit(6)->get();
         return view("index.pages.home", [
             'cms' => $cms,
             'user' => $this->user(),

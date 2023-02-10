@@ -1,4 +1,6 @@
-<form action="{{ url()->current() }}" method="GET">
+<form action="{{ route("index.timkiem") }}" method="GET">
+    @csrf
+    <input type="hidden" name="video" value="onthefire">
     <div class="media-form">
         <label for="media_type">Thể loại</label>
         @php

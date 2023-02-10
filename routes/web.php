@@ -47,9 +47,9 @@ Route::middleware('auth:customers')->group(function (){
     Route::get('/phat-thanh-buoi-sang', [\App\Http\Controllers\Index\HomeController::class, "morning"])->name("home.sang");
     Route::get('/phat-thanh-buoi-trua', [\App\Http\Controllers\Index\HomeController::class, "afternoon"])->name("home.trua");
     Route::get('/phat-thanh-buoi-toi', [\App\Http\Controllers\Index\HomeController::class, "evening"])->name("home.toi");
-
-
     Route::post('/{broadcaston}/playlist', [\App\Http\Controllers\Index\HomeController::class, "loadPlaylist"])->name("broadcaston.playlist");
+
+    Route::get('/timkiem', [\App\Http\Controllers\Index\SearchController::class, "search"])->name("index.timkiem");
 });
 
 

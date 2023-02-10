@@ -9,6 +9,8 @@ use App\Models\Customer;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 
 class CmsController extends Controller{
 
@@ -37,19 +39,31 @@ class CmsController extends Controller{
 
         $input = $request->except('_token');
 
-        foreach ($input as $key => $value){
+        $item->update($input);
 
-        }
-
-        $item->save();
-
-        return redirect()->back()->with('success', 'User Updated');
+        return redirect()->back()->with('success', 'Content Updated');
     }
     public function create(){
         return view("dashboard.pages.cms.create");
     }
     public function store(Request $request){
+        $input = $request->all();
 
+        $rules = array(
+            'title'  => 'required|string',
+            'content' => 'required|string',
+        );
+
+        $validation = Validator::make($input, $rules);
+
+        if ($validation->fails())
+        {
+            return Response::make($validation->errors()->first(), 400);
+        }
+
+        Cms::create($input);
+
+        return redirect()->route("dashboard.cms.index");
     }
 
     public function delete(){

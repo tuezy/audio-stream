@@ -142,7 +142,7 @@ Route::name('dashboard.')
                 'permission_title' => 'Edit CMS'
             ])->name('cms.edit');
 
-        Route::post('cms/edit/{id}', [CmsController::class, "update"])
+        Route::put('cms/edit/{id}', [CmsController::class, "update"])
             ->defaults('_config', [
                 'permission_title' => 'Update CMS'
             ])->name('cms.update');

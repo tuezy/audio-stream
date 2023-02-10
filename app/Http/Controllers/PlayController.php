@@ -25,9 +25,8 @@ class PlayController extends Controller
             ->where('broadcast_on', '=', $broadcast_on)
             ->where('customer_id', '=', $customer_id)
             ->first();
-
         if($playlist){
-            redirect()->away("http://45.76.204.156:88/hls/public/users/{$customer_id}/audios/{$broadcast_date}/{$broadcast_on}/{$broadcast_on}.m3u8", 303);
+            return    redirect()->to("http://45.76.204.156:88/hls/public/users/{$customer_id}/audios/{$broadcast_date}/{$broadcast_on}/{$broadcast_on}.m3u8", 303);
         }
         abort(404);
 
