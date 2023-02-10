@@ -88,8 +88,7 @@ class PlaylistTables extends DatatablesService{
                             return '<a href="'.route('dashboard.make.playlist',['id' => $value->id]).'" class="btn btn-primary">Make Stream</a>';
                             break;
                         case Playlist::PLAYLIST_STATUS_COMPLETED:
-                            return 'http://45.76.204.156:88/hls/upload/'.
-                                $value->user_id.'/'.$value->broadcast_date.'/'.$value->type.'/'.$value->type.'.m3u8';
+                            return '<button class="btn btn-primary">Ready</button>';
                             break;
                         default:
                             return '<button class="btn btn-primary">Processing</button>';
