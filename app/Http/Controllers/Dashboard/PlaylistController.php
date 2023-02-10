@@ -10,6 +10,7 @@ use App\Datatables\PlaylistTables;
 use App\Models\Playlist;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
