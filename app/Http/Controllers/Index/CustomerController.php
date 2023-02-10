@@ -10,6 +10,7 @@ use App\Repository\Audio\AudioRepositoryContract;
 use App\Repository\Playlists\PlaylistRepositoryContract;
 use App\Repository\Videos\VideoRepositoryContract;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
@@ -189,4 +190,18 @@ class CustomerController extends IndexController
         $input = $request->all();
     }
 
+    public function makePlaylist($id){
+        $user = Auth::guard("customers")->user();
+        Artisan::call("make:playlist ".$id);
+    }
+
+    public function logout(Request $request){
+        Auth::guard("customers")->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }

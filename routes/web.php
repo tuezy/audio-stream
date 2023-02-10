@@ -24,6 +24,7 @@ Route::post('/quen-mat-khau', [\App\Http\Controllers\Index\AuthController::class
 Route::middleware('auth:customers')->group(function (){
     Route::get('/', [\App\Http\Controllers\Index\HomeController::class, "home"])->name("index");
     Route::name('customers.')->group(function(){
+        Route::post('/customers/logout', [\App\Http\Controllers\Index\CustomerController::class, "logout"])->name("logout");
         Route::post('/customers/upload', [\App\Http\Controllers\Index\CustomerController::class, "upload"])->name("upload");
         Route::put('/customers/upload/audio', [\App\Http\Controllers\Index\CustomerController::class, "uploadAudio"])->name("upload.audio");
         Route::put('/customers/upload/video', [\App\Http\Controllers\Index\CustomerController::class, "uploadVideo"])->name("upload.video");
@@ -34,6 +35,8 @@ Route::middleware('auth:customers')->group(function (){
         Route::get('/customers/panel', [\App\Http\Controllers\Index\CustomerController::class, "panel"])->name("panel");
 
         Route::post('/customers/doi-mat-khau', [\App\Http\Controllers\Index\CustomerController::class, "changePassword"])->name("changePassword");
+
+        Route::get('/customers/make-playlist/{id}', [\App\Http\Controllers\Index\CustomerController::class, "makePlaylist"])->name("make.playlist");
     });
 
     Route::get('/phim', [\App\Http\Controllers\Index\VideoController::class, "index"])->name("video.index");

@@ -62,9 +62,12 @@
                         <a href="{{ route("customers.panel") }}" class="dropdown-item notify-item language py-2" data-lang="en" title="English">
                             Thông tin
                         </a>
-                        <a href="customer/logout" class="dropdown-item notify-item language py-2" data-lang="en" title="English">
-                           Logout
-                        </a>
+
+                        <a class="dropdown-item " href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="bx bx-power-off font-size-16 align-middle me-1"></i> <span key="t-logout">@lang('translation.logout')</span></a>
+                        <form id="logout-form" action="{{ route('customers.logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div>
                 </div>
 

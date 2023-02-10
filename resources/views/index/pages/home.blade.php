@@ -11,7 +11,7 @@
                             <div class="playing">
                                 <div class="playing__film">
                                     @foreach($playlists as $broadcast_date => $playlist)
-                                        <span class="broadcast_date" value="{{$playlist[0]['id']}}" onclick="changePlaylist({{$playlist[0]['id']}})">{{ $broadcast_date }}</span>
+                                        <span class="broadcast_date broadcast_date_{{$playlist[0]['id']}}" value="{{$playlist[0]['id']}}" onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">{{ $broadcast_date }}</span>
                                     @endforeach
                                 </div>
                             </div>
@@ -97,8 +97,17 @@
             });
         });
 
-        function changePlaylist(id){
+        function changePlaylist(id,event){
             loadPlaylist(id);
+            let broadcastDate = document.getElementsByClassName("broadcast_date");
+            Array.from(broadcastDate).forEach(function (element) {
+                if(element.classList.contains('active')){
+                    element.classList.remove('active');
+                }
+                //
+            });
+            let broadcastDateSeletcted = document.getElementsByClassName(event);
+            broadcastDateSeletcted[0].classList.add('active');
         }
 
         function loadPlaylist(id){

@@ -78,7 +78,17 @@
                                                 <td>{{ $playlist->broadcast_on }}</td>
                                                 <td style="width: 138px;text-align: center">
                                                     @php
-                                                        echo ($playlist->status == 'completed' ? '<span class="badge badge-soft-primary text-uppercase">Ready</span>' : '<span class="badge badge-soft-danger text-uppercase">Chưa sẵn sàng</span>');
+                                                        if($playlist->audio->count() > 0){
+                                                        switch ($playlist->status){
+                                                            case \App\Models\Playlist::PLAYLIST_STATUS_COMPLETED:
+                                                                echo '<span class="btn btn-outline-succcess">Ready</span>';
+                                                                break;
+                                                            default:
+                                                                echo '<a href="'.route('customers.make.playlist',['id' => $playlist->id]).'" class="btn btn-primary">Make Stream</a>';
+                                                        }
+                                                    }else{
+                                                        echo "Empty Playlist";
+                                                    }
                                                     @endphp
                                                 </td>
                                             </tr>
