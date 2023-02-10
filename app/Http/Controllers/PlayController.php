@@ -27,7 +27,7 @@ class PlayController extends Controller
             ->first();
 
         if($playlist){
-            redirect()->to("http://45.76.204.156:88/hls/public/users/{$customer_id}/audios/{$broadcast_date}/{$broadcast_on}/{$broadcast_on}.m3u8", 303);
+            redirect()->away("http://45.76.204.156:88/hls/public/users/{$customer_id}/audios/{$broadcast_date}/{$broadcast_on}/{$broadcast_on}.m3u8", 303);
         }
         abort(404);
 
