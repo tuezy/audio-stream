@@ -3,55 +3,54 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Dashboard\Datatables\AudioDatatables;
-use App\Http\Controllers\Dashboard\Datatables\UserDatatables;
-use App\Http\Requests\Dashboard\SettingsRequest;
-use App\Models\Playlist;
-use App\Repository\AudioRepository;
-use App\Repository\PlaylistRepository;
-use App\Repository\SettingRepository;
+
+use App\Repository\Audio\AudioRepositoryContract;
+
+use App\Datatables\AudioTables;
+use App\Models\Audio;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-class AudioController extends Controller{
+
+class AudioController extends Controller
+{
+    protected $audio;
 
     protected $audioRepository;
-    protected $playlistRepository;
 
 
-    public function __construct(AudioRepository $audioRepository, PlaylistRepository $playlistRepository)
+    public function __construct(AudioRepositoryContract $audioRepository)
     {
-        parent::__construct();
-
         $this->middleware('auth');
 
+        $this->audio = config('audio');
         $this->audioRepository = $audioRepository;
 
-        $this->playlistRepository = $playlistRepository;
 
     }
 
-    public function index(Request $request, AudioDatatables $dataTable){
-        return $dataTable->render("dashboard::pages.audio.index");
-    }
+
+    public function index(AudioTables $datatables){
+            return $datatables->render("dashboard.pages.audio.index", [
+                'entity' => "audio"
+            ]);
+        }
 
     public function create(Request $request){
-
-        $settings = config("dashboard");
-
-        return view("dashboard::pages.audio.create");
+        return view("dashboard.pages.audio.create");
     }
 
     public function store(Request $request){
         $input = $request->all();
 
         $rules = array(
-            'file' => 'required|mimes:mp3',
-            'broadcast_date' => 'required',
-            'type'  => 'required'
+            'title'  => 'required|string'
         );
 
         $validation = Validator::make($input, $rules);
@@ -61,57 +60,60 @@ class AudioController extends Controller{
             return Response::make($validation->errors()->first(), 400);
         }
 
-        $broadcast_date = $request->get('broadcast_date');
+        $this->audioRepository->create([
+                        'title' => $input['title']
+        ]);
 
-        $type = $request->get('type');
+        return redirect()->back()->with('success', "Create new success");
 
-        $user_id = Auth::id();
+    }
+    public function edit($id){
+        $item = Audio::findOrFail($id);
 
-        $directory = 'upload/'.$user_id . '/'.$broadcast_date.'/'.$type;
-
-        $path = $request->file('file')->store($directory);
-
-
-        if( $path ) {
-            $playlist = $this->playlistRepository->updateOrCreate([
-                'broadcast_date' => $broadcast_date,
-                'user_id' => $user_id,
-                'type'  => $type
-            ],[
-                'status' => Playlist::PLAYLIST_STATUS_PENDING,
-                'folder' => $directory
+        if(request()->ajax()){
+            return view("dashboard.pages.audio.modal.edit", [
+                'item' => $item,
+                'route' => route('dashboard.audio.edit',['id' => $item->id])
             ]);
-
-
-
-            $this->audioRepository->create([
-                'name' => $request->file('file')->getClientOriginalName(),
-                'path' => $path,
-                'broadcast_date' => $broadcast_date,
-                'type'  => $type,
-                'user_id' => $user_id,
-                'playlist_id' => $playlist->id
-            ]);
-            return Response::json('success', 200);
-        } else {
-            return Response::json('error', 400);
         }
+
+        return view("dashboard.pages.audio.edit", [
+            'item' => $item
+        ]);
+    }
+
+    public function update($id, Request $request){
+        $item = Audio::find($id);
+
+        $input = $request->except('_token');
+
+        $rules = array(
+                    'title'  => 'required|string'
+                );
+
+        $validation = Validator::make($input, $rules);
+
+        if ($validation->fails())
+        {
+            return Response::make($validation->errors()->first(), 400);
+        }
+        $item->slug = null;
+        $item->title = $input['title'];
+
+        $item->save();
+
+        return redirect()->back()->with('success', 'Item Updated');
     }
 
     public function delete($id){
-        $audio = $this->audioRepository->findOrFail($id);
-
-        if ($audio->delete()) {
-            Storage::delete($audio->path);
-            $this->playlistRepository->update([
-                'status'  => Playlist::PLAYLIST_STATUS_PENDING
-            ],$audio->playlist_id);
-            session()->flash('success', trans('dashboard.delete-success'));
-            return redirect()->route('dashboard.audio.index');
-        } else {
-            session()->flash('fail', trans('dashboard.delete-fail'));
-            return redirect()->route('dashboard.audio.index');
+        if(request()->has('ids')){
+            $ids = request()->get('ids');
+            try {
+                Audio::destroy($ids);
+                return response()->json(['success' => true], 200);
+            }catch (\Exception $exception){
+                return $exception->getMessage();
+            }
         }
-
     }
 }

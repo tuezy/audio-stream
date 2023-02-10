@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <title>{{ $pageTitle ?? 'Starter' }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1366">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
@@ -17,6 +17,7 @@
         'assets/css/app.min.css',
         'assets/css/custom.min.css',
         'assets/app/index/css/app.css',
+        'assets/libs/sweetalert2/sweetalert2.min.css'
     ] as $style)
         <link href="{{ asset($style) }}" rel="stylesheet" type="text/css" />
     @endforeach
@@ -30,7 +31,7 @@
     @include("index.layouts.partials.header")
     @yield("content")
     @include("index.layouts.partials.footer")
-    @include("index.pages.create-media-modal")
+    @include("index.pages.ui.create")
 
 </div>
 

@@ -57,6 +57,7 @@
 @endsection
 @section("script")
     {{ $datatables->includeScript() }}
+
     <script>
         function singleDelete(id){
             Swal.fire({

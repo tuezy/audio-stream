@@ -1,1 +1,33 @@
+.dt-medium{
+    width: 150px!important;
+}
+.dt-id{
+    width: 30px!important;
+}
+.dt-action{
+    width: 50px!important;
+}
+.dt-code{
+    width: 50px!important;
+}
+.dt-date{
+    width: 95px!important;
+}
 
+@media (max-width: 600px){
+    .dt-medium{
+        width: auto!important;
+    }
+    .dt-id{
+        width: auto!important;
+    }
+    .dt-action{
+        width: auto!important;
+    }
+    .dt-code{
+        width: auto!important;
+    }
+    .dt-date{
+        width: auto!important;
+    }
+}

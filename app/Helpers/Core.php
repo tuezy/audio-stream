@@ -2,11 +2,12 @@
 
 namespace App\Helpers;
 
+use App\Models\Image;
+use App\Repository\Images\imageRepositoryContract;
 use App\Repository\Settings\SettingRepositoryContract;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
@@ -14,9 +15,12 @@ use Illuminate\Support\Facades\File;
 class Core
 {
     protected $settingRepository;
+    protected $imageRepository;
+
     public function __construct()
     {
         $this->settingRepository = app(SettingRepositoryContract::class);
+        $this->imageRepository = app(ImageRepositoryContract::class);
     }
 
     /**
@@ -198,5 +202,12 @@ class Core
 
     public function getSetting(string $key, $default = null){
        return Cache::get("settings")[$key];
+    }
+
+    public function image($type){
+        return $this->imageRepository->where('type', '=', 'logo')->first();
+    }
+    public function logo(){
+        return $this->image('logo')->path;
     }
 }

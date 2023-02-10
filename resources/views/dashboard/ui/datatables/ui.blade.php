@@ -17,25 +17,14 @@
 
 @push("styles")
     <style>
-        .dt-id{
-            width: 30px!important;
-        }
-        .dt-action{
-            width: 50px!important;
-        }
-        .dt-code{
-            width: 50px!important;
-        }
-        .dt-date{
-            width: 95px!important;
-        }
         @isset($hideSearch)
-            #datatables-html_filter{
-                display: none;
-            }
-        @endisset
-        #datatables-html_length{
+#datatables-html_filter{
             display: none;
         }
+        @endisset
+#datatables-html_length{
+            display: none;
+        }
+
     </style>
 @endpush

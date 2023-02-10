@@ -1,0 +1,12 @@
+<?php
+namespace App\Repository\{{modelNamePluralLowerCase}};
+
+use App\Helpers\Repository\RepositoryCache;
+
+class {{modelName}}RepositoryCache extends RepositoryCache implements {{modelName}}RepositoryContract{
+
+    public function repository(): string
+    {
+        return {{modelName}}Repository::class;
+    }
+}

@@ -10,59 +10,18 @@
                             <div id="player"></div>
                             <div class="playing">
                                 <div class="playing__film">
-                                    Tên phim đang phát
+                                    @foreach($playlists as $broadcast_date => $playlist)
+                                        <span class="broadcast_date broadcast_date_{{$playlist[0]['id']}}" value="{{$playlist[0]['id']}}" onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">{{ $broadcast_date }}</span>
+                                    @endforeach
                                 </div>
                             </div>
                             <div id="playlist">
-                                <div class="media-item">
-                                    <div class="media-item__icon">
-                                    </div>
-                                    <div class="media-item__info">
-                                        <div>
-                                            <div class="title">Tên phim</div>
-                                            <div class="description">Nội dung ghi chú của file</div>
-                                        </div>
 
-                                    </div>
-                                    <div class="media-item__download">
-                                        <img src="{{ asset("images/icon_download.png") }}" alt="icon_download"> Tải xuống
-                                    </div>
-                                    <div class="media-item__delete">
-                                        <img src="{{ asset("images/icon_delete.png") }}" alt="icon_delete"> Xóa
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="media-search">
-                            <div class="media-search__title">
-                                <span>Tìm Kiếm</span>
-                            </div>
-                            <div class="media-search__type">
-                                <ul>
-                                    <li>Âm thanh</li>
-                                    <span></span>
-                                    <li>Phim</li>
-                                </ul>
-                            </div>
-                            <div class="media-search__content">
-                                <div class="media-form">
-                                    <label for="media_type">Thể Loại</label>
-                                    <select type="text" class="form-control" id="media_type" placeholder=>
-                                        <option value="0">Chọn thể loại</option>
-                                    </select>
-                                </div>
-                                <div class="media-form">
-                                    <label for="media_type">Tên file</label>
-                                    <select type="text" class="form-control" >
-                                        <option value="0">Nhập tên file cần tìm</option>
-                                    </select>
-                                </div>
-                                <button type="submit" class="media-search_btn">Tìm</button>
-                            </div>
-
-                        </div>
+                        @include("index.pages.ui.search")
                     </div>
                 </div>
             </div>
@@ -112,6 +71,96 @@
         });
     </script>
     <script>
-        var player = new Playerjs({id:"player", file:"http://45.76.204.156:88/hls/upload/1/20-01-2023/morning/morning.m3u8"});
+        var player = new Playerjs({id:"player"});
+
+        var playlists = document.getElementsByClassName("broadcast_date");
+
+        if(playlists.length > 0){
+            const firstPlaylist = playlists[0].getAttribute("value");
+            playlists[0].classList.add('active');
+            loadPlaylist(firstPlaylist);
+        }
+
+        var mediaVideos = document.getElementsByClassName("media-item__icon");
+
+        Array.from(mediaVideos).forEach(function (element) {
+            element.addEventListener("click", function () {
+                var mediaSelected = element.getAttribute("target");
+
+                var mediaSelecting = document.getElementsByClassName("media_selected");
+                if(mediaSelecting.length > 0){
+                    mediaSelecting[0].classList.remove("media_selected");
+                }
+
+                var videoSelected = document.getElementsByClassName(mediaSelected);
+                videoSelected[0].classList.add("media_selected");
+            });
+        });
+
+        function changePlaylist(id,event){
+            loadPlaylist(id);
+            let broadcastDate = document.getElementsByClassName("broadcast_date");
+            Array.from(broadcastDate).forEach(function (element) {
+                if(element.classList.contains('active')){
+                    element.classList.remove('active');
+                }
+                //
+            });
+            let broadcastDateSeletcted = document.getElementsByClassName(event);
+            broadcastDateSeletcted[0].classList.add('active');
+        }
+
+        function loadPlaylist(id){
+            try {
+                axios.post('{{request()->url()}}/playlist', {
+                    data: {
+                        id: id
+                    }
+                }).then(function (response) {
+                    console.log(response.data);
+                    document.getElementById('playlist').innerHTML = response.data;
+
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        function audioplay(link){
+            player.api("play", link);
+        }
+
+    </script>
+
+    <script>
+        function singleDelete(id){
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
+                cancelButtonClass: 'btn btn-danger w-xs mt-2',
+                confirmButtonText: "Yes, delete it!",
+                buttonsStyling: false,
+                showCloseButton: true
+            }).then(function (result) {
+                if (result.value) {
+                    try {
+                        axios.delete('{{route("customers.delete.audio")}}', {
+                            data: {
+                                id: id
+                            }
+                        }).then(function (response) {
+                            if(response.data.success){
+                                location.reload();
+                            }
+                        })
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+            });
+        }
     </script>
 @endpush

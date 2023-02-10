@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Helpers\Core as CoreHelper;
-use App\Repository\Settings\SettingRepositoryContract;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;

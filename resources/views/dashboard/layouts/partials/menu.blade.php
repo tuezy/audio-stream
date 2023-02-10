@@ -38,6 +38,16 @@
 </li>
 @endcanany
 
+
+@can("dashboard.customers.index")
+    <li class="nav-item">
+        <a class="nav-link menu-link" href="{{ route('dashboard.customers.index') }}">
+            <i class="ri-honour-line"></i> <span data-key="t-widgets">Customers</span>
+        </a>
+    </li>
+@endcan
+
+
 @can("dashboard.settings.index")
     <li class="nav-item">
         <a class="nav-link menu-link" href="{{ route('dashboard.settings.index') }}">
@@ -45,3 +55,30 @@
         </a>
     </li>
 @endcan
+
+@foreach(['categories','audio', 'videos', 'playlists'] as $key)
+    @can("dashboard.".$key.".index")
+        <li class="nav-item">
+            <a class="nav-link menu-link" href="{{ route('dashboard.'.$key.'.index') }}">
+                <i class="ri-honour-line"></i> <span data-key="t-widgets">{{ ucfirst($key) }}</span>
+            </a>
+        </li>
+    @endcan
+@endforeach
+
+{{--@canany(['dashboard.images.index'])--}}
+{{--    <li class="nav-item">--}}
+{{--        <a class="nav-link menu-link" href="#assetDashboard" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">--}}
+{{--            <i class="ri-account-circle-line"></i> <span data-key="t-authentication">Assets</span>--}}
+{{--        </a>--}}
+{{--        <div class="collapse menu-dropdown" id="assetDashboard">--}}
+{{--            <ul class="nav nav-sm flex-column">--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a href="{{route("dashboard.images.index", ['type' => 'logo'])}}" class="nav-link" data-key="t-basic"> Logo--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+
+{{--            </ul>--}}
+{{--        </div>--}}
+{{--    </li>--}}
+{{--@endcanany--}}
