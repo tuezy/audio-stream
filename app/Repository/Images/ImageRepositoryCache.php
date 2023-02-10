@@ -1,5 +1,5 @@
 <?php
-namespace App\Repository\images;
+namespace App\Repository\Images;
 
 use App\Helpers\Repository\RepositoryCache;
 

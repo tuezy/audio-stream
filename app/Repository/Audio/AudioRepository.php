@@ -1,5 +1,5 @@
 <?php
-namespace App\Repository\audio;
+namespace App\Repository\Audio;
 
 use App\Helpers\Repository\Repository;
 use App\Models\Audio;
