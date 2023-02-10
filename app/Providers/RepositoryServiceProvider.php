@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Repository\categories\CategoryRepositoryCache;
+use App\Repository\Categories\CategoryRepositoryCache;
 use App\Repository\Categories\CategoryRepositoryContract;
 use App\Repository\Developments\DevelopmentContract;
 use App\Repository\Developments\DevelopmentRepositoryCache;
