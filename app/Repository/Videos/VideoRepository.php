@@ -1,5 +1,5 @@
 <?php
-namespace App\Repository\videos;
+namespace App\Repository\Videos;
 
 use App\Helpers\Repository\Repository;
 use App\Models\Video;

@@ -1,5 +1,5 @@
 <?php
-namespace App\Repository\{{modelNamePluralLowerCase}};
+namespace App\Repository\{{modelNamePluralUpperCase}};
 
 use App\Helpers\Repository\RepositoryCache;
 

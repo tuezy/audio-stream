@@ -1,5 +1,5 @@
 <?php
-namespace App\Repository\categories;
+namespace App\Repository\Categories;
 
 use App\Helpers\Repository\RepositoryCache;
 

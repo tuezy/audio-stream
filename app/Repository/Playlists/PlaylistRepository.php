@@ -1,5 +1,5 @@
 <?php
-namespace App\Repository\playlists;
+namespace App\Repository\Playlists;
 
 use App\Helpers\Repository\Repository;
 use App\Models\Playlist;
