@@ -3,8 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Models\Playlist;
+use App\Repository\Playlists\PlaylistRepositoryContract;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
@@ -32,7 +34,7 @@ class MakePlaylist extends Command
 
     protected $playlistRepository;
 
-    public function __construct(PlaylistRepository $playlistRepository)
+    public function __construct(PlaylistRepositoryContract $playlistRepository)
     {
         parent::__construct();
         $this->playlistRepository = $playlistRepository;
@@ -57,7 +59,7 @@ class MakePlaylist extends Command
 
             $cmd = 'ffmpeg ';
             foreach ($playlist->audio as $audio){
-                $cmd .= ' -i ' . storage_path('app/'.$audio->path);
+                $cmd .= ' -i ' . storage_path('app/'. Str::replace('storage', 'public', $audio->path));
             }
             $cmd .= ' -filter_complex \'[0:0][1:0]concat=n='.count($playlist->audio).':v=0:a=1[out]\' -map \'[out]\' -vn -ac 2 -acodec aac -start_number 0 -hls_time 10 -hls_list_size 0 -f hls ';
 
