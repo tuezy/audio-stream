@@ -95,7 +95,7 @@ class CustomerController extends IndexController
             }
 
         }
-
+        return redirect()->back();
     }
 
     public function uploadVideo(Request $request){
@@ -143,7 +143,7 @@ class CustomerController extends IndexController
                 'title' => $title
             ]);
         }
-
+        return redirect()->back();
     }
 
     public function deleteAudio(){
@@ -193,6 +193,7 @@ class CustomerController extends IndexController
     public function makePlaylist($id){
         $user = Auth::guard("customers")->user();
         Artisan::call("make:playlist ".$id);
+        return redirect()->back();
     }
 
     public function logout(Request $request){
