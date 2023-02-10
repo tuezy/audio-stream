@@ -24,38 +24,50 @@
         <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
             <ul class="index-menu navbar-nav mt-2 mt-lg-0" >
                 <li class="nav-item">
-                    <a class="nav-link active" href="phat-thanh-buoi-sang">Phát thanh buổi sáng</a>
+                    <a class="nav-link @if(\Illuminate\Support\Str::contains(request()->url(), '/phat-thanh-buoi-sang')) active @endif" href="{{ route("home.sang") }}">Phát thanh buổi sáng</a>
                 </li>
                <li class="nav-item">
                    <a class="nav-link mx-3">|</a>
                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="phat-thanh-buoi-trua">Phát thanh buổi trưa</a>
+                    <a class="nav-link @if(\Illuminate\Support\Str::contains(request()->url(), '/phat-thanh-buoi-trua')) active @endif" href="{{ route("home.trua") }}">Phát thanh buổi trưa</a>
                 </li>
                <li class="nav-item">
                    <a class="nav-link mx-3">|</a>
                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="phat-thanh-buoi-toi">Phát thanh buổi tối</a>
+                    <a class="nav-link @if(\Illuminate\Support\Str::contains(request()->url(), '/phat-thanh-buoi-toi')) active @endif" href="{{ route("home.toi") }}">Phát thanh buổi tối</a>
                 </li>
                <li class="nav-item">
                    <a class="nav-link mx-3">|</a>
                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="phim">Phim</a>
+                    <a class="nav-link @if(\Illuminate\Support\Str::contains(request()->url(), '/phim')) active @endif" href="{{ route("video.index") }}">Phim</a>
                 </li>
                <li class="nav-item">
                    <a class="nav-link mx-3">|</a>
                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#reviews">Tạo nội dung</a>
+                    <a class="nav-link" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal">Tạo nội dung</a>
                 </li>
 
             </ul>
 
-            <div class="">
-                <a href="auth-signin-basic.html" class="btn btn-link fw-medium text-decoration-none text-dark">Sign in</a>
-                <a href="auth-signup-basic.html" class="btn btn-primary">Sign Up</a>
+            <div class="user_panel">
+                <div class="dropdown ms-1 topbar-head-dropdown header-item">
+                    <div data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="user_panel_name">
+                        <span class="username">{{ \Illuminate\Support\Facades\Auth::guard("customers")->user()->name }}</span>
+                    </div>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a href="{{ route("customers.panel") }}" class="dropdown-item notify-item language py-2" data-lang="en" title="English">
+                            Thông tin
+                        </a>
+                        <a href="customer/logout" class="dropdown-item notify-item language py-2" data-lang="en" title="English">
+                           Logout
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
 

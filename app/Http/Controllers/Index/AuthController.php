@@ -3,24 +3,25 @@
 namespace App\Http\Controllers\Index;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:customers')->except('logout');
     }
 
     public function showLoginForm(){
-        return view('dashboard.pages.auth.login');
+        return view('index.pages.auth.login');
     }
+
+    public function showResetPasswordForm(){
+        return view('index.pages.auth.reset-pass');
+    }
+
+
 
     public function login(Request $request){
 
@@ -28,10 +29,9 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('customers')->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard');
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([
@@ -40,13 +40,14 @@ class AuthController extends Controller
         ]);
     }
     public function logout(Request $request){
-        Auth::logout();
+
+        Auth::guard('customers')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/dashboard');
+        return redirect('/');
     }
 
 }

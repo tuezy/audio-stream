@@ -1,5 +1,9 @@
 @extends("dashboard.main")
 @section("content")
+    <form action="{{ route("dashboard.$entity.store") }}" method="POST">
+        @csrf
+        @method('PUT')
+
     <div class="row">
         <div class="col-lg-8">
             <div class="card">
@@ -52,6 +56,7 @@
         </div>
         <!-- end col -->
     </div>
+    </form>
 @endsection
 
 @section("css")

@@ -29,22 +29,22 @@ class CmsDatatables extends DatatablesService{
             },
             'raw' => true
         ]);
-        $this->addColumn([
-            'data' => 'index',
-            'name' => 'index',
-            'title' => 'Index',
-            'searchable' => false,
-            'orderable' => false,
-            'exportable' => false,
-            'printable' => false,
-            'render' => function($value){
-                return '<div class="custom-control custom-checkbox text-center">
-                        <input type="text" name="index" value="'.$value->id.'" class="form-control">
-                        </div>';
-            },
-            'class' => 'text-center dt-id',
-            'raw' => true
-        ]);
+//        $this->addColumn([
+//            'data' => 'index',
+//            'name' => 'index',
+//            'title' => 'Index',
+//            'searchable' => false,
+//            'orderable' => false,
+//            'exportable' => false,
+//            'printable' => false,
+//            'render' => function($value){
+//                return '<div class="custom-control custom-checkbox text-center">
+//                        <input type="text" name="index" value="'.$value->index.'" class="form-control">
+//                        </div>';
+//            },
+//            'class' => 'text-center dt-id',
+//            'raw' => true
+//        ]);
 
         $this->addColumn([
             'data' => 'id',

@@ -11,4 +11,10 @@ interface RepositoryContract{
     public function all($columns = ["*"], array $with = []);
     public function updateOrCreate($condition, $value);
 
+    public function create($data);
+    public function where($column, $operator, $value);
+    public function whereIn($field, $data);
+
+    public function whereNotIn($field, $data);
+
 }

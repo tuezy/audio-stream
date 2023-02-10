@@ -10,6 +10,8 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -37,26 +39,29 @@ class UserController extends Controller{
     }
 
     public function update($id, Request $request){
-        $user = User::find($id);
+
+        $user = User::findOrFail($id);
+
         $input = $request->except('_token');
 
-        foreach ( $input as $key => $value){
+        foreach ($input as $key => $value){
 
             if($key == 'password' && is_null($value)) continue;
-            if($key == 'role'){
+            else if($key == 'role'){
                 $user->roles()->sync($value);
             }else{
-                $user->{$key} = $value;
+                $user->{$key} = $key == 'password' ? Hash::make($value) : $value;
             }
         }
 
         $user->save();
 
-        return redirect()->back()->with('success', 'User Updated');
+        return redirect()->back()->with('alert_success', 'User Updated');
 
     }
 
     public function store(Request $request){
+
         $credentials = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email'],

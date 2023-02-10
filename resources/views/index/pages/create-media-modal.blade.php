@@ -1,7 +1,7 @@
-<div class="modal fade show index-creator" id="showModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade index-creator" id="showModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <form class="tablelist-form" autocomplete="off" method="POST">
+            <form class="tablelist-form" autocomplete="off" method="POST" action="{{ route("customers.upload") }}">
                 @csrf
                 @method("PUT")
                 <div class="modal-body">
@@ -19,14 +19,19 @@
                         <div class="media-search__content">
                             <div class="media-form">
                                 <label for="media_type" class="label">Thể Loại</label>
-                                <select type="text" class="form-control" id="media_type" placeholder=>
+                                <select type="text" class="form-control" id="media_type" placeholder="">
                                     <option value="0">Chọn thể loại</option>
                                 </select>
                             </div>
                             <div class="d-flex">
                                 <div class="media-form me-5">
                                     <label for="media_type" class="label">Ngày Phát</label>
-                                    <input type="date" name="date" placeholder="Chọn Ngày Phát" class="form-control media_type">
+
+                                    <input type="text" name="start_date"
+                                           class="media_type form-control border-0 dash-filter-picker shadow  flatpickr-input"
+                                           data-provider="flatpickr"
+                                           data-date-format="d-m-Y"
+                                           placeholder="Chọn Ngày Phát">
                                 </div>
                                 <div class="media-form">
                                     <label for="media_type" class="label">Buổi Phát</label>
@@ -37,7 +42,7 @@
                             </div>
                             <div class="media-form">
                                 <label for="media_type" class="label">Đăng file âm thanh</label>
-                                <input type="file" class="form-control" placeholder="Vui lòng chọn file cần đăng">
+                                <input type="file" class="form-control" placeholder="Vui lòng chọn file cần đăng" >
                             </div>
                             <div class="media-form">
                                 <label for="media_type" class="label">Ghi Chú</label>
@@ -46,7 +51,6 @@
                             <div class="text-center">
                                 <button type="submit" class="media-search_btn mx-auto">Lưu</button>
                             </div>
-
                         </div>
 
                     </div>

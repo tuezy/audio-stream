@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Helpers\Core as CoreHelper;
 use App\Helpers\Services\Acl\Bouncer;
 use App\Modules\Datatables\Providers\DatatablesServiceProvider;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
@@ -46,6 +47,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Paginator::useBootstrap();
     }
 }
