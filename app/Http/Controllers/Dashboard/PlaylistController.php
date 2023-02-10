@@ -121,6 +121,6 @@ class PlaylistController extends Controller
 
     public function make($id){
         Artisan::call("make:playlist ".$id);
-        return redirect()->route('dashboard.playlist.index');
+        return redirect()->route('dashboard.playlists.index');
     }
 }
