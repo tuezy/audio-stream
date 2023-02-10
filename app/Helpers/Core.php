@@ -3,7 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Image;
-use App\Repository\Images\imageRepositoryContract;
+use App\Repository\Images\ImageRepositoryContract;
 use App\Repository\Settings\SettingRepositoryContract;
 use Carbon\Carbon;
 use Exception;
