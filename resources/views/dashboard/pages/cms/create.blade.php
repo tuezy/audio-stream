@@ -41,14 +41,14 @@
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
-                        <label for="choices-privacy-status-input" class="form-label">Visibility</label>
+                        <label for="choices-privacy-status-input" class="form-label">Hiển thị</label>
                         <select class="form-select" data-choices data-choices-search-false id="choices-privacy-status-input" name="visibility">
-                            <option value="1" selected>Show</option>
-                            <option value="0">Hidden</option>
+                            <option value="1" selected>Hiện</option>
+                            <option value="0">Ẩn</option>
                         </select>
                     </div>
                     <div>
-                        <label for="indexContent" class="form-label">Index</label>
+                        <label for="indexContent" class="form-label">Thứ tự</label>
                         <input type="number" min="1" name="index" class="form-control" id="indexContent" value="1">
                     </div>
                 </div>

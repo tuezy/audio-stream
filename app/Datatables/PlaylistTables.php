@@ -58,7 +58,10 @@ class PlaylistTables extends DatatablesService{
             'orderable' => true,
             'exportable' => true,
             'printable' => true,
-            'class' => 'dt-medium'
+            'class' => 'dt-medium',
+            'render' => function($value){
+                return Playlist::PLAYLIST_TYPES_TRANSLATION[$value->broadcast_on];
+            },
         ]);
 
         $this->addColumn([
