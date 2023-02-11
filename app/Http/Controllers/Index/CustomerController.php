@@ -35,7 +35,7 @@ class CustomerController extends IndexController
 
 
         $rules = [
-            'file' => 'required|mimes:mp3,avi,mp4,mpeg,mov',
+            'file' => 'required|mimes:mp3',
             'title' => 'required',
             'broadcast_date' => 'required',
             'broadcast_on' => 'required'
