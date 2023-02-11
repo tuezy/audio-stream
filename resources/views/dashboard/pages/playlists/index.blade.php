@@ -10,11 +10,11 @@
                         </div>
                         <div class="col-sm-auto ms-auto">
                             <div class="d-flex flex-wrap align-items-start justify-content-end gap-2">
-                                <button type="button"
-                                        class="btn btn-success add-btn"
-                                        data-bs-toggle="modal"
-                                        id="create-btn"
-                                        data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> New</button>
+{{--                                <button type="button"--}}
+{{--                                        class="btn btn-success add-btn"--}}
+{{--                                        data-bs-toggle="modal"--}}
+{{--                                        id="create-btn"--}}
+{{--                                        data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> New</button>--}}
 
 {{--                                <a href="{{ route('dashboard.'.$entity.'.create') }}" type="button"--}}
 {{--                                        class="btn btn-success add-btn"--}}
