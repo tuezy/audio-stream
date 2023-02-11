@@ -56,6 +56,4 @@ Route::middleware('auth:customers')->group(function (){
 
 Route::get('/hls/audio/{broadcast_on}/{customer_id}/playlist.m3u8', [App\Http\Controllers\PlayController::class, 'play'])->name('playlist.m3u8');
 
-Route::get('baoloi', [App\Http\Controllers\Index\LoiController::class, 'index'])->name('baoloi');
-
 Route::get('{any}', [App\Http\Controllers\Index\HomeController::class, 'home'])->name('any');
