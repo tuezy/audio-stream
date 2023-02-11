@@ -40,12 +40,18 @@ class CustomerController extends IndexController
             'broadcast_date' => 'required',
             'broadcast_on' => 'required'
         ];
-
-        $validation = Validator::make($input, $rules);
+        $messages = [
+            'file.required' => 'Bạn chưa nhập file âm thanh.',
+            'file.mimes' => 'File âm thanh phải ở định dạng mp3',
+            'broadcast_date.required' => 'Bạn chưa chọn ngày phát',
+            'broadcast_on.required' => 'Bạn chưa chọn buổi phát',
+            'title.required' => 'Bạn chưa nhập tiêu đề',
+        ];
+        $validation = Validator::make($input, $rules, $messages);
 
         if ($validation->fails())
         {
-            return Response::make($validation->errors()->first(), 400);
+            return redirect()->back()->with(['errors' => $validation->errors()]);
         }
 
         $title = $input['title'];
@@ -102,16 +108,23 @@ class CustomerController extends IndexController
         $input = $request->all();
 
         $rules = [
-            'file' => 'required|mimes:mp3,avi,mp4,mpeg,mov',
+            'file' => 'required|mimes:avi,mp4,mpeg,mov',
             'title' => 'required',
             'category_id'  => 'required'
         ];
 
-        $validation = Validator::make($input, $rules);
+
+        $messages = [
+            'file.required' => 'Bạn chưa nhập file âm thanh.',
+            'file.mimes' => 'File âm thanh phải ở định dạng mp3',
+            'title.required' => 'Bạn chưa nhập tiêu đề',
+            'category_id.required' => 'Bạn chưa chọn thể loại',
+        ];
+        $validation = Validator::make($input, $rules, $messages);
 
         if ($validation->fails())
         {
-            return Response::make($validation->errors()->first(), 400);
+            return redirect()->back()->with(['errors' => $validation->errors()]);
         }
 
         $title = $input['title'];

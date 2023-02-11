@@ -29,6 +29,19 @@
 <!-- Begin page -->
 <div id="layout-wrapper">
     @include("index.layouts.partials.header")
+    <div class="container pt-5">
+        <div class="mt-5">
+            @if(session('errors'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @foreach(session('errors')->all() as $error)
+                        <p><strong>{{ $error }}</strong>.</p>
+                    @endforeach
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+        </div>
+    </div>
+
     @yield("content")
     @include("index.layouts.partials.footer")
     @include("index.pages.ui.create")
