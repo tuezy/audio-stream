@@ -58,7 +58,10 @@ class MakePlaylist extends Command
             File::makeDirectory($hlsDir, 0777, true);
 
             $cmd = 'ffmpeg ';
-            foreach ($playlist->audio as $audio){
+
+            $audios = $playlist->audio->orderBy("index", "asc");
+
+            foreach ($audios as $audio){
                 $cmd .= ' -i ' . storage_path('app/'. Str::replace('storage', 'public', $audio->path));
             }
             $cmd .= ' -filter_complex \'[0:0][1:0]concat=n='.count($playlist->audio).':v=0:a=1[out]\' -map \'[out]\' -vn -ac 2 -acodec aac -start_number 0 -hls_time 10 -hls_list_size 0 -f hls ';
