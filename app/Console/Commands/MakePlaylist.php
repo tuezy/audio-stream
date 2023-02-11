@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Playlist;
+use App\Repository\Audio\AudioRepositoryContract;
 use App\Repository\Playlists\PlaylistRepositoryContract;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -34,10 +35,13 @@ class MakePlaylist extends Command
 
     protected $playlistRepository;
 
-    public function __construct(PlaylistRepositoryContract $playlistRepository)
+    protected $audioRepository;
+
+    public function __construct(PlaylistRepositoryContract $playlistRepository, AudioRepositoryContract $audioRepository)
     {
         parent::__construct();
         $this->playlistRepository = $playlistRepository;
+        $this->audioRepository = $audioRepository;
     }
 
     /**
@@ -49,7 +53,8 @@ class MakePlaylist extends Command
     {
         $playlist = $this->playlistRepository
             ->getModel()
-            ->with("audio")->findOrFail($this->argument('id'));
+            ->with("audio")
+            ->findOrFail($this->argument('id'));
         if(count($playlist->audio) > 0){
             $hlsDir = storage_path('app/public/hls/' . $playlist->folder);
             if(File::exists($hlsDir)){
@@ -59,7 +64,7 @@ class MakePlaylist extends Command
 
             $cmd = 'ffmpeg ';
 
-            $audios = $playlist->audio->orderBy("index", "asc");
+            $audios = $this->audioRepository->where('playlist_id', '=', $playlist->id)->orderBy("index", "asc")->get();
 
             foreach ($audios as $audio){
                 $cmd .= ' -i ' . storage_path('app/'. Str::replace('storage', 'public', $audio->path));
