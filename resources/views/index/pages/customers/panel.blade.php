@@ -13,12 +13,12 @@
 {{--                            </li>--}}
                             <li class="nav-item">
                                 <a class="nav-link active" data-bs-toggle="tab" href="#playlistStatus" role="tab">
-                                    <i class="far fa-user"></i> Playlist Status
+                                    <i class="far fa-user"></i> Quản lý buổi phát thanh
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#m3u8" role="tab">
-                                    <i class="far fa-user"></i> M3u8
+                                    <i class="far fa-user"></i> Trạng thái link hôm nay
                                 </a>
                             </li>
                         </ul>
@@ -75,7 +75,7 @@
                                         @foreach($playlists as $playlist)
                                             <tr>
                                                 <td>{{ $playlist->broadcast_date }}</td>
-                                                <td>{{ $playlist->broadcast_on }}</td>
+                                                <td>{{ \App\Models\Playlist::PLAYLIST_TYPES_TRANSLATION[$playlist->broadcast_on] }}</td>
                                                 <td style="width: 138px;text-align: center">
                                                     @php
                                                         if($playlist->audio->count() > 0){
@@ -84,10 +84,10 @@
                                                                 echo '<span class="btn btn-outline-succcess">Ready</span>';
                                                                 break;
                                                             default:
-                                                                echo '<a href="'.route('customers.make.playlist',['id' => $playlist->id]).'" class="btn btn-primary">Make Stream</a>';
+                                                                echo '<a href="'.route('customers.make.playlist',['id' => $playlist->id]).'" class="btn btn-primary">Tạo Link M3u8</a>';
                                                         }
                                                     }else{
-                                                        echo "Empty Playlist";
+                                                        echo "Chưa Upload âm thanh";
                                                     }
                                                     @endphp
                                                 </td>

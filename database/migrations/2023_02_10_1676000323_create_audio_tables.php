@@ -25,7 +25,7 @@ class CreateaudioTables extends Migration
             $table->string('broadcast_date');
             $table->string('broadcast_on');
             $table->foreignId('playlist_id')->references('id')->on('playlists')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('customer_id')->references('id')->on('customers')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('customer_id')->references('id')->on('customers');
 
 
             //$table->enum('status', ['pending', 'completed'])->default('pending');

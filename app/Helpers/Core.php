@@ -201,7 +201,14 @@ class Core
     }
 
     public function getSetting(string $key, $default = null){
-       return Cache::get("settings")[$key];
+
+       $result = Cache::get("settings")[$key] ?? null;
+       if(is_null($result)){
+           $setting = $this->settingRepository->where('key', '=', $key)->first();
+           if(isset($setting->value))
+               return $setting->value;
+       }
+       return $result;
     }
 
     public function image($type){

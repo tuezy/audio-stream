@@ -43,7 +43,7 @@ class RoleData extends DatatablesService{
         $this->addColumn([
             'data' => 'code',
             'name' => 'code',
-            'title' => 'Code',
+            'title' => 'Mã',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -53,7 +53,7 @@ class RoleData extends DatatablesService{
         $this->addColumn([
             'data' => 'title',
             'name' => 'title',
-            'title' => 'Title',
+            'title' => 'Tiêu đề',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -62,7 +62,7 @@ class RoleData extends DatatablesService{
         $this->addColumn([
             'data' => 'action',
             'class' => 'text-center dt-id',
-            'title' => 'Action',
+            'title' => 'Hành động',
             'raw' => true,
             'render' => function($value){
                 return view('dashboard.pages.roles.partials.action', ['value' => $value]);

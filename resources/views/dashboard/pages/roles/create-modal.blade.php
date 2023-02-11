@@ -11,12 +11,12 @@
                 <div class="modal-body">
                     <input type="hidden" id="id-field" />
                     <div class="mb-3">
-                        <label for="customername-field" class="form-label">Title</label>
-                        <input type="text" name='title' id="customername-field" class="form-control" placeholder="Enter Title" required />
+                        <label for="customername-field" class="form-label">Tên</label>
+                        <input type="text" name='title' id="customername-field" class="form-control" placeholder="Tên" required />
                         <div class="invalid-feedback">Please enter a name.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="permisson-fields" class="form-label">Permissions</label>
+                        <label for="permisson-fields" class="form-label">Phân quyền</label>
                         @php
                             $permissions = \App\Models\Permission::all(['id','code', 'title', 'group']);
                             $permissions = $permissions->groupBy('group');
@@ -44,8 +44,8 @@
                 </div>
                 <div class="modal-footer">
                     <div class="hstack gap-2 justify-content-end">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" id="add-btn">Add Role</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-success" id="add-btn">Thêm</button>
                         <!-- <button type="button" class="btn btn-success" id="edit-btn">Update</button> -->
                     </div>
                 </div>

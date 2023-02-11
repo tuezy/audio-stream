@@ -42,7 +42,7 @@ class VideoTables extends DatatablesService{
         $this->addColumn([
             'data' => 'title',
             'name' => 'title',
-            'title' => 'Title',
+            'title' => 'Tiều đề',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -62,7 +62,7 @@ class VideoTables extends DatatablesService{
         $this->addColumn([
             'data' => 'category',
             'name' => 'category',
-            'title' => 'Category',
+            'title' => 'Thể loại',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -76,7 +76,7 @@ class VideoTables extends DatatablesService{
         $this->addColumn([
             'data' => 'customer',
             'name' => 'customer',
-            'title' => 'Customer',
+            'title' => 'Thành viên',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,

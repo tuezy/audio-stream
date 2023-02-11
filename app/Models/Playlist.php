@@ -22,6 +22,12 @@ class Playlist extends Model
         'evening'   => self::PLAYLIST_TYPE_EVENING
     ];
 
+    public const PLAYLIST_TYPES_TRANSLATION = [
+        self::PLAYLIST_TYPE_MORNING => "Buổi sáng",
+        self::PLAYLIST_TYPE_AFTERNOON => "Buổi trưa",
+        self::PLAYLIST_TYPE_EVENING  => "Buổi tối"
+    ];
+
     public const PLAYLIST_STATUS_PENDING = 'pending';
 
     public const PLAYLIST_STATUS_PROCESSING = 'processing';

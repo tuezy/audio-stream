@@ -6,11 +6,11 @@ return [
             'cache_time_title' =>  'Repository Cache time'
         ],
         'general' => [
-            'site_title' => 'Website Title',
+            'site_title' => 'Tên trang web',
             'hotline'   => 'Hotline',
-            'address'   => 'Address',
+            'address'   => 'Địa chỉ',
             'email'     => 'Email'
         ],
-        'auto_delete_after' => 'Audo Delete File In'
+        'auto_delete_after' => 'Tự động xóa File sau'
     ]
 ];

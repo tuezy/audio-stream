@@ -21,6 +21,9 @@ body{
     min-width: 1366px;
     overflow-x: hidden;
 }
+#layout-wrapper{
+    min-height: 60vh;
+}
 .btn-xemthem{
     width: 150px;
     height: 40px;
@@ -387,6 +390,7 @@ Index Login Section
     font-size: 16px;
     color: #dfdfdf;
     padding-left: 30px;
+    color: #000;
 }
 #index-login label{
     font-size: 20px;

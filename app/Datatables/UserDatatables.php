@@ -42,7 +42,7 @@ class UserDatatables extends DatatablesService{
         $this->addColumn([
             'data' => 'name',
             'name' => 'name',
-            'title' => 'Name',
+            'title' => 'Tên',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -62,7 +62,7 @@ class UserDatatables extends DatatablesService{
         $this->addColumn([
         'data' => 'roles',
         'name' => 'roles',
-        'title' => 'Role',
+        'title' => 'Phân quyền',
         'searchable' => true,
         'orderable' => true,
         'exportable' => true,
@@ -76,7 +76,7 @@ class UserDatatables extends DatatablesService{
         $this->addColumn([
             'data' => 'created_at',
             'name' => 'created_at',
-            'title' => 'Join at',
+            'title' => 'Gia nhập ngày',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -90,7 +90,7 @@ class UserDatatables extends DatatablesService{
         $this->addColumn([
             'data' => 'action',
             'class' => 'text-center dt-id',
-            'title' => 'Action',
+            'title' => 'Hành động',
             'raw' => true,
             'render' => function($value){
                 return view('dashboard.pages.users.partials.action', ['value' => $value]);

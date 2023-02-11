@@ -42,7 +42,7 @@ class CustomerTables extends DatatablesService{
         $this->addColumn([
             'data' => 'name',
             'name' => 'name',
-            'title' => 'Name',
+            'title' => 'Tên',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -62,7 +62,7 @@ class CustomerTables extends DatatablesService{
         $this->addColumn([
             'data' => 'created_at',
             'name' => 'created_at',
-            'title' => 'Join at',
+            'title' => 'Ngày tạo',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,

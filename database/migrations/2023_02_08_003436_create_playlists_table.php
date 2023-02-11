@@ -17,11 +17,11 @@ class CreatePlaylistsTable extends Migration
             $table->id();
             $table->string('broadcast_date');
             $table->string('broadcast_on');
-            $table->foreignId('customer_id')->references('id')->on('customers')->cascadeOnDelete()->cascadeOnUpdate();
             $table->enum('status', ['pending', 'completed'])->default('pending');
             $table->string('folder');
             $table->integer('ordered')->default(1);
             $table->timestamps();
+            $table->foreignId('customer_id')->references('id')->on('customers')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

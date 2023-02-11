@@ -59,7 +59,7 @@ class CmsDatatables extends DatatablesService{
         $this->addColumn([
             'data' => 'title',
             'name' => 'title',
-            'title' => 'Title',
+            'title' => 'Tiêu đề',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -69,7 +69,7 @@ class CmsDatatables extends DatatablesService{
         $this->addColumn([
             'data' => 'visibility',
             'name' => 'visibility',
-            'title' => 'Visibility',
+            'title' => 'Hiển thị',
             'class' => 'text-center dt-id',
             'raw' => true,
             'render' => function($value){
@@ -80,7 +80,7 @@ class CmsDatatables extends DatatablesService{
         $this->addColumn([
             'data' => 'created_at',
             'name' => 'created_at',
-            'title' => 'Created at',
+            'title' => 'Ngày tạo',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -96,7 +96,7 @@ class CmsDatatables extends DatatablesService{
         $this->addColumn([
             'data' => 'action',
             'class' => 'text-center dt-id',
-            'title' => 'Action',
+            'title' => 'Hành động',
             'raw' => true,
             'render' => function($value){
                 return view('dashboard.pages.cms.partials.action', ['value' => $value]);

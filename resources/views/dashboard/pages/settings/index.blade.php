@@ -34,8 +34,8 @@
                             <div class="row align-items-center mb-3">
                                 <div class="col-lg-12">
                                     <div class="hstack gap-2 justify-content-end">
-                                        <button type="submit" class="btn btn-primary">Updates</button>
-                                        <button type="button" class="btn btn-soft-success">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        <button type="button" class="btn btn-soft-success">Hủy</button>
                                     </div>
                                 </div>
                             </div>

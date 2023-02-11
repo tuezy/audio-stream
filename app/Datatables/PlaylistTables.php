@@ -42,7 +42,7 @@ class PlaylistTables extends DatatablesService{
         $this->addColumn([
             'data' => 'broadcast_date',
             'name' => 'broadcast_date',
-            'title' => 'Broadcast Date',
+            'title' => 'Ngày Phát',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -53,7 +53,7 @@ class PlaylistTables extends DatatablesService{
         $this->addColumn([
             'data' => 'broadcast_on',
             'name' => 'broadcast_on',
-            'title' => 'Broadcast On',
+            'title' => 'Buổi phát',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -85,13 +85,13 @@ class PlaylistTables extends DatatablesService{
                 if($value->audio->count() > 0){
                     switch ($value->status){
                         case Playlist::PLAYLIST_STATUS_PENDING:
-                            return '<a href="'.route('dashboard.make.playlist',['id' => $value->id]).'" class="btn btn-primary">Make Stream</a>';
+                            return '<a href="'.route('dashboard.make.playlist',['id' => $value->id]).'" class="btn btn-primary">Tạo Link M3u8</a>';
                             break;
                         case Playlist::PLAYLIST_STATUS_COMPLETED:
-                            return '<button class="btn btn-primary">Ready</button>';
+                            return '<button class="btn btn-primary">Sẵn sàng</button>';
                             break;
                         default:
-                            return '<button class="btn btn-primary">Processing</button>';
+                            return '<button class="btn btn-primary">Đang xử lý</button>';
                     }
                 }else{
                     return "Empty Playlist";

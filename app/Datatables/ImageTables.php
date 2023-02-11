@@ -42,7 +42,7 @@ class ImageTables extends DatatablesService{
         $this->addColumn([
             'data' => 'title',
             'name' => 'title',
-            'title' => 'Title',
+            'title' => 'Tiêu đề',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -62,7 +62,7 @@ class ImageTables extends DatatablesService{
         $this->addColumn([
             'data' => 'created_at',
             'name' => 'created_at',
-            'title' => 'Join at',
+            'title' => 'Ngày tạo',
             'searchable' => true,
             'orderable' => true,
             'exportable' => true,
@@ -76,7 +76,7 @@ class ImageTables extends DatatablesService{
         $this->addColumn([
             'data' => 'action',
             'class' => 'text-center dt-id',
-            'title' => 'Action',
+            'title' => 'Hành động',
             'raw' => true,
             'render' => function($value){
                 return view('dashboard.pages.images.partials.action', [

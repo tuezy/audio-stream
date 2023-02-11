@@ -5,18 +5,18 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3">
-                        <label class="form-label" for="project-title-input">Title</label>
+                        <label class="form-label" for="project-title-input">Tên</label>
                         <input type="text" class="form-control" id="cms-title-input" placeholder="Enter title" name="title">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Short Content</label>
+                        <label class="form-label">Giới thiệu ngắn</label>
                         <div>
                             <textarea class="form-control" name="short_content">
                             </textarea>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Content</label>
+                        <label class="form-label">Nội dung</label>
                         <textarea id="ckeditor-classic" name="content">
                         </textarea>
                     </div>
@@ -27,21 +27,21 @@
 
             <!-- end card -->
             <div class="text-end mb-4">
-                <button type="submit" class="btn btn-success w-sm">Create</button>
+                <button type="submit" class="btn btn-success w-sm">Thêm</button>
             </div>
         </div>
         <!-- end col -->
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Visibility</h5>
+                    <h5 class="card-title mb-0">Hiển thị</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
-                        <label for="choices-privacy-status-input" class="form-label">Visibility</label>
+                        <label for="choices-privacy-status-input" class="form-label">Hiển thị</label>
                         <select class="form-select" data-choices data-choices-search-false id="choices-privacy-status-input" name="visibility">
-                            <option value="1" selected>Show</option>
-                            <option value="0">Hidden</option>
+                            <option value="1" selected>Hiện</option>
+                            <option value="0">Ẩn</option>
                         </select>
                     </div>
                     <div>

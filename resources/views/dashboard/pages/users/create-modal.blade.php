@@ -11,18 +11,18 @@
                 <div class="modal-body">
                     <input type="hidden" id="id-field" />
                     <div class="mb-3">
-                        <label for="customername-field" class="form-label">Name</label>
+                        <label for="customername-field" class="form-label">Tên</label>
                         <input type="text" name='name' id="customername-field" class="form-control" placeholder="Name" required />
-                        <div class="invalid-feedback">Please enter name of user.</div>
+                        <div class="invalid-feedback">Chưa có tên.</div>
                     </div>
                     <div class="mb-3">
                         <label for="customername-field" class="form-label">Email</label>
                         <input type="email" name='email' id="customername-field" class="form-control" placeholder="Email" required />
-                        <div class="invalid-feedback">Please enter email user.</div>
+                        <div class="invalid-feedback">Chưa có email.</div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="customername-field" class="form-label">Role</label>
+                        <label for="customername-field" class="form-label">Phân quyền</label>
                         <select name="role" class="form-select">
                             @php
                                 $roles = \App\Models\Role::all(['id','code', 'title']);
@@ -31,19 +31,19 @@
                                 <option value="{{ $role->id }}" @if($role->code == 'member') selected @endif> {{ $role->title }}</option>
                             @endforeach
                         </select>
-                        <div class="invalid-feedback">Please enter email user.</div>
+                        <div class="invalid-feedback">Chưa có email.</div>
                     </div>
 
                     <div class="mb-3">
                         <label for="customername-field" class="form-label">Password</label>
                         <input type="password" name='password' id="customername-field" class="form-control" placeholder="Password" required />
-                        <div class="invalid-feedback">Please enter password.</div>
+                        <div class="invalid-feedback">Chưa có password.</div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div class="hstack gap-2 justify-content-end">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" id="add-btn">Add Users</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-success" id="add-btn">Thêm</button>
                     </div>
                 </div>
             </form>

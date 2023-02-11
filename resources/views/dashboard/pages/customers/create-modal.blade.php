@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <input type="hidden" id="id-field" />
                     <div class="mb-3">
-                        <label for="customername-field" class="form-label">Name</label>
+                        <label for="customername-field" class="form-label">Tên</label>
                         <input type="text" name='name' id="customername-field" class="form-control" placeholder="Name" required />
                         <div class="invalid-feedback">Please enter name of user.</div>
                     </div>
@@ -21,15 +21,15 @@
                         <div class="invalid-feedback">Please enter email user.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="customername-field" class="form-label">Password</label>
+                        <label for="customername-field" class="form-label">Mật khẩu</label>
                         <input type="password" name='password' id="customername-field" class="form-control" placeholder="Password" required />
                         <div class="invalid-feedback">Please enter password.</div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div class="hstack gap-2 justify-content-end">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" id="add-btn">Add Customer</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-success" id="add-btn">Thêm</button>
                     </div>
                 </div>
             </form>

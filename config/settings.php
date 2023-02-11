@@ -39,5 +39,15 @@ return [
             'value' => 'sales.htl@hoangthelong.vn',
             'type' => 'text',
         ],
+    ],
+    'customers' => [
+        'site_title' => [
+            'title' => 'admin.settings.auto_delete_after',
+            'key'   => 'auto_delete_after',
+            'value' => 7,
+            'type' => 'integer',
+            'with' => 'days',
+            'validation' => 'required|min:2'
+        ],
     ]
 ];

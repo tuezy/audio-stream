@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <input type="hidden" id="id-field" />
                     <div class="mb-3">
-                        <label for="customername-field" class="form-label">Title</label>
+                        <label for="customername-field" class="form-label">Tiêu đề</label>
                         <input type="text" name='title' id="customername-field" class="form-control @error('title') is-invalid @enderror" placeholder="Title" required />
                         @error('title')
                             <span class="invalid-feedback" role="alert">
@@ -28,8 +28,8 @@
                 </div>
                 <div class="modal-footer">
                     <div class="hstack gap-2 justify-content-end">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" id="add-btn">New</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-success" id="add-btn">Thêm</button>
                     </div>
                 </div>
             </form>

@@ -6,14 +6,14 @@
                 <div class="card-header">
                     <div class="row align-items-center g-3">
                         <div class="col-md-3">
-                            <h5 class="card-title mb-0">CMS List</h5>
+                            <h5 class="card-title mb-0">Câu hỏi thường gặp</h5>
                         </div>
                         <div class="col-sm-auto ms-auto">
                             <div class="d-flex flex-wrap align-items-start justify-content-end gap-2">
                                 <a href="{{ route('dashboard.cms.create') }}" type="button"
                                         class="btn btn-success add-btn"
                                         id="create-btn"
-                                        ><i class="ri-add-line align-bottom me-1"></i> Add New Content</a>
+                                        ><i class="ri-add-line align-bottom me-1"></i> Thêm</a>
                             </div>
                         </div>
                     </div>
@@ -37,10 +37,10 @@
                         <div class="col-md-auto ms-auto">
                             <div class="d-flex gap-2">
                                 <div class="search-box">
-                                    <input type="text" class="form-control search" placeholder="Search for name or email ..." id="custom-input-search">
+                                    <input type="text" class="form-control search" placeholder="Từ khóa ..." id="custom-input-search">
                                     <i class="ri-search-line search-icon"></i>
                                 </div>
-                                <button class="btn btn-success" id="custom-btn-submit"><i class="ri-equalizer-line align-bottom me-1" ></i> Search</button>
+                                <button class="btn btn-success" id="custom-btn-submit"><i class="ri-equalizer-line align-bottom me-1" ></i> Tìm</button>
                             </div>
                         </div>
                         <!--end col-->
@@ -61,8 +61,7 @@
     <script>
         function singleDelete(id){
             Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                title: "Bạn có chắc muốn xóa?",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
@@ -121,7 +120,7 @@
                 singleDelete(ids_array);
             } else {
                 Swal.fire({
-                    title: 'Please select at least one checkbox',
+                    title: 'Chọn ít nhất 1 dòng',
                     confirmButtonClass: 'btn btn-info',
                     buttonsStyling: false,
                     showCloseButton: true

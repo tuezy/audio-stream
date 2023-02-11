@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <div class="row align-items-center g-3">
                         <div class="col-md-3">
-                            <h5 class="card-title mb-0">Users List</h5>
+                            <h5 class="card-title mb-0">Danh sách admin</h5>
                         </div>
                         <div class="col-sm-auto ms-auto">
                             <div class="d-flex flex-wrap align-items-start justify-content-end gap-2">
@@ -14,7 +14,7 @@
                                         class="btn btn-success add-btn"
                                         data-bs-toggle="modal"
                                         id="create-btn"
-                                        data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> Add User</button>
+                                        data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> Thêm</button>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                                     <input type="text" class="form-control search" placeholder="Search for name or email ..." id="custom-input-search">
                                     <i class="ri-search-line search-icon"></i>
                                 </div>
-                                <button class="btn btn-success" id="custom-btn-submit"><i class="ri-equalizer-line align-bottom me-1" ></i> Search</button>
+                                <button class="btn btn-success" id="custom-btn-submit"><i class="ri-equalizer-line align-bottom me-1" ></i> Tìm</button>
                             </div>
                         </div>
                         <!--end col-->
@@ -61,7 +61,7 @@
     <script>
         function singleDelete(id){
             Swal.fire({
-                title: "Are you sure?",
+                title: "Bạn có chắc muốn xóa?",
                 text: "You won't be able to revert this!",
                 icon: "warning",
                 showCancelButton: true,
@@ -121,7 +121,7 @@
                 singleDelete(ids_array);
             } else {
                 Swal.fire({
-                    title: 'Please select at least one checkbox',
+                    title: 'Hãy chọn ít nhất 1 dòng',
                     confirmButtonClass: 'btn btn-info',
                     buttonsStyling: false,
                     showCloseButton: true

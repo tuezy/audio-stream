@@ -6,15 +6,15 @@
                 <div class="card-header">
                     <div class="row align-items-center g-3">
                         <div class="col-md-3">
-                            <h5 class="card-title mb-0">Entity List</h5>
+                            <h5 class="card-title mb-0">Danh sách âm thanh</h5>
                         </div>
                         <div class="col-sm-auto ms-auto">
                             <div class="d-flex flex-wrap align-items-start justify-content-end gap-2">
-                                <button type="button"
-                                        class="btn btn-success add-btn"
-                                        data-bs-toggle="modal"
-                                        id="create-btn"
-                                        data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> New</button>
+{{--                                <button type="button"--}}
+{{--                                        class="btn btn-success add-btn"--}}
+{{--                                        data-bs-toggle="modal"--}}
+{{--                                        id="create-btn"--}}
+{{--                                        data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> Thêm</button>--}}
 
 {{--                                <a href="{{ route('dashboard.'.$entity.'.create') }}" type="button"--}}
 {{--                                        class="btn btn-success add-btn"--}}
@@ -43,10 +43,10 @@
                         <div class="col-md-auto ms-auto">
                             <div class="d-flex gap-2">
                                 <div class="search-box">
-                                    <input type="text" class="form-control search" placeholder="Search for name or email ..." id="custom-input-search">
+                                    <input type="text" class="form-control search" placeholder="từ khóa ..." id="custom-input-search">
                                     <i class="ri-search-line search-icon"></i>
                                 </div>
-                                <button class="btn btn-success" id="custom-btn-submit"><i class="ri-equalizer-line align-bottom me-1" ></i> Search</button>
+                                <button class="btn btn-success" id="custom-btn-submit"><i class="ri-equalizer-line align-bottom me-1" ></i> Tìm kiếm</button>
                             </div>
                         </div>
                         <!--end col-->
