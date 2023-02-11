@@ -47,7 +47,7 @@ return [
             'value' => 7,
             'type' => 'integer',
             'with' => 'days',
-            'validation' => 'required|min:2'
+            'validation' => 'required|numeric|min:1'
         ],
     ]
 ];

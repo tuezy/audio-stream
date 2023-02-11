@@ -1,7 +1,7 @@
 @extends("dashboard.main")
 @section("content")
 
-    <form action="" method="POST">
+    <form  method="POST">
         @csrf
         <div class="row">
             <div class="col-lg-12">

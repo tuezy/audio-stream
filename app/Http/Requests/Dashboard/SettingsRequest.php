@@ -2,7 +2,13 @@
 
 namespace App\Http\Requests\Dashboard;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\ValidationException;
 
 class SettingsRequest extends FormRequest
 {
@@ -30,8 +36,14 @@ class SettingsRequest extends FormRequest
         foreach ($settings as $setting){
             foreach($setting as $config){
                 $validation[$config['key']] = $config['validation'] ?? '';
+                if(empty($validation[$config['key']])) unset($validation[$config['key']]);
             }
         }
         return $validation;
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        return Redirect::back()->with("error",$validator->errors()->first() );
     }
 }

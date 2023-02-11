@@ -31,7 +31,6 @@ class SettingController extends Controller
 
     public function store(SettingsRequest $request){
 
-        dd($request);
         $validated = $request->validated();
 
         foreach ($validated as $key => $value){
@@ -48,6 +47,7 @@ class SettingController extends Controller
                     'value' => $value
                 ]);
         }
+
         Cache::forget('settings');
         Session::flash("alert_success", "Settings Updated!");
 
