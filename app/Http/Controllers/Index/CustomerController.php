@@ -154,10 +154,10 @@ class CustomerController extends IndexController
             $deleted = File::delete(storage_path('app/'.Str::replace('storage', 'public', $path)));
             if($deleted){
                 $audio->delete();
-                return response()->json(['success' => false], 200);
+                return response()->json(['success' => true], 200);
             }
 
-            return response()->json(['success' => true], 200);
+            return response()->json(['success' => false], 200);
         }catch (\Exception $exception){
             return $exception->getMessage();
         }
