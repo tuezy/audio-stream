@@ -117,7 +117,6 @@
                         id: id
                     }
                 }).then(function (response) {
-                    console.log(response.data);
                     document.getElementById('playlist').innerHTML = response.data;
 
                 })

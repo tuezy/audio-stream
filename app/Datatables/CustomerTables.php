@@ -49,6 +49,7 @@ class CustomerTables extends DatatablesService{
             'printable' => true,
             'class' => 'dt-medium'
         ]);
+
         $this->addColumn([
             'data' => 'email',
             'name' => 'email',
@@ -58,6 +59,21 @@ class CustomerTables extends DatatablesService{
             'exportable' => true,
             'printable' => true,
         ]);
+
+
+//        $this->addColumn([
+//            'data' => 'active',
+//            'name' => 'active',
+//            'title' => 'Tình trạng',
+//            'searchable' => false,
+//            'orderable' => true,
+//            'exportable' => false,
+//            'printable' => false,
+//            'class' => 'dt-date',
+//            'render' => function($value){
+//                return date('d-m-Y', strtotime($value->created_at));
+//            },
+//        ]);
 
         $this->addColumn([
             'data' => 'created_at',

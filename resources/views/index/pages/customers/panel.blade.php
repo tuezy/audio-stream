@@ -66,7 +66,7 @@
                                     <tr>
                                         <th>Ngày phát</th>
                                         <th>Buổi phát</th>
-                                        <th style="width: 138px;text-align: center">Tình trạng</th>
+                                        <th style="width: 353px;text-align: center">Tình trạng</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -78,7 +78,7 @@
                                                 <td>{{ \App\Models\Playlist::PLAYLIST_TYPES_TRANSLATION[$playlist->broadcast_on] }}</td>
                                                 <td style="width: 138px;text-align: center">
                                                     @php
-                                                        if($playlist->audio->count() > 0){
+                                                        if($playlist->audio->count() >= 2){
                                                         switch ($playlist->status){
                                                             case \App\Models\Playlist::PLAYLIST_STATUS_COMPLETED:
                                                                 echo '<span class="btn btn-outline-succcess">Ready</span>';
@@ -87,7 +87,7 @@
                                                                 echo '<a href="'.route('customers.make.playlist',['id' => $playlist->id]).'" class="btn btn-primary">Tạo Link M3u8</a>';
                                                         }
                                                     }else{
-                                                        echo "Chưa Upload âm thanh";
+                                                        echo "Playlist phải có ít nhất 2 file âm thanh";
                                                     }
                                                     @endphp
                                                 </td>

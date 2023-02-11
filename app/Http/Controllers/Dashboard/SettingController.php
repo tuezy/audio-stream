@@ -31,8 +31,8 @@ class SettingController extends Controller
 
     public function store(SettingsRequest $request){
 
+        dd($request);
         $validated = $request->validated();
-
 
         foreach ($validated as $key => $value){
 

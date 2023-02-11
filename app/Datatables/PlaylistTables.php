@@ -85,7 +85,7 @@ class PlaylistTables extends DatatablesService{
             'class' => 'text-center dt-id',
             'raw' => true,
             'render' => function($value){
-                if($value->audio->count() > 0){
+                if($value->audio->count() >= 2){
                     switch ($value->status){
                         case Playlist::PLAYLIST_STATUS_PENDING:
                             return '<a href="'.route('dashboard.make.playlist',['id' => $value->id]).'" class="btn btn-primary">Tạo Link M3u8</a>';
@@ -97,7 +97,7 @@ class PlaylistTables extends DatatablesService{
                             return '<button class="btn btn-primary">Đang xử lý</button>';
                     }
                 }else{
-                    return "Empty Playlist";
+                    return "Playlist phải có ít nhất 2 file âm thanh";
                 }
             },
         ]);

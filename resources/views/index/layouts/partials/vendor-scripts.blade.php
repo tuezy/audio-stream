@@ -11,6 +11,7 @@
     "assets/js/pages/plugins/lord-icon-2.1.0.js",
     "assets/libs/sweetalert2/sweetalert2.min.js",
     "assets/js/pages/sweetalerts.init.js",
+    'assets/libs/dragula/dragula.min.js',
     "assets/js/pages/landing.init.js"
 ] as $script)
     <script src="{{ asset($script) }}"></script>
@@ -124,5 +125,20 @@
             flatpickr(item, timeData);
         }
     });
+
+    var drake = dragula(document.getElementById("playlist")).on('drag', function (el) {
+        console.log('Dảg');
+        el.className = el.className.replace('ex-moved', '');
+    }).on('drop', function (el) {
+        el.className += ' ex-moved';
+    }).on('over', function (el, container) {
+        container.className += ' ex-over';
+    }).on('out', function (el, container) {
+        container.className = container.className.replace('ex-over', '');
+    });
+
+
+
+
 </script>
 
