@@ -16,8 +16,8 @@
                                 </div>
                             </div>
                             <div id="playlist">
-
                             </div>
+                            <button class="my-3 btn btn-outline-success btn-update-index-playlist d-none" onclick="updateIndexPlaylist()">Cập nhật Playlist</button>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -129,6 +129,7 @@
             player.api("play", link);
         }
 
+
     </script>
 
     <script>
@@ -160,6 +161,41 @@
                     }
                 }
             });
+        }
+
+        var drake = dragula([document.getElementById("playlist")])
+            .on('drag', function (el) {
+            el.className = el.className.replace('ex-moved', '');
+            }).on('drop', function (el) {
+                el.className += ' ex-moved';
+            }).on('over', function (el, container) {
+                container.className += ' ex-over';
+            }).on('out', function (el, container) {
+                container.className = container.className.replace('ex-over', '');
+                let btn = document.getElementsByClassName("btn-update-index-playlist");
+                btn[0].classList.remove('d-none');
+            });
+
+        function updateIndexPlaylist(){
+            var playlists = document.getElementsByClassName("media-item");
+            var indexs = [];
+            Array.from(playlists).forEach(function (element) {
+               indexs.push(element.getAttribute("value"));
+            });
+
+            try {
+                axios.post('{{route("customers.update.playlist")}}', {
+                    data: {
+                        indexs: JSON.stringify(indexs)
+                    }
+                }).then(function (response) {
+                    if(response.data.success){
+                        location.reload();
+                    }
+                })
+            } catch (error) {
+                console.log(error)
+            }
         }
     </script>
 @endpush

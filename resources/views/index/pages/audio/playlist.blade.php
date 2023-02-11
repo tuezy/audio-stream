@@ -1,5 +1,5 @@
 @foreach($playlist as $item)
-    <div class="media-item media-item__{{$item->id}}">
+    <div class="media-item media-item__{{$item->id}}" value="{{$item->id}}">
         <div class="media-item__icon" onclick="audioplay('{{ asset($item->path) }}')" target="media-item__{{$item->id}}">
         </div>
         <div class="media-item__info">

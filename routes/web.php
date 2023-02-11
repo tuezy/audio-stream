@@ -37,6 +37,7 @@ Route::middleware('auth:customers')->group(function (){
         Route::post('/customers/doi-mat-khau', [\App\Http\Controllers\Index\CustomerController::class, "changePassword"])->name("changePassword");
 
         Route::get('/customers/make-playlist/{id}', [\App\Http\Controllers\Index\CustomerController::class, "makePlaylist"])->name("make.playlist");
+        Route::post('/customers/update-playlist', [\App\Http\Controllers\Index\CustomerController::class, "updatePlaylist"])->name("update.playlist");
     });
 
     Route::get('/phim', [\App\Http\Controllers\Index\VideoController::class, "index"])->name("video.index");

@@ -18,17 +18,19 @@ class HomeController extends IndexController
     }
 
     public function home(Request $request){
-        $broadcast_on = "";
-        $user = Auth::guard("customers")->user();
-        $playlists = $user->playlist()->where('broadcast_on','=',$broadcast_on)->limit(10)->get();
+//        $broadcast_on = "p";
+//        $user = Auth::guard("customers")->user();
+//        $playlists = $user->playlist()->where('broadcast_on','=',$broadcast_on)->limit(10)->get();
+//
+//        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content')->limit(6)->get();
+//
+//        return view("index.pages.home", [
+//            'cms' => $cms,
+//            'user' => $user,
+//            'playlists' => $playlists->groupBy("broadcast_date")->toArray()
+//        ]);
 
-        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content')->limit(6)->get();
-
-        return view("index.pages.home", [
-            'cms' => $cms,
-            'user' => $user,
-            'playlists' => $playlists->groupBy("broadcast_date")->toArray()
-        ]);
+        return redirect()->to(route("home.sang"));
     }
 
     public function morning(Request $request){
@@ -67,7 +69,7 @@ class HomeController extends IndexController
 
     public function loadPlaylist($broadcaston, Request $request){
         $data = $request->get('data');
-        $audio = $this->user()->audio()->where('playlist_id', '=', $data['id'])->get();
+        $audio = $this->user()->audio()->where('playlist_id', '=', $data['id'])->orderBy('index','asc')->get();
         return view("index.pages.audio.playlist", ['playlist' => $audio]);
     }
 
@@ -78,4 +80,5 @@ class HomeController extends IndexController
     public function playlist($broadcast_on){
         return $this->user()->playlist()->where('broadcast_on','=',$broadcast_on)->orderBy('broadcast_date','asc');
     }
+
 }

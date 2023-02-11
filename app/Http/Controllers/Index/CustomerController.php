@@ -209,6 +209,16 @@ class CustomerController extends IndexController
         return redirect()->back();
     }
 
+    public function updatePlaylist(Request $request){
+        $input = $request->get('data');
+        foreach (json_decode($input['indexs']) as $stt => $id){
+            $audio = $this->audioRepository->where('id', '=', $id)->update(['index' => $stt + 1]);
+        }
+        $audio = Audio::findOrFail($id);
+        $audio->playlist()->update(["status" => "pending"]);
+        return response()->json(['success' => true], 200);
+    }
+
     public function logout(Request $request){
         Auth::guard("customers")->logout();
 
