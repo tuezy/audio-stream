@@ -109,7 +109,7 @@ class CategoryController extends Controller
         if(request()->has('ids')){
             $ids = request()->get('ids');
             try {
-                Categories::destroy($ids);
+                Category::destroy($ids);
                 return response()->json(['success' => true], 200);
             }catch (\Exception $exception){
                 return $exception->getMessage();

@@ -31,24 +31,14 @@ class SettingController extends Controller
 
     public function store(SettingsRequest $request){
 
+        dd($request);
         $validated = $request->validated();
 
-        $settingsValues = Cache::get("settings");
 
-        Cache::forget('settings');
+        foreach ($validated as $key => $value){
 
-        $updateValues = array_diff_assoc($validated, $settingsValues);
-
-        foreach ($settingsValues as $key => $value){
-
-            if($value == 'true' && !isset($updateValues[$key])){
-                $updateValues[$key] = 'false';
-            }
-            if(!isset($updateValues[$key])){
-                continue;
-            }
-            if($updateValues[$key] == 'on'){
-                $updateValues[$key] = 'true';
+            if($value == 'on'){
+                $value = 'true';
             }
 
             $this->settingRepository->updateOrCreate(
@@ -56,10 +46,10 @@ class SettingController extends Controller
                     'key' => $key
                 ],
                 [
-                    'value' => $updateValues[$key]
+                    'value' => $value
                 ]);
         }
-
+        Cache::forget('settings');
         Session::flash("alert_success", "Settings Updated!");
 
         return redirect()->route('dashboard.settings.index');

@@ -22,7 +22,7 @@ class CreatevideoTables extends Migration
 
             $table->string("path")->nullable();
             $table->text("content")->nullable();
-            $table->foreignId('category_id')->references('id')->on('categories');
+            $table->foreignId('category_id')->references('id')->on('categories')->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('customer_id')->references('id')->on('customers')->cascadeOnDelete()->cascadeOnUpdate();
 
 
