@@ -110,7 +110,7 @@ class CustomerController extends IndexController
         $rules = [
             'file' => 'required|mimes:avi,mp4,mpeg,mov',
             'title' => 'required',
-            'category_id'  => 'required'
+            'category_id'  => 'required|min:1'
         ];
 
 
@@ -118,7 +118,7 @@ class CustomerController extends IndexController
             'file.required' => 'Bạn chưa nhập file âm thanh.',
             'file.mimes' => 'File âm thanh phải ở định dạng mp3',
             'title.required' => 'Bạn chưa nhập tiêu đề',
-            'category_id.required' => 'Bạn chưa chọn thể loại',
+            'category_id.min' => 'Bạn chưa chọn thể loại',
         ];
         $validation = Validator::make($input, $rules, $messages);
 
