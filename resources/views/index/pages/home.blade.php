@@ -134,13 +134,13 @@
     <script>
         function singleDelete(id){
             Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                title: "Bạn có chắc muốn xóa?",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonClass: 'btn btn-primary w-xs me-2 mt-2',
                 cancelButtonClass: 'btn btn-danger w-xs mt-2',
-                confirmButtonText: "Yes, delete it!",
+                confirmButtonText: "Có",
+                cancelButtonText: "Không",
                 buttonsStyling: false,
                 showCloseButton: true
             }).then(function (result) {
