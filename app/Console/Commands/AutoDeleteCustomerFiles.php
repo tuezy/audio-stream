@@ -58,9 +58,9 @@ class AutoDeleteCustomerFiles extends Command
            foreach ($playlist->audio() as $audio){
                $audio->delete();
            }
-            $playlist->delete();
             File::deleteDirectory(storage_path('app/public/hls/public/users/'.$playlist->customer_id.'/audios/'.$playlist->broadcast_date), true);
             File::deleteDirectory(storage_path('app/public/users/'.$playlist->customer_id.'/audios/'.$playlist->broadcast_date), true);
+            $playlist->delete();
         }
 
     }

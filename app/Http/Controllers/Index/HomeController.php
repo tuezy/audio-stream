@@ -18,47 +18,41 @@ class HomeController extends IndexController
     }
 
     public function home(Request $request){
-//        $broadcast_on = "p";
-//        $user = Auth::guard("customers")->user();
-//        $playlists = $user->playlist()->where('broadcast_on','=',$broadcast_on)->limit(10)->get();
-//
-//        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content')->limit(6)->get();
-//
-//        return view("index.pages.home", [
-//            'cms' => $cms,
-//            'user' => $user,
-//            'playlists' => $playlists->groupBy("broadcast_date")->toArray()
-//        ]);
-
         return redirect()->to(route("home.sang"));
     }
 
-    public function morning(Request $request){
-        $broadcast_on = "phat-thanh-buoi-sang";
+    public function faq(Request $request){
+        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content', 'short_content','slug')->paginate(15);
+        return view("index.pages.cms.index",
+            [
+                'cms' => $cms
+            ]
+        );
+    }
 
-        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content')->limit(6)->get();
-        return view("index.pages.home", [
-            'cms' => $cms,
-            'user' => $this->user(),
-            'playlists' => $this->playlist($broadcast_on)->limit(10)->get()->groupBy("broadcast_date")->toArray()
-        ]);
+    public function faqItem($slug, Request $request){
+        $item = Cms::query()->firstWhere('slug','=', $slug);
+        return view("index.pages.cms.detail",
+            [
+                'item' => $item
+            ]
+        );
+    }
+
+    public function morning(Request $request){
+        return $this->viewHome("phat-thanh-buoi-sang");
     }
 
     public function afternoon(Request $request){
-        $broadcast_on = "phat-thanh-buoi-trua";
-
-        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content')->limit(6)->get();
-        return view("index.pages.home", [
-            'cms' => $cms,
-            'user' => $this->user(),
-            'playlists' => $this->playlist($broadcast_on)->limit(10)->get()->groupBy("broadcast_date")->toArray()
-        ]);
+        return $this->viewHome("phat-thanh-buoi-trua");
     }
 
     public function evening(Request $request){
-        $broadcast_on = "phat-thanh-buoi-toi";
+        return $this->viewHome("phat-thanh-buoi-toi");
+    }
 
-        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content')->limit(6)->get();
+    public function viewHome($broadcast_on){
+        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content', 'short_content','slug')->limit(6)->get();
         return view("index.pages.home", [
             'cms' => $cms,
             'user' => $this->user(),

@@ -24,6 +24,7 @@ body{
 #layout-wrapper{
     min-height: 60vh;
 }
+
 .btn-xemthem{
     width: 150px;
     height: 40px;
@@ -34,7 +35,11 @@ body{
     background-color: #ff3d00;
     color: #fff;
     transition: 0.2s all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .btn-xemthem:hover{
     color: #ff3d00;
     background-color: #fff;
@@ -491,4 +496,17 @@ Index Login Section
     opacity: 0.2;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
     filter: alpha(opacity=20);
+}
+.text-right{
+    text-align: right;
+}
+.xemchitiet a{
+    font-weight: bold;
+    color: #000;
+}
+.xemchitiet a:hover{
+    color: #df0000;
+}
+.cms-detail{
+    min-height: 50vh;
 }

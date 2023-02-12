@@ -4,12 +4,17 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Datatables\CustomerTables;
 use App\Http\Controllers\Controller;
+use App\Models\Audio;
 use App\Models\Customer;
+use App\Models\Playlist;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller{
 
@@ -78,7 +83,23 @@ class CustomerController extends Controller{
         if(request()->has('ids')){
             $ids = request()->get('ids');
             try {
-                Role::destroy($ids);
+                foreach ($ids as $id){
+                    $playlists = Playlist::where('customer_id', '=', $id)->get();
+                    foreach ($playlists as $playlist){
+                        foreach ($playlist->audio() as $audio){
+                            $path = $audio->path;
+                            $deleted = File::delete(storage_path('app/'.Str::replace('storage', 'public', $path)));
+                            if($deleted){
+                                $audio->delete();
+                            }
+                        }
+                        File::deleteDirectory(storage_path('app/public/hls/public/users/'.$playlist->customer_id.'/audios/'.$playlist->broadcast_date), true);
+                        File::deleteDirectory(storage_path('app/public/users/'.$playlist->customer_id.'/audios/'.$playlist->broadcast_date), true);
+                        $playlist->delete();
+                    }
+                    Customer::destroy($id);
+                }
+
                 return response()->json(['success' => true], 200);
             }catch (\Exception $exception){
                 return $exception->getMessage();

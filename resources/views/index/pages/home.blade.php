@@ -34,23 +34,13 @@
                 <div class="cms-content">
                     <div class="row">
                         @isset($cms)
-                        @foreach($cms as $item)
-                        <div class="col-lg-6">
-                            <div class="cms-item mb-4">
-                                <div class="title">
-                                    {{ $item->title }}
-                                    <div class="btn-more-pos"><span class="btn-more"></span></div>
-                                </div>
-                                <div class="content mt-2">
-                                    {!! $item->content !!}
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
+                            @foreach($cms as $item)
+                                @include('index.pages.cms.partials.item', ['item' => $item])
+                            @endforeach
                         @endisset
                     </div>
                     <div class="row">
-                        <button class="btn-xemthem mx-auto">XEM THÊM</button>
+                        <a class="btn-xemthem mx-auto" href="{{ route("index.faq") }}">XEM THÊM</a>
                     </div>
 
                 </div>
@@ -61,15 +51,8 @@
 @endsection
 
 @push("scripts")
-    <script src="{{ asset("assets/libs/playerjs.js") }}"></script>
-    <script>
-        var cmsItem = document.getElementsByClassName("cms-item");
-        Array.from(cmsItem).forEach(function (element) {
-            element.addEventListener("click", function () {
-                this.classList.toggle("active");
-            });
-        });
-    </script>
+    <script src="{{ asset("assets/libs/playerjs_audio.js") }}"></script>
+
     <script>
         var player = new Playerjs({id:"player"});
 
@@ -198,4 +181,12 @@
             }
         }
     </script>
+@endpush
+
+@push("styles")
+    <style>
+        #player {
+            height: 55px!important;
+        }
+    </style>
 @endpush

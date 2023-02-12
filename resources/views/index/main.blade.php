@@ -51,6 +51,14 @@
 @include("index.layouts.partials.vendor-scripts")
 @yield("script")
 @stack("scripts")
+<script>
+    var cmsItem = document.getElementsByClassName("cms-item");
+    Array.from(cmsItem).forEach(function (element) {
+        element.addEventListener("click", function () {
+            this.classList.toggle("active");
+        });
+    });
+</script>
 </body>
 
 </html>

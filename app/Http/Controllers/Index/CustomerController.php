@@ -166,6 +166,7 @@ class CustomerController extends IndexController
             $path = $audio->path;
             $deleted = File::delete(storage_path('app/'.Str::replace('storage', 'public', $path)));
             if($deleted){
+                $audio->playlist()->update(['status' => 'pending']);
                 $audio->delete();
                 return response()->json(['success' => true], 200);
             }

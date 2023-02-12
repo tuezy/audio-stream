@@ -65,7 +65,12 @@
 
 @endsection
 @section("script")
-    <script src="{{asset("assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js")}}"></script>
+{{--    <script src="{{asset("assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js")}}"></script>--}}
+    <script src="{{asset("assets/libs/ckeditor4/ckeditor.js")}}"></script>
     <script src="{{asset("assets/libs/dropzone/dropzone-min.js")}}"></script>
     <script src="{{asset("assets/js/pages/project-create.init.js")}}"></script>
 @endsection
+
+@push("scripts")
+    @include("dashboard.pages.cms.partials.ckeditor")
+@endpush

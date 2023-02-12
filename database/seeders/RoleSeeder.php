@@ -59,14 +59,6 @@ class RoleSeeder extends Seeder
             'created_at'    => $now,
             'updated_at'    => $now,
         ]);
-        for ($i = 5; $i < 200; $i ++){
-            DB::table('roles')->insert([
-                'id'            => $i,
-                'code'          => 'member_'.$i,
-                'title'         => 'Member _'.$i,
-                'created_at'    => $now,
-                'updated_at'    => $now,
-            ]);
-        }
+
     }
 }

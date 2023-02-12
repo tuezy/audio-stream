@@ -12,7 +12,7 @@ class Audio extends Model
 {
     use HasApiTokens, HasFactory, Notifiable, Sluggable;
 
-    protected $fillable = ['path', 'title','visibility', 'status','index', 'broadcast_date', 'broadcast_on', 'playlist_id', 'customer_id'];
+    protected $fillable = ['path', 'title', 'content', 'visibility', 'status','index', 'broadcast_date', 'broadcast_on', 'playlist_id', 'customer_id'];
 
     /**
      * Return the sluggable configuration array for this model.

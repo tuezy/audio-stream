@@ -23,6 +23,16 @@
                         <div class="mt-4">
 
                             <div class="card-body p-4">
+                                @isset($status)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            Một đường link để tạo lại mật khẩu đã được gửi đi, vui lòng kiểm tra hộp thư email bạn đã cung cấp.
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <a href="{{ route("index")}}" class="btn-submit btn btn-outline-light w-100" type="submit">Quay Lại</a>
+                                    </div>
+                                @else
                                 <div class="text-center mt-2">
                                     <h5 class="text-white mb-3">Chào mừng bạn đến với website</h5>
                                     <h3 class="text-white"><a href="{{ route('index') }}" class="home-link-white">{{ \Illuminate\Support\Str::upper(core()->getSetting('site_title')) }}</a></h3>
@@ -48,6 +58,7 @@
                                     </form>
                                 </div>
                             </div>
+                            @endisset
                             <!-- end card body -->
                         </div>
                         <!-- end card -->

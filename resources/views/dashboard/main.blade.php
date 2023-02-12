@@ -56,7 +56,6 @@
 @include("dashboard.layouts.partials.vendor-scripts")
 @yield("script")
 @stack("scripts")
-
 </body>
 
 </html>

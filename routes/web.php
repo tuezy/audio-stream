@@ -19,8 +19,13 @@ Route::get('/dashboard', [\App\Http\Controllers\Dashboard\IndexController::class
 ])->name('dashboard.index');
 Route::get('/login', [\App\Http\Controllers\Index\AuthController::class, "showLoginForm"])->name("index.login");
 Route::post('/login', [\App\Http\Controllers\Index\AuthController::class, "login"])->name("index.login.post");
-Route::get('/quen-mat-khau', [\App\Http\Controllers\Index\AuthController::class, "showResetPasswordForm"])->name("index.reset-pass");
-Route::post('/quen-mat-khau', [\App\Http\Controllers\Index\AuthController::class, "ResetPassword"])->name("index.reset-pass.post");
+Route::get('/quen-mat-khau', [\App\Http\Controllers\Index\AuthController::class, "showLinkRequestForm"])->name("index.reset-pass");
+Route::post('/quen-mat-khau', [\App\Http\Controllers\Index\AuthController::class, "resetPassword"])->name("index.reset-pass.post");
+
+Route::get('/quen-mat-khau/{token}', [\App\Http\Controllers\Index\AuthController::class, "showResetForm"])->name("password.reset");
+Route::post('/quen-mat-khau/cap-nhat', [\App\Http\Controllers\Index\AuthController::class, "updatePassword"])->name("password.update");
+
+
 Route::middleware('auth:customers')->group(function (){
     Route::get('/', [\App\Http\Controllers\Index\HomeController::class, "home"])->name("index");
     Route::name('customers.')->group(function(){
@@ -51,10 +56,17 @@ Route::middleware('auth:customers')->group(function (){
     Route::post('/{broadcaston}/playlist', [\App\Http\Controllers\Index\HomeController::class, "loadPlaylist"])->name("broadcaston.playlist");
 
     Route::get('/timkiem', [\App\Http\Controllers\Index\SearchController::class, "search"])->name("index.timkiem");
+    Route::get('/cau-hoi-thuong-gap', [\App\Http\Controllers\Index\HomeController::class, "faq"])->name("index.faq");
+    Route::get('/cau-hoi-thuong-gap/{slug}', [\App\Http\Controllers\Index\HomeController::class, "faqItem"])->name("index.faq.item");
+
 });
 
 
 
 Route::get('/hls/audio/{broadcast_on}/{customer_id}/playlist.m3u8', [App\Http\Controllers\PlayController::class, 'play'])->name('playlist.m3u8');
-
+Route::post('image-upload', [\App\Http\Controllers\Dashboard\ImageUploadController::class, 'storeImage'])->name('image.upload');
+Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
+    ->name('ckfinder_connector');
+Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
+    ->name('ckfinder_browser');
 Route::get('{any}', [App\Http\Controllers\Index\HomeController::class, 'home'])->name('any');
