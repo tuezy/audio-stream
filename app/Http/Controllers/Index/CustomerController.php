@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Index;
 
 use App\Http\Requests\FileRequest;
+use App\Jobs\ConvertAudioToM3u8;
 use App\Models\Audio;
 use App\Models\Cms;
 use App\Models\Playlist;
@@ -207,7 +208,10 @@ class CustomerController extends IndexController
     }
 
     public function makePlaylist($id){
-        Artisan::call("make:playlist ".$id);
+//        Artisan::call("make:playlist ".$id);
+        $playlist = Playlist::findOrFail($id);
+        ConvertAudioToM3u8::dispatch($playlist);
+        sleep(3);
         return redirect()->to(route("customers.panel"));
     }
 
