@@ -43,6 +43,7 @@ Route::middleware('auth:customers')->group(function (){
 
         Route::get('/customers/make-playlist/{id}', [\App\Http\Controllers\Index\CustomerController::class, "makePlaylist"])->name("make.playlist");
         Route::post('/customers/update-playlist', [\App\Http\Controllers\Index\CustomerController::class, "updatePlaylist"])->name("update.playlist");
+        Route::post('/customers/update-status-playlist', [\App\Http\Controllers\Index\CustomerController::class, "updateStatusPlaylist"])->name("update.playlist-status");
     });
 
     Route::get('/phim', [\App\Http\Controllers\Index\VideoController::class, "index"])->name("video.index");

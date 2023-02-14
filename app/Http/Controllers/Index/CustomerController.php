@@ -31,6 +31,15 @@ class CustomerController extends IndexController
         $this->playlistRepository = $playlistRepository;
     }
 
+    public function updateStatusPlaylist(){
+        $playlist = $this->playlistRepository
+            ->where('status', '=', Playlist::PLAYLIST_STATUS_PROCESSING)
+            ->where('customer_id', '=', Auth::guard("customers")->user()->id)
+            ->get('status');
+
+        return response()->json($playlist, 200);
+    }
+
     public function uploadAudio(Request $request){
         $input = $request->all();
 

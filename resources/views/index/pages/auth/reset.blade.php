@@ -53,16 +53,16 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label class="form-label text-white" for="password-input">Nhập lại mật khẩu</label>
-                                                <div class="position-relative auth-pass-inputgroup mb-3">
-                                                    <input type="password" class="form-control pe-5 @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Mật khẩu" id="password-input">
-                                                    @error('password_confirmation')
-                                                    <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                                    @enderror
-                                                </div>
-                                        </div>
+                                                    <label class="form-label text-white" for="password-input">Nhập lại mật khẩu</label>
+                                                    <div class="position-relative auth-pass-inputgroup mb-3">
+                                                        <input type="password" class="form-control pe-5 @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Mật khẩu" id="password-input">
+                                                        @error('password_confirmation')
+                                                        <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                        @enderror
+                                                    </div>
+                                            </div>
                                         <div class="mt-4">
                                             <button class="btn-submit btn btn-outline-light w-100" type="submit">Đặt lại mật khẩu</button>
                                         </div>

@@ -156,3 +156,27 @@
     </div>
 
 @endsection
+
+@push("scripts")
+    <script>
+        function waitComplete(){
+            try {
+                axios.post('{{route("customers.update.playlist-status")}}', {
+                    data: {
+                        id: id
+                    }
+                }).then(function (response) {
+                    console.log(response.data);
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        setInterval(function () {
+            waitComplete();
+        }, 1500);
+    </script>
+
+
+@endpush

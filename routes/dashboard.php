@@ -19,6 +19,8 @@ Route::name('dashboard.')
         ])->name('images.index');
         Route::put('/asset/{type}', [\App\Http\Controllers\Dashboard\ImageController::class, 'store'])->name('images.store');
 
+
+
         Route::get('/login', [\App\Http\Controllers\Dashboard\AuthController::class, 'showLoginForm'])->name('login');
         Route::post('/login', [\App\Http\Controllers\Dashboard\AuthController::class, 'login']);
         Route::post('/logout', [\App\Http\Controllers\Dashboard\AuthController::class, 'logout'])->name('logout');
@@ -51,7 +53,8 @@ Route::name('dashboard.')
         /*
          * Users
          */
-
+        Route::get('users/update-password', [UserController::class, "updatePassword"])->name('users.update-password');
+        Route::post('users/update-password', [UserController::class, "updatePassword"])->name('users.update-password.update');
 
         Route::get('users', [UserController::class, "index"])
             ->defaults('_config', [
