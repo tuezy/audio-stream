@@ -83,6 +83,9 @@
                                                             case \App\Models\Playlist::PLAYLIST_STATUS_COMPLETED:
                                                                 echo '<span class="btn btn-outline-succcess">Ready</span>';
                                                                 break;
+                                                             case \App\Models\Playlist::PLAYLIST_STATUS_PROCESSING:
+                                                                echo '<span class="btn btn-outline-succcess">Đang xử lý</span>';
+                                                                break;
                                                             default:
                                                                 echo '<a href="'.route('customers.make.playlist',['id' => $playlist->id]).'" class="btn btn-primary">Tạo Link M3u8</a>';
                                                         }
