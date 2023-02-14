@@ -160,16 +160,22 @@
 @push("scripts")
     <script>
         function waitComplete(){
-            try {
-                axios.post('{{route("customers.update.playlist-status")}}', {
-                    data: {
-                    }
-                }).then(function (response) {
-                    console.log(response.data);
-                })
-            } catch (error) {
-                console.log(error)
+            let ids = @json($playlists->where("status", '=', \App\Models\Playlist::PLAYLIST_STATUS_PROCESSING));
+            let ids_arr = JSON.parse(ids);
+            if(ids.length > 0){
+                try {
+                    axios.post('{{route("customers.update.playlist-status")}}', {
+                        data: {
+                            ids: ids
+                        }
+                    }).then(function (response) {
+                        console.log(response.data);
+                    })
+                } catch (error) {
+                    console.log(error)
+                }
             }
+
         }
 
         setInterval(function () {
