@@ -85,7 +85,7 @@
                                                                 echo '<span class="badge badge-soft-success text-uppercase">Đã xong</span>';
                                                                 break;
                                                              case \App\Models\Playlist::PLAYLIST_STATUS_PROCESSING:
-                                                                echo '<span class="badge badge-soft-warning">Đang xử lý</span>';
+                                                                echo '<span class="on-processing"><span class="badge badge-soft-warning">Đang xử lý</span></span>';
                                                                 break;
                                                             default:
                                                                 echo '<a href="'.route('customers.make.playlist',['id' => $playlist->id]).'" class="btn btn-primary">Tạo Link M3u8</a>';
@@ -159,14 +159,21 @@
 
 @push("scripts")
     <script>
+        var updatePlaylist = {{  $playlists->where("status", '=', \App\Models\Playlist::PLAYLIST_STATUS_PROCESSING)->count() }};
         function waitComplete(){
-            if({{  $playlists->where("status", '=', \App\Models\Playlist::PLAYLIST_STATUS_PROCESSING)->count() }} > 0){
+            if( updatePlaylist > 0){
                 try {
                     axios.post('{{route("customers.update.playlist-status")}}', {
                         data: {
                         }
                     }).then(function (response) {
-                        console.log(response.data);
+                        if(response.data.success){
+                            updatePlaylist = 0;
+                            let processing = document.getElementsByClassName("on-processing");
+                            Array.from(processing).forEach(function (element) {
+                                element.innerHTML = '<span class="badge badge-soft-success text-uppercase">Đã xong</span>';
+                            });
+                        }
                     })
                 } catch (error) {
                     console.log(error)

@@ -36,8 +36,10 @@ class CustomerController extends IndexController
             ->where('status', '=', Playlist::PLAYLIST_STATUS_PROCESSING)
             ->where('customer_id', '=', Auth::guard("customers")->user()->id)
             ->get('status');
+        if($playlist->count() == 0){
+            return response()->json(['success' => true], 200);
+        }
 
-        return response()->json($playlist, 200);
     }
 
     public function uploadAudio(Request $request){
