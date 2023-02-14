@@ -14,6 +14,10 @@ class EditColumnsStatusPlaylist extends Migration
     public function up()
     {
         Schema::table('playlists', function (Blueprint $table) {
+            $table->dropColumn("status");
+        });
+
+        Schema::table('playlists', function (Blueprint $table) {
             $table->enum('status', ['pending', 'completed', 'processing'])->default('pending');
         });
     }
