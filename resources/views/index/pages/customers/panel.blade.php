@@ -85,7 +85,7 @@
                                                                 echo '<span class="badge badge-soft-success text-uppercase">Đã xong</span>';
                                                                 break;
                                                              case \App\Models\Playlist::PLAYLIST_STATUS_PROCESSING:
-                                                                echo '<span class="on-processing"><span class="badge badge-soft-warning">Đang xử lý</span></span>';
+                                                                echo '<span class="on-processing" value="'.$playlist->id.'"><span class="badge badge-soft-warning">Đang xử lý</span></span>';
                                                                 break;
                                                             default:
                                                                 echo '<a href="'.route('customers.make.playlist',['id' => $playlist->id]).'" class="btn btn-primary">Tạo Link M3u8</a>';

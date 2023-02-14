@@ -35,9 +35,9 @@ class CustomerController extends IndexController
         $playlist = $this->playlistRepository
             ->where('status', '=', Playlist::PLAYLIST_STATUS_PROCESSING)
             ->where('customer_id', '=', Auth::guard("customers")->user()->id)
-            ->get('status');
+            ->get('id');
         if($playlist->count() == 0){
-            return response()->json(['success' => true], 200);
+            return response()->json(['success' => true, 'ids' => $playlist], 200);
         }
 
     }
