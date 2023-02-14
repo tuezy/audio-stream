@@ -82,7 +82,7 @@ class UserController extends Controller{
         if(request()->has('ids')){
             $ids = request()->get('ids');
             try {
-                Role::destroy($ids);
+                User::destroy($ids);
                 return response()->json(['success' => true], 200);
             }catch (\Exception $exception){
                 return $exception->getMessage();

@@ -12,6 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
@@ -63,6 +64,8 @@ class ConvertAudioToM3u8 implements ShouldQueue
 
             foreach ($audios as $audio){
                 $cmd .= ' -i ' . storage_path('app/'. Str::replace('storage', 'public', $audio->path));
+
+                Log::info("Convert:" . $audio->path);
             }
             $cmd .= ' -filter_complex \'[0:0][1:0]concat=n='.count($playlist->audio).':v=0:a=1[out]\' -map \'[out]\' -vn -ac 2 -acodec aac -start_number 0 -hls_time 10 -hls_list_size 0 -f hls ';
 
@@ -81,7 +84,7 @@ class ConvertAudioToM3u8 implements ShouldQueue
             }
 
             $playlist->status = Playlist::PLAYLIST_STATUS_COMPLETED;
-
+            Log::info("Convert xong playlist :" . $playlist->id);
             $playlist->save();
         }
     }
