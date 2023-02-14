@@ -207,7 +207,7 @@ class CustomerController extends IndexController
     public function makePlaylist($id){
         $user = Auth::guard("customers")->user();
         Artisan::call("make:playlist ".$id);
-        return redirect()->back();
+        return redirect()->to("customers.panel");
     }
 
     public function updatePlaylist(Request $request){

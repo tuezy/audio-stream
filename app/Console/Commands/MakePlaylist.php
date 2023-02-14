@@ -87,6 +87,7 @@ class MakePlaylist extends Command
             }
 
             $playlist->status = Playlist::PLAYLIST_STATUS_COMPLETED;
+
             $playlist->save();
         }
     }
