@@ -175,12 +175,11 @@
                                 element.innerHTML = '<span class="badge badge-soft-success text-uppercase">Đã xong</span>';
                             });
                         }else{
-                            let ids = JSON.parse(response.data.ids);
-                            console.log(ids);
+                            let ids = response.data.ids;
                             let processing = document.getElementsByClassName("on-processing");
                             Array.from(processing).forEach(function (element) {
                                 let id = element.getAttribute("value");
-                               if(!ids.includes(id)){
+                               if(!ids.includes(parseInt(id))){
                                    element.innerHTML = '<span class="badge badge-soft-success text-uppercase">Đã xong</span>';
                                }
 
@@ -197,7 +196,7 @@
 
         setInterval(function () {
             waitComplete();
-        }, 3000);
+        }, 5000);
     </script>
 
 
