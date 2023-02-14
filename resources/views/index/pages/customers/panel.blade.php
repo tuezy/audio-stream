@@ -175,6 +175,7 @@
                             });
                         }else{
                             let ids = JSON.parse(response.data.ids[0]);
+                            let processing = document.getElementsByClassName("on-processing");
                             Array.from(processing).forEach(function (element) {
                                 let id = element.getAttribute("value");
                                if(!ids.includes(id)){
