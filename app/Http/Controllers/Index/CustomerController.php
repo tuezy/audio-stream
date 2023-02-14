@@ -89,7 +89,7 @@ class CustomerController extends IndexController
             ]);
 
             if($playlist){
-                $indexMax = Playlist::max('id');
+                $indexMax = Audio::where('playlist_id','=', $playlist->id)->max('index');
                 $this->audioRepository->create([
                     'customer_id' => Auth::guard("customers")->user()->id,
                     'path' => $path,
