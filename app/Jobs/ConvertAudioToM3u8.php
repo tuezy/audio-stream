@@ -20,6 +20,8 @@ class ConvertAudioToM3u8 implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $timeout = 120000;
+
     /**
      * Create a new job instance.
      *
