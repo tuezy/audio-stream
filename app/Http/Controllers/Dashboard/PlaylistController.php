@@ -71,6 +71,7 @@ class PlaylistController extends Controller
     public function edit($id){
         $item = Playlist::findOrFail($id);
 
+
         if(request()->ajax()){
             return view("dashboard.pages.playlists.modal.edit", [
                 'item' => $item,
