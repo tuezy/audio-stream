@@ -56,7 +56,7 @@ class UserController extends Controller{
 
         $user->save();
 
-        return redirect()->back()->with('alert_success', 'User Updated');
+        return redirect()->back()->with('alert_success', 'Cập nhật thành công');
 
     }
 
@@ -76,6 +76,7 @@ class UserController extends Controller{
 
         $user->roles()->attach(Role::find($request->get('role')));
 
+        return redirect()->back()->with('alert_success', 'Tạo tài khoản mới thành công');
     }
 
     public function delete(){
