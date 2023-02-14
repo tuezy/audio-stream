@@ -77,6 +77,9 @@ class MakePlaylist extends Command
 
             $process = Process::fromShellCommandline($cmd);
 
+            $process->setTimeout(null);
+            $process->setIdleTimeout(null);
+
             $process->run();
 
             if (!$process->isSuccessful()) {
