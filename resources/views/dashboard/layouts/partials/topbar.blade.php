@@ -44,6 +44,9 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header">{{ \Illuminate\Support\Facades\Auth::user()->name }}</h6>
+                        <a class="dropdown-item" href="{{ route("dashboard.users.update-password") }}">
+                            <i class="bx bx-key font-size-16 align-middle me-1"></i> Đổi mậ khẩu
+                        </a>
                         <a class="dropdown-item " href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="bx bx-power-off font-size-16 align-middle me-1"></i> <span key="t-logout">@lang('translation.logout')</span></a>
                         <form id="logout-form" action="{{ route('dashboard.logout') }}" method="POST" style="display: none;">

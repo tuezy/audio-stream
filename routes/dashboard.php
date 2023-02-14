@@ -54,7 +54,7 @@ Route::name('dashboard.')
          * Users
          */
         Route::get('users/update-password', [UserController::class, "updatePassword"])->name('users.update-password');
-        Route::post('users/update-password', [UserController::class, "updatePassword"])->name('users.update-password.update');
+        Route::post('users/update-password', [UserController::class, "updateStorePassword"])->name('users.update-password.update');
 
         Route::get('users', [UserController::class, "index"])
             ->defaults('_config', [

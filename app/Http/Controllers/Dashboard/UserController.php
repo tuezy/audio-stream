@@ -10,7 +10,9 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -89,5 +91,43 @@ class UserController extends Controller{
                 return $exception->getMessage();
             }
         }
+    }
+
+
+    public function updateStorePassword(Request $request){
+        $rules = [
+            'old_password' => 'required|current_password:web',
+            'password' => 'required',
+            'password_confirmation' => 'required',
+        ];
+        $messages = [
+            'old_password.required' => 'Chưa nhập mật khẩu cũ.',
+            'old_password.current_password' => 'Mật khẩu cũ không chính xác.'
+        ];
+
+        $validation = Validator::make($request->all(), $rules, $messages);
+
+        if ($validation->fails())
+        {
+
+            return redirect()->back()->withErrors($validation);
+        }
+
+        $user = Auth::user();
+        if($request->get('password') != $request->get('password_confirmation')){
+            Session::flash("error", "Nhập lại mật khảu không khớp.");
+            return redirect()->back();
+        }
+
+        $user->password = Hash::make($request->get('password'));
+
+        $user->setRememberToken(Str::random(60));
+
+        $user->save();
+
+        return redirect()->back()->with("success", "Cập nhật passowrd thành công.");
+    }
+    public function updatePassword(){
+        return view("dashboard.pages.admin.index");
     }
 }

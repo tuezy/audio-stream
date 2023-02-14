@@ -24,9 +24,9 @@
                         <div class="tab-content">
                                 <div class="tab-pane active" id="admin_changepass" role="tabpanel">
                                     <div class="mb-3">
-                                        <label class="form-label text-white" for="password-input">mật khẩu cũ</label>
+                                        <label class="form-label" for="password-input">Mật khẩu cũ</label>
                                         <div class="position-relative auth-pass-inputgroup mb-3">
-                                            <input type="password" class="form-control pe-5 @error('password') is-invalid @enderror" name="old_password" placeholder="Mật khẩu" id="password-input">
+                                            <input type="password" class="form-control pe-5 @error('old_password') is-invalid @enderror" name="old_password" placeholder="Mật khẩu cũ" id="password-input">
                                             @error('old_password')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -36,10 +36,10 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label text-white" for="password-input">mật khẩu mới</label>
+                                        <label class="form-label" for="password-input">Mật khẩu mới</label>
                                         <div class="position-relative auth-pass-inputgroup mb-3">
-                                            <input type="password" class="form-control pe-5 @error('password') is-invalid @enderror" name="password" placeholder="Mật khẩu" id="password-input">
-                                            @error('password_confirmation')
+                                            <input type="password" class="form-control pe-5 @error('password') is-invalid @enderror" name="password" placeholder="Mật khẩu mới" id="password-input">
+                                            @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -47,9 +47,9 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label text-white" for="password-input">Nhập lại mật khẩu</label>
+                                        <label class="form-label" for="password-input">Nhập lại mật khẩu</label>
                                         <div class="position-relative auth-pass-inputgroup mb-3">
-                                            <input type="password" class="form-control pe-5 @error('password') is-invalid @enderror" name="password_confirmation" placeholder="Mật khẩu" id="password-input">
+                                            <input type="password" class="form-control pe-5 @error('password_confirmatio') is-invalid @enderror" name="password_confirmation" placeholder="Nhập lại mật khẩu" id="password-input">
                                             @error('password_confirmation')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
