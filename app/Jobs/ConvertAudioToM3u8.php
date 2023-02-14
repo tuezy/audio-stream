@@ -66,7 +66,6 @@ class ConvertAudioToM3u8 implements ShouldQueue
 
             $cmd .= $hlsDir . DIRECTORY_SEPARATOR .$playlist->broadcast_on .'.m3u8';
 
-            $this->info($cmd);
 
             $process = Process::fromShellCommandline($cmd);
 
