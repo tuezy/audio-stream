@@ -173,6 +173,16 @@
                             Array.from(processing).forEach(function (element) {
                                 element.innerHTML = '<span class="badge badge-soft-success text-uppercase">Đã xong</span>';
                             });
+                        }else{
+                            let ids = JSON.parse(response.data.ids);
+                            Array.from(processing).forEach(function (element) {
+                                let id = element.getAttribute("value");
+                               if(!ids.includes(id)){
+                                   element.innerHTML = '<span class="badge badge-soft-success text-uppercase">Đã xong</span>';
+                               }
+
+                            });
+                            console.log(ids);
                         }
                     })
                 } catch (error) {
@@ -184,7 +194,7 @@
 
         setInterval(function () {
             waitComplete();
-        }, 1500);
+        }, 3000);
     </script>
 
 
