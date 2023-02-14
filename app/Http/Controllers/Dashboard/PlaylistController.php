@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 
+use App\Jobs\ConvertAudioToM3u8;
 use App\Repository\Playlists\PlaylistRepositoryContract;
 
 use App\Datatables\PlaylistTables;
@@ -121,7 +122,15 @@ class PlaylistController extends Controller
 
 
     public function make($id){
-        Artisan::call("make:playlist ".$id);
+
+        $playlist = Playlist::findOrFail($id);
+
+        $playlist->status = Playlist::PLAYLIST_STATUS_PROCESSING;
+
+        $playlist->save();
+
+        ConvertAudioToM3u8::dispatch($playlist);
+
         return redirect()->route('dashboard.playlists.index');
     }
 }

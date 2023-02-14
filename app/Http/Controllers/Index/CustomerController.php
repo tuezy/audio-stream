@@ -210,8 +210,11 @@ class CustomerController extends IndexController
     public function makePlaylist($id){
 //        Artisan::call("make:playlist ".$id);
         $playlist = Playlist::findOrFail($id);
+        $playlist->status = Playlist::PLAYLIST_STATUS_PROCESSING;
+        $playlist->save();
+
         ConvertAudioToM3u8::dispatch($playlist);
-        sleep(3);
+
         return redirect()->to(route("customers.panel"));
     }
 
