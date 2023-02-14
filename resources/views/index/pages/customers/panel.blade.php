@@ -61,7 +61,7 @@
 {{--                            </div>--}}
 
                             <div class="tab-pane active" id="playlistStatus" role="tabpanel">
-                                <p><span class="badge badge-soft-danger">Chú ý:</span> Thời gian tạo link m3u8 playlist có thể tùy thuộc vào tổng thời gian phát của các file trong playlist.</p>
+                                <p><span class="badge badge-soft-danger">Chú ý:</span> Tạo link m3u8 playlist có thể mất nhiều thời gian tùy thuộc vào tổng thời gian phát của các file trong playlist.</p>
                                 <table class="table">
                                     <thead>
                                     <tr>
