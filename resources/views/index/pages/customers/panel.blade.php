@@ -81,16 +81,16 @@
                                                         if($playlist->audio->count() >= 2){
                                                         switch ($playlist->status){
                                                             case \App\Models\Playlist::PLAYLIST_STATUS_COMPLETED:
-                                                                echo '<span class="btn btn-outline-succcess">Ready</span>';
+                                                                echo '<span class="badge badge-soft-success text-uppercase">Đã xong</span>';
                                                                 break;
                                                              case \App\Models\Playlist::PLAYLIST_STATUS_PROCESSING:
-                                                                echo '<span class="btn btn-outline-succcess">Đang xử lý</span>';
+                                                                echo '<span class="badge badge-soft-warning">Đang xử lý</span>';
                                                                 break;
                                                             default:
                                                                 echo '<a href="'.route('customers.make.playlist',['id' => $playlist->id]).'" class="btn btn-primary">Tạo Link M3u8</a>';
                                                         }
                                                     }else{
-                                                        echo "Playlist phải có ít nhất 2 file âm thanh";
+                                                            echo '<span class="badge badge-soft-alert">Playlist phải có ít nhất 2 file âm thanh</span>';
                                                     }
                                                     @endphp
                                                 </td>
