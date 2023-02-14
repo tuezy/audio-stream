@@ -57,7 +57,9 @@ class MakePlaylist extends Command
             ->findOrFail($this->argument('id'));
         if(count($playlist->audio) > 0){
             $hlsDir = storage_path('app/public/hls/' . $playlist->folder);
-
+            if(File::exists($hlsDir) || is_dir($hlsDir)){
+                File::deleteDirectory($hlsDir, true);
+            }
             File::ensureDirectoryExists($hlsDir, 0777, true);
 
 
