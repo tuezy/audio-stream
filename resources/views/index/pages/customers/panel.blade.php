@@ -163,7 +163,6 @@
             try {
                 axios.post('{{route("customers.update.playlist-status")}}', {
                     data: {
-                        id: id
                     }
                 }).then(function (response) {
                     console.log(response.data);
