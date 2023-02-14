@@ -174,7 +174,7 @@
                                 element.innerHTML = '<span class="badge badge-soft-success text-uppercase">Đã xong</span>';
                             });
                         }else{
-                            let ids = JSON.parse(response.data.ids);
+                            let ids = JSON.parse(response.data.ids[0]);
                             Array.from(processing).forEach(function (element) {
                                 let id = element.getAttribute("value");
                                if(!ids.includes(id)){

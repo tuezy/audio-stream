@@ -39,7 +39,7 @@ class CustomerController extends IndexController
         if($playlist->count() == 0){
             return response()->json(['success' => true], 200);
         }
-        return response()->json(['ids' => $playlist->toArray()], 200);
+        return response()->json(['ids' => array_values($playlist->toArray())], 200);
     }
 
     public function uploadAudio(Request $request){
