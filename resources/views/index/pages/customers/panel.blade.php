@@ -61,6 +61,7 @@
 {{--                            </div>--}}
 
                             <div class="tab-pane active" id="playlistStatus" role="tabpanel">
+                                <p><span class="badge badge-soft-danger">Chú ý:</span> Thời gian tạo link m3u8 playlist có thể tùy thuộc vào tổng thời gian phát của các file trong playlist.</p>
                                 <table class="table">
                                     <thead>
                                     <tr>
@@ -90,7 +91,7 @@
                                                                 echo '<a href="'.route('customers.make.playlist',['id' => $playlist->id]).'" class="btn btn-primary">Tạo Link M3u8</a>';
                                                         }
                                                     }else{
-                                                            echo '<span class="badge badge-soft-alert">Playlist phải có ít nhất 2 file âm thanh</span>';
+                                                            echo '<span class="badge badge-soft-danger">Playlist phải có ít nhất 2 file âm thanh</span>';
                                                     }
                                                     @endphp
                                                 </td>
