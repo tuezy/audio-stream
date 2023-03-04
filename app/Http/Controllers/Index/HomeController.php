@@ -6,6 +6,7 @@ use App\Models\Cms;
 use App\Models\Customer;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
@@ -52,7 +53,9 @@ class HomeController extends IndexController
     }
 
     public function viewHome($broadcast_on){
-        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content', 'short_content','slug')->limit(6)->get();
+        $cms = Cms::query()->where('visibility','=', 1)
+            ->select('title', 'content', 'short_content','slug')
+            ->limit(6)->get();
         return view("index.pages.home", [
             'cms' => $cms,
             'user' => $this->user(),
@@ -72,7 +75,10 @@ class HomeController extends IndexController
     }
 
     public function playlist($broadcast_on){
-        return $this->user()->playlist()->where('broadcast_on','=',$broadcast_on)->orderBy('broadcast_date','asc');
+        return $this->user()->playlist()
+            ->where('broadcast_on','=',$broadcast_on)
+            ->where('broadcast_date', '>=', Carbon::now()->format("Y-m-d"))
+            ->orderBy('broadcast_date','asc');
     }
 
 }

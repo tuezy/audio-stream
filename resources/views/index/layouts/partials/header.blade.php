@@ -38,18 +38,26 @@
                 <li class="nav-item">
                     <a class="nav-link @if(\Illuminate\Support\Str::contains(request()->url(), '/phat-thanh-buoi-toi')) active @endif" href="{{ route("home.toi") }}">Phát thanh buổi tối</a>
                 </li>
-               <li class="nav-item">
+               <li class="nav-item  d-none">
                    <a class="nav-link mx-3">|</a>
                </li>
-                <li class="nav-item">
+                <li class="nav-item d-none">
                     <a class="nav-link @if(\Illuminate\Support\Str::contains(request()->url(), '/phim')) active @endif" href="{{ route("video.index") }}">Phim</a>
                 </li>
                <li class="nav-item">
                    <a class="nav-link mx-3">|</a>
                </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal">Tạo nội dung</a>
+                    <a class="nav-link" data-bs-toggle="modal" id="create-btn-search" data-bs-target="#showModalSearch">Tìm kiếm</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-3">|</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(\Illuminate\Support\Str::contains(request()->url(), '/phim')) active @endif" href="{{ route("customers.panel") }}">Quản lý buổi phát thanh</a>
+                </li>
+
+
 
             </ul>
 

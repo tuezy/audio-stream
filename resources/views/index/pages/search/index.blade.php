@@ -26,7 +26,7 @@
 
                                         </div>
                                         <div class="media-item__download">
-                                            <a href="{{ $item->path }}" download="{{ $item->slug }}" class="media-item__downloadPath" target="_blank">
+                                            <a href="{{ $item->path }}" download="{{ $item->slug }}" class="media-item__downloadPath" target="_blank" title="{{ $item->title }}">
                                                 <img src="{{ asset("images/icon_download.png") }}" alt="icon_download"> Tải xuống
                                             </a>
                                         </div>

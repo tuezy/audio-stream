@@ -49,7 +49,7 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="password-input">Nhập lại mật khẩu</label>
                                         <div class="position-relative auth-pass-inputgroup mb-3">
-                                            <input type="password" class="form-control pe-5 @error('password_confirmatio') is-invalid @enderror" name="password_confirmation" placeholder="Nhập lại mật khẩu" id="password-input">
+                                            <input type="password" class="form-control pe-5 @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="Nhập lại mật khẩu" id="password-input">
                                             @error('password_confirmation')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

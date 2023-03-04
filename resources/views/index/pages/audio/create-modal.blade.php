@@ -11,7 +11,7 @@
             <input type="text" name="broadcast_date"
                    class="media_type form-control border-0 dash-filter-picker shadow  flatpickr-input"
                    data-provider="flatpickr"
-                   data-date-format="d-m-Y"
+                   data-date-format="Y-m-d"
                    placeholder="Chọn Ngày Phát">
         </div>
         <div class="media-form">

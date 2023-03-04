@@ -14,7 +14,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -215,7 +217,37 @@ class CustomerController extends IndexController
     }
 
     public function changePassword(Request $request){
-        $input = $request->all();
+        $rules = [
+            'old_password' => 'required|current_password:customers',
+            'password' => 'required',
+            'password_confirmation' => 'required',
+        ];
+        $messages = [
+            'old_password.required' => 'Chưa nhập mật khẩu cũ.',
+            'old_password.current_password' => 'Mật khẩu cũ không chính xác.'
+        ];
+
+        $validation = Validator::make($request->all(), $rules, $messages);
+
+        if ($validation->fails())
+        {
+
+            return redirect()->back()->withErrors($validation);
+        }
+
+        $user = Auth::guard("customers")->user();
+        if($request->get('password') != $request->get('password_confirmation')){
+            Session::flash("error", "Nhập lại mật khảu không khớp.");
+            return redirect()->back();
+        }
+
+        $user->password = Hash::make($request->get('password'));
+
+        $user->setRememberToken(Str::random(60));
+
+        $user->save();
+        Session::flash("success", "Cập nhật passowrd thành công.");
+        return redirect()->back()->with("success", "Cập nhật passowrd thành công.");
     }
 
     public function makePlaylist($id){

@@ -510,3 +510,11 @@ Index Login Section
 .cms-detail{
     min-height: 50vh;
 }
+
+.navbar-landing .navbar-nav .nav-item .nav-link{
+    color: #fff;
+}
+#navbar{
+    background: #242b30;
+    color: #fff;
+}
