@@ -562,3 +562,8 @@ Index Login Section
     font-size: 19px;
     margin-left: 5px;
 }
+.title-link-status{
+    font-size: 20px;
+    font-weight: 600;
+    color: #ff3d00;
+}

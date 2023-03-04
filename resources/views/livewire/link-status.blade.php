@@ -1,6 +1,6 @@
 <div>
     <div class="media-form">
-        <label for="media_type">Trạng thái  link hôm nay</label>
+        <label for="media_type" class="title-link-status">Trạng thái  link hôm nay</label>
         <div class="input-group">
             <input type="text"
                    class="form-control"

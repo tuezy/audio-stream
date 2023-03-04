@@ -1,6 +1,5 @@
 @extends("index.main")
 @section("content")
-    <div class="py-4" style="height: 90px"></div>
     <div class="container">
         <div class="row">
                 <div class="">
