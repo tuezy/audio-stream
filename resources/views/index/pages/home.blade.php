@@ -8,8 +8,6 @@
                     <div class="col-lg-6">
                         <div class="media-player">
                             <div id="player"></div>
-
-
                         </div>
                         <div class="media-form mt-3">
                             <livewire:link-status></livewire:link-status>

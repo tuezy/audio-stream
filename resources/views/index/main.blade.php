@@ -45,7 +45,7 @@
     @yield("content")
     @include("index.layouts.partials.footer")
     @include("index.pages.ui.create")
-
+    @include("index.pages.search-modal")
 </div>
 
 @include("index.layouts.partials.vendor-scripts")
