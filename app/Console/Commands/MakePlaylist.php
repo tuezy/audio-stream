@@ -82,7 +82,6 @@ class MakePlaylist extends Command
             $process->setIdleTimeout(null);
 
             $process->run();
-
             if (!$process->isSuccessful()) {
                 throw new ProcessFailedException($process);
             }

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Symfony\Component\Process\Process;
 
 class CustomerController extends IndexController
 {
@@ -105,8 +106,16 @@ class CustomerController extends IndexController
 
             if($playlist){
                 $indexMax = Audio::where('playlist_id','=', $playlist->id)->max('index');
-                Artisan::call("ffmpeg -i ".$path." 2>&1 | grep Duration | awk '{print $2}' | tr -d");
-                $output = Artisan::output();
+                $cmd = "ffmpeg -i ".$path." 2>&1 | grep Duration | awk '{print $2}' | tr -d";
+
+                $process = Process::fromShellCommandline($cmd);
+
+                $process->setTimeout(null);
+                $process->setIdleTimeout(null);
+
+                $process->run();
+                $output = $process->getOutput();
+
                 Log::debug($output);
                 $this->audioRepository->create([
                     'customer_id' => Auth::guard("customers")->user()->id,
