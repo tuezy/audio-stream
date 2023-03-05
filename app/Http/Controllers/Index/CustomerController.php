@@ -109,22 +109,22 @@ class CustomerController extends IndexController
             if($playlist){
                 $indexMax = Audio::where('playlist_id','=', $playlist->id)->max('index');
 
-                $media = FFMpeg::open(str_replace("storage/", "storage/app/public/", $path));
+                $media = FFMpeg::open(str_replace("storage/", "public/", $path));
 
                 $durationInSeconds = $media->getDurationInSeconds();
 
                 $output = CarbonInterval::second($durationInSeconds)->cascade()->forHumans();
 
+
                 $this->audioRepository->create([
                     'customer_id' => Auth::guard("customers")->user()->id,
                     'path' => $path,
-                    'content' => $description,
+                    'content' => $output,
                     'title' => $title,
                     'broadcast_date' => $broadcast_date,
                     'broadcast_on' => $broadcast_on,
                     'playlist_id' => $playlist->id,
                     'index' => $indexMax + 1,
-                    'duration' => $output
                 ]);
             }
 
