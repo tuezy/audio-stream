@@ -10,6 +10,7 @@ use App\Models\Playlist;
 use App\Repository\Audio\AudioRepositoryContract;
 use App\Repository\Playlists\PlaylistRepositoryContract;
 use App\Repository\Videos\VideoRepositoryContract;
+use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Symfony\Component\Process\Process;
 
 class CustomerController extends IndexController
@@ -106,17 +108,13 @@ class CustomerController extends IndexController
 
             if($playlist){
                 $indexMax = Audio::where('playlist_id','=', $playlist->id)->max('index');
-                $cmd = "ffmpeg -i ".$path." 2>&1 | grep Duration | awk '{print $2}' | tr -d";
 
-                $process = Process::fromShellCommandline($cmd);
+                $media = FFMpeg::open(str_replace("storage/", "storage/app/public/", $path));
 
-                $process->setTimeout(null);
-                $process->setIdleTimeout(null);
+                $durationInSeconds = $media->getDurationInSeconds();
 
-                $process->run();
-                $output = $process->getOutput();
+                $output = CarbonInterval::second($durationInSeconds)->cascade()->forHumans();
 
-                Log::debug($output);
                 $this->audioRepository->create([
                     'customer_id' => Auth::guard("customers")->user()->id,
                     'path' => $path,
