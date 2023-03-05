@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -104,6 +105,9 @@ class CustomerController extends IndexController
 
             if($playlist){
                 $indexMax = Audio::where('playlist_id','=', $playlist->id)->max('index');
+                Artisan::call("ffmpeg -i ".$path." 2>&1 | grep Duration | awk '{print $2}' | tr -d");
+                $output = Artisan::output();
+                Log::debug($output);
                 $this->audioRepository->create([
                     'customer_id' => Auth::guard("customers")->user()->id,
                     'path' => $path,
@@ -112,7 +116,8 @@ class CustomerController extends IndexController
                     'broadcast_date' => $broadcast_date,
                     'broadcast_on' => $broadcast_on,
                     'playlist_id' => $playlist->id,
-                    'index' => $indexMax + 1
+                    'index' => $indexMax + 1,
+                    'duration' => $output
                 ]);
             }
 
