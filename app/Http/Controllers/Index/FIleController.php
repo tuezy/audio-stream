@@ -8,6 +8,7 @@ use App\Repository\Playlists\PlaylistRepositoryContract;
 use App\Repository\Settings\SettingRepositoryCache;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 
 class FIleController extends IndexController
@@ -44,9 +45,9 @@ class FIleController extends IndexController
                 'folder' => $directory
             ]);
 
-            Artisan::call("ffmpeg -i test.mp3 2>&1 | grep Duration | awk '{print $2}' | tr -d");
+            Artisan::call("ffmpeg -i ".$path." 2>&1 | grep Duration | awk '{print $2}' | tr -d");
             $output = Artisan::output();
-
+            Log::debug($output);
 
             $this->audioRepository->create([
                 'name' => $file->getClientOriginalName(),
