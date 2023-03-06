@@ -7,8 +7,8 @@
                         <div class="media-search__title">
                             <span>TẠO NỘI DUNG</span>
                         </div>
-                        <div class="media-search__type">
-                            <ul class="nav" role="tablist">
+                        <div class="media-search__type d-none">
+                            <ul class="nav " role="tablist">
                                 <li><a data-bs-toggle="tab" href="#createAudio"  class="active">Âm thanh</a></li>
                                 <span></span>
                                 <li><a data-bs-toggle="tab" href="#createVideo">Phim</a></li>

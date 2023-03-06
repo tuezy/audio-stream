@@ -229,15 +229,24 @@ class CustomerController extends IndexController
     }
 
     public function changePassword(Request $request){
-        $rules = [
-            'old_password' => 'required|current_password:customers',
-            'password' => 'required',
-            'password_confirmation' => 'required',
-        ];
-        $messages = [
-            'old_password.required' => 'Chưa nhập mật khẩu cũ.',
-            'old_password.current_password' => 'Mật khẩu cũ không chính xác.'
-        ];
+        if($request->has('password') || $request->has('old_password') || $request->has('password_confirmation')) {
+            $rules = [
+                'old_password' => 'required|current_password:customers',
+                'password' => 'required',
+                'password_confirmation' => 'required',
+            ];
+            $messages = [
+                'old_password.required' => 'Chưa nhập mật khẩu cũ.',
+                'old_password.current_password' => 'Mật khẩu cũ không chính xác.'
+            ];
+        }else{
+            $rules = [
+                'name' => 'required',
+            ];
+            $messages = [
+                'name.required' => 'Bạn chưa nhập tên.'
+            ];
+        }
 
         $validation = Validator::make($request->all(), $rules, $messages);
 

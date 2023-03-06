@@ -4,9 +4,9 @@
     </div>
     <div class="media-search__type">
         <ul class="nav" role="tablist">
-            <li><a data-bs-toggle="tab" href="#searchAudio"  class="active">Âm thanh</a></li>
-            <span></span>
-            <li><a data-bs-toggle="tab" href="#searchVideo">Phim</a></li>
+{{--            <li><a data-bs-toggle="tab" href="#searchAudio"  class="active">Âm thanh</a></li>--}}
+{{--            <span></span>--}}
+{{--            <li><a data-bs-toggle="tab" href="#searchVideo">Phim</a></li>--}}
         </ul>
     </div>
     <div class="media-search__content">

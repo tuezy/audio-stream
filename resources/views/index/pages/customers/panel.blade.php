@@ -6,25 +6,28 @@
                     <div class="card-header">
                         <ul class="nav" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="#changePassword" role="tab">
-                                    <i class="fas fa-home"></i> Đổi mật khẩu
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#playlistStatus" role="tab">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#playlistStatus" role="tab">
                                     <i class="far fa-user"></i> Quản lý buổi phát thanh
                                 </a>
                             </li>
+
+
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#m3u8" role="tab">
                                     <i class="far fa-user"></i> Trạng thái link hôm nay
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link " data-bs-toggle="tab" href="#changePassword" role="tab">
+                                    <i class="fas fa-home"></i> Đổi mật khẩu
                                 </a>
                             </li>
                         </ul>
                     </div>
                     <div class="card-body p-4">
                         <div class="tab-content">
-                            <div class="tab-pane active" id="changePassword" role="tabpanel">
+                            <div class="tab-pane " id="changePassword" role="tabpanel">
                             <form  method="POST" action="{{route("customers.changePassword")}}">
                                 @csrf
                                 <div class="row">
@@ -34,13 +37,24 @@
                                                 <div class="tab-content">
                                                     <div class="tab-pane active" id="admin_changepass" role="tabpanel">
                                                         <div class="mb-3">
+                                                            <label class="form-label" for="name">Tên</label>
+                                                            <div class="position-relative auth-pass-inputgroup mb-3">
+                                                                <input type="text" class="form-control pe-5 @error('name') is-invalid @enderror" name="name" placeholder="Thay đổi tên" id="password-input" value="{{\Illuminate\Support\Facades\Auth::guard("customers")->user()->name}}">
+                                                                @error('name')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
                                                             <label class="form-label" for="password-input">Mật khẩu cũ</label>
                                                             <div class="position-relative auth-pass-inputgroup mb-3">
                                                                 <input type="password" class="form-control pe-5 @error('old_password') is-invalid @enderror" name="old_password" placeholder="Mật khẩu cũ" id="password-input">
                                                                 @error('old_password')
                                                                 <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -85,7 +99,7 @@
                                 </div>
                             </form>
                             </div>
-                            <div class="tab-pane " id="playlistStatus" role="tabpanel">
+                            <div class="tab-pane active" id="playlistStatus" role="tabpanel">
                                 <p><span class="badge badge-soft-danger">Chú ý:</span> Tạo link m3u8 playlist có thể mất nhiều thời gian tùy thuộc vào tổng thời gian phát của các file trong playlist.</p>
                                 <table class="table">
                                     <thead>

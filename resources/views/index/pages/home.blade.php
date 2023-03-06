@@ -21,7 +21,11 @@
                         <div class="playing">
                             <div class="playing__film">
                                 @foreach($playlists as $broadcast_date => $playlist)
-                                    <span class="broadcast_date broadcast_date_{{$playlist[0]['id']}}" value="{{$playlist[0]['id']}}" onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">{{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}</span>
+                                    <span class="broadcast_date broadcast_date_{{$playlist[0]['id']}}"
+                                          value="{{$playlist[0]['id']}}"
+                                          onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
+                                        {{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}
+                                    </span>
                                 @endforeach
                             </div>
                         </div>
@@ -58,10 +62,11 @@
 @endsection
 
 @push("scripts")
-    <script src="{{ asset("assets/libs/playerjs_audio.js") }}"></script>
+    <script src="{{ asset("assets/libs/playerjs_audio_2.js") }}"></script>
 
     <script>
-        var player = new Playerjs({id:"player"});
+        var player = new Playerjs({id:"player", file:[
+            ]});
 
         var playlists = document.getElementsByClassName("broadcast_date");
 
@@ -123,16 +128,16 @@
         }
 
         function updatePlayer(){
-            // var downloadPaths = document.getElementsByClassName("media-item__downloadPath");
-            // player.api("playlist", []);
-            // Array.from(downloadPaths).forEach(function (element) {
-            //     let aHerf = element.getAttribute("href");
-            //     let aTitle = element.getAttribute("title");
-            //     player.api("push", [{
-            //         "file" : aHerf,
-            //         "title" : aTitle
-            //     }])
-            // });
+            var downloadPaths = document.getElementsByClassName("media-item__downloadPath");
+            player.api("playlist", []);
+            Array.from(downloadPaths).forEach(function (element) {
+                let aHerf = element.getAttribute("href");
+                let aTitle = element.getAttribute("title");
+                player.api("push", [{
+                    "file" : aHerf,
+                    "title" : aTitle
+                }])
+            });
         }
 
 
@@ -210,7 +215,7 @@
 @push("styles")
     <style>
         #player {
-            height: 55px!important;
+            height: 320px!important;
         }
     </style>
 @endpush
