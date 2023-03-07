@@ -57,28 +57,6 @@ function toggleMenu() {
     }
 }
 
-// trusted-client-slider
-var swiper = new Swiper(".trusted-client-slider", {
-    spaceBetween: 30,
-    loop: 'true',
-    slidesPerView: 1,
-    autoplay: {
-        delay: 1000,
-        disableOnInteraction: false,
-    },
-    breakpoints: {
-        576: {
-            slidesPerView: 2,
-        },
-        768: {
-            slidesPerView: 3,
-        },
-        1024: {
-            slidesPerView: 4,
-        },
-    },
-});
-
 // pricing
 function check() {
     var checkBox = document.getElementById("plan-switch");
@@ -99,22 +77,6 @@ function check() {
 }
 check();
 
-// client-review-swiper
-var swiper = new Swiper(".client-review-swiper", {
-    loop: false,
-    autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-    },
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-    pagination: {
-        clickable: true,
-        el: ".swiper-pagination",
-    },
-});
 
 // counter-value
 function counter() {

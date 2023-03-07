@@ -18,15 +18,19 @@
                             <span class="title">Danh sách phát</span>
                             <a class="nav-link" data-bs-toggle="modal" id="create-btn-search" data-bs-target="#showModal"><span class="btn-taomoi">Tạo mới</span></a>
                         </div>
-                        <div class="playing">
-                            <div class="playing__film">
+                        <div class="playing swiper">
+                            <div class="playing__film ">
+                                <div class="swiper-wrapper">
                                 @foreach($playlists as $broadcast_date => $playlist)
-                                    <span class="broadcast_date broadcast_date_{{$playlist[0]['id']}}"
-                                          value="{{$playlist[0]['id']}}"
-                                          onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
-                                        {{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}
-                                    </span>
+                                        <div class="swiper-slide">
+                                            <span class="broadcast_date broadcast_date_{{$playlist[0]['id']}}"
+                                                  value="{{$playlist[0]['id']}}"
+                                                  onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
+                                                {{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}
+                                            </span>
+                                        </div>
                                 @endforeach
+                                </div>
                             </div>
                         </div>
                         <div id="playlist">
@@ -63,8 +67,35 @@
 
 @push("scripts")
     <script src="{{ asset("assets/libs/playerjs_audio_2.js") }}"></script>
+    <script src="{{ asset("assets/libs/swiper/swiper-bundle.min.js") }}"></script>
+
 
     <script>
+
+        const swiper = new Swiper('.swiper', {
+            // Optional parameters
+            slidesPerView: 10,
+            centeredSlides: true,
+            spaceBetween: 10,
+            loop: true,
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // And if we need scrollbar
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        });
+
         var player = new Playerjs({id:"player", file:[
             ]});
 
@@ -164,7 +195,10 @@
                             }
                         }).then(function (response) {
                             if(response.data.success){
-                                location.reload();
+                                // location.reload();
+                                let target = "media-item__"+id;
+                                let element = document.getElementsByClassName(target);
+                                element[0].remove();
                             }
                         })
                     } catch (error) {
@@ -213,6 +247,7 @@
 @endpush
 
 @push("styles")
+    <link href="{{ asset("assets/libs/swiper/swiper-bundle.min.css") }}" rel="stylesheet" type="text/css" />
     <style>
         #player {
             height: 320px!important;
