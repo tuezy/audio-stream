@@ -18,19 +18,15 @@
                             <span class="title">Danh sách phát</span>
                             <a class="nav-link" data-bs-toggle="modal" id="create-btn-search" data-bs-target="#showModal"><span class="btn-taomoi">Tạo mới</span></a>
                         </div>
-                        <div class="playing swiper">
+                        <div class="playing">
                             <div class="playing__film ">
-                                <div class="swiper-wrapper">
                                 @foreach($playlists as $broadcast_date => $playlist)
-                                        <div class="swiper-slide">
                                             <span class="broadcast_date broadcast_date_{{$playlist[0]['id']}}"
                                                   value="{{$playlist[0]['id']}}"
                                                   onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
                                                 {{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}
                                             </span>
-                                        </div>
                                 @endforeach
-                                </div>
                             </div>
                         </div>
                         <div id="playlist">
