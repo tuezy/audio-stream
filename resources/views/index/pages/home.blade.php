@@ -67,8 +67,6 @@
 
 @push("scripts")
     <script src="{{ asset("assets/libs/playerjs_audio_2.js") }}"></script>
-    <script src="{{ asset("assets/libs/swiper/swiper-bundle.min.js") }}"></script>
-
 
     <script>
 
@@ -223,7 +221,6 @@
 @endpush
 
 @push("styles")
-    <link href="{{ asset("assets/libs/swiper/swiper-bundle.min.css") }}" rel="stylesheet" type="text/css" />
     <style>
         #player {
             height: 320px!important;
