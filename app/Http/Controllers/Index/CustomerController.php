@@ -215,7 +215,7 @@ class CustomerController extends IndexController
                 ->first();
 
             if($playlist){
-                $playlist_status[$broadcast_on] = $playlist->status;
+                $playlist_status[$broadcast_on] = $playlist->status == 'completed' ? 'Sẵn sàng': 'Chưa sẵn sàng';
             }
         }
 
