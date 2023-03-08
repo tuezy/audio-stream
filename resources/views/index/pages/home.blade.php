@@ -19,14 +19,22 @@
                             <a class="nav-link" data-bs-toggle="modal" id="create-btn-search" data-bs-target="#showModal"><span class="btn-taomoi">Tạo mới</span></a>
                         </div>
                         <div class="playing">
-                            <div class="playing__film ">
-                                @foreach($playlists as $broadcast_date => $playlist)
-                                            <span class="broadcast_date broadcast_date_{{$playlist[0]['id']}}"
-                                                  value="{{$playlist[0]['id']}}"
-                                                  onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
-                                                {{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}
-                                            </span>
-                                @endforeach
+                            <div class="playing__film">
+                                <div class="swiper">
+                                    <div class="swiper-wrapper">
+                                    @foreach($playlists as $broadcast_date => $playlist)
+                                        <div class="swiper-slide">
+                                                <span class="broadcast_date broadcast_date_{{$playlist[0]['id']}}"
+                                                      value="{{$playlist[0]['id']}}"
+                                                      onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
+                                                    {{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}
+                                                </span>
+                                        </div>
+                                    @endforeach
+                                    </div>
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                </div>
                             </div>
                         </div>
                         <div id="playlist">
@@ -63,9 +71,20 @@
 
 @push("scripts")
     <script src="{{ asset("assets/libs/playerjs_audio_2.js") }}"></script>
-
+    <script src="{{ asset("assets/libs/swiper/swiper-bundle.min.js") }}"></script>
     <script>
-
+        var swiper = new Swiper(".swiper", {
+            slidesPerView: 5,
+            spaceBetween: 20,
+            loop: false,
+            pagination: {
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
         var player = new Playerjs({id:"player", file:[
             ]});
 
@@ -217,6 +236,7 @@
 @endpush
 
 @push("styles")
+    <link rel="stylesheet" href="{{ asset("assets/libs/swiper/swiper-bundle.min.css") }}">
     <style>
         #player {
             height: 320px!important;

@@ -202,12 +202,13 @@ body{
 }
 .playing{
     padding: 0px 15px;
-    display: flex;
+    /*! display: flex; */
     align-items: center;
     width: 100%;
-    height: 46px;
+    /*! height: 46px; */
     background-color: #242b30;
     color: #fff;
+    padding: 10px 30px;
 }
 .playing__film{
 
@@ -566,4 +567,22 @@ Index Login Section
     font-size: 20px;
     font-weight: 600;
     color: #ff3d00;
+}
+
+.playing__film .swiper-button-prev, .playing__film .swiper-button-next{
+
+}
+.playing__film .swiper-button-prev{
+    left: 0px !important;
+}
+.playing__film .swiper-button-next{
+
+}
+
+.playing__film .swiper-button-next::after, .playing__film .swiper-button-prev::after{
+    color: #fff!important;
+    font-family: remixicon!important;
+}
+.playing__film .swiper{
+    padding: 0 30px!important;
 }
