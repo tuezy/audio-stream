@@ -114,7 +114,7 @@
 
                                         @foreach($playlists as $playlist)
                                             <tr>
-                                                <td>{{ $playlist->broadcast_date }}</td>
+                                                <td>{{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $playlist->broadcast_date)->format("d-m-Y") }}</td>
                                                 <td>{{ \App\Models\Playlist::PLAYLIST_TYPES_TRANSLATION[$playlist->broadcast_on] }}</td>
                                                 <td style="width: 138px;text-align: center">
                                                     @php
