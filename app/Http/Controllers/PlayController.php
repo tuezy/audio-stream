@@ -19,8 +19,8 @@ class PlayController extends Controller
     }
 
     public function play($broadcast_on, $customer_id){
-        $broadcast_date = date('d-m-Y', time());
-
+//        $broadcast_date = date('d-m-Y', time());
+        $broadcast_date = date('Y-m-d', time());
         $playlist = $this->playlistRepository->where('broadcast_date', '=', $broadcast_date)
             ->where('broadcast_on', '=', $broadcast_on)
             ->where('customer_id', '=', $customer_id)

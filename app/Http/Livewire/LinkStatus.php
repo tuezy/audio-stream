@@ -20,6 +20,7 @@ class LinkStatus extends Component
     public function mount()
     {
         $this->currentUrl = Route::currentRouteName();
+
         $this->linkM3u8 = implode('/',[
             'hls',
             'audio',
@@ -27,6 +28,7 @@ class LinkStatus extends Component
             \Illuminate\Support\Facades\Auth::guard("customers")->user()->id,
             'playlist.m3u8'
         ]);
+
         $today = date('d-m-Y', time());
         $playlist = Playlist::where('broadcast_date', '=', $today)
             ->where('broadcast_on', '=', $this->mappingBroadcastLink($this->currentUrl))

@@ -1,6 +1,5 @@
 @php
     $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
-
 @endphp
 @can("dashboard.settings.index")
     @php
