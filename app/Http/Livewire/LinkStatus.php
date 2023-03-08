@@ -34,8 +34,9 @@ class LinkStatus extends Component
             ->where('broadcast_on', '=', $this->mappingBroadcastLink($this->currentUrl))
             ->where('customer_id', '=', Auth::guard("customers")->user()->id)
             ->first();
+
         if($playlist){
-            $playlist_status = $playlist->status;
+            $this->playlist_status = $playlist->status;
         }
     }
     public function render()
