@@ -205,7 +205,7 @@ class CustomerController extends IndexController
         }
     }
     public function panel(Request $request){
-        $today = date('d-m-Y', time());
+        $today = date('Y-m-d', time());
         $playlist_status = [];
         foreach (Playlist::PLAYLIST_TYPES as $broadcast_on){
             $playlist = $this->playlistRepository

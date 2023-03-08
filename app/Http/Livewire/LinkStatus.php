@@ -36,7 +36,7 @@ class LinkStatus extends Component
             ->first();
 
         if($playlist){
-            $this->playlist_status = $playlist->status;
+            $this->playlist_status = $playlist->status == 'completed' ? 'Sẵn sàng' : 'Chưa sẵn sàng';
         }
     }
     public function render()
