@@ -29,7 +29,7 @@ class LinkStatus extends Component
             'playlist.m3u8'
         ]);
 
-        $today = date('d-m-Y', time());
+        $today = date('Y-m-d', time());
         $playlist = Playlist::where('broadcast_date', '=', $today)
             ->where('broadcast_on', '=', $this->mappingBroadcastLink($this->currentUrl))
             ->where('customer_id', '=', Auth::guard("customers")->user()->id)
