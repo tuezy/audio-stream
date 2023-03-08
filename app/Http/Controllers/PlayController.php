@@ -25,7 +25,6 @@ class PlayController extends Controller
         $playlist = $this->playlistRepository->where('broadcast_date', '=', $broadcast_date)
             ->where('broadcast_on', '=', $broadcast_on)
             ->where('customer_id', '=', $customer_id)
-            ->where("created_at", ">=", Carbon::now()->subDays(3))
             ->first();
         if($playlist){
             return    redirect()->to("http://45.76.204.156:88/hls/public/users/{$customer_id}/audios/{$broadcast_date}/{$broadcast_on}/{$broadcast_on}.m3u8", 303);
