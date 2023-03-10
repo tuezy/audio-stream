@@ -77,7 +77,7 @@ class HomeController extends IndexController
     public function playlist($broadcast_on){
         return $this->user()->playlist()
             ->where('broadcast_on','=',$broadcast_on)
-            ->where('broadcast_date', '>=', Carbon::now()->format("Y-m-d"))
+            ->where('broadcast_date', '>=', Carbon::now()->subDays(core()->getSetting("auto_delete_after"))->format("Y-m-d"))
             ->orderBy('broadcast_date','asc');
     }
 
