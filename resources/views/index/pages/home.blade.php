@@ -86,7 +86,8 @@
             },
         });
         var player = new Playerjs({id:"player", file:[
-            ]});
+            ],
+        poster: 'https://plus.unsplash.com/premium_photo-1668383777295-8343df447607?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'});
 
         var playlists = document.getElementsByClassName("broadcast_date");
 
