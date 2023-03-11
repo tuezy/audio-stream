@@ -248,13 +248,25 @@
             top: 0;
             bottom: 0;
             margin: auto;
-
+            z-index: 1;
         }
         .slick-prev{
-            left: -15px;
+            left: -35px;
         }
         .slick-next{
-            right: -15px;
+            right: -35px;
+        }
+        .slick-prev:before{
+            content: "\ea64";
+            font-family: remixicon!important;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+        }
+        .slick-next:before{
+            content: "\ea65";
+            font-family: remixicon!important;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
         }
     </style>
 @endpush
