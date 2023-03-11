@@ -261,12 +261,22 @@
             font-family: remixicon!important;
             font-style: normal;
             -webkit-font-smoothing: antialiased;
+            font-size:20px;
+            color: #000;
         }
         .slick-next:before{
-            content: "\ea65";
+            content: "\ea6e";
             font-family: remixicon!important;
             font-style: normal;
             -webkit-font-smoothing: antialiased;
+            font-size:20px;
+            color: #000;
+        }
+        #oframeplayer{
+            background-color: #fff!important;
+        }
+        pjsdiv{
+            background-size: contain!important;
         }
     </style>
 @endpush
