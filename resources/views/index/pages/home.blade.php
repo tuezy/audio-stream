@@ -20,22 +20,16 @@
                         </div>
                         <div class="playing">
                             <div class="playing__film">
-                                <div class="swiper">
-                                    <div class="swiper-wrapper">
+                                <div class="slick-wrapper">
                                     @foreach($playlists as $broadcast_date => $playlist)
-                                        <div class="swiper-slide">
-                                            <div>
-                                                <div class="broadcast_date broadcast_date_{{$playlist[0]['id']}}"
-                                                     value="{{$playlist[0]['id']}}"
-                                                     onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
-                                                    {{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}
-                                                </div>
+                                        <div>
+                                            <div class="broadcast_date broadcast_date_{{$playlist[0]['id']}}"
+                                                 value="{{$playlist[0]['id']}}"
+                                                 onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
+                                                {{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}
                                             </div>
                                         </div>
                                     @endforeach
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
                                 </div>
                             </div>
                         </div>
@@ -73,19 +67,18 @@
 
 @push("scripts")
     <script src="{{ asset("assets/libs/playerjs_audio_2.js") }}"></script>
-    <script src="{{ asset("assets/libs/swiper/swiper-bundle.min.js") }}"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.6.4.min.js"
+            integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-        var swiper = new Swiper(".swiper", {
-            slidesPerView: 5,
-            spaceBetween: 20,
-            loop: false,
-            pagination: {
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
+        $('.slick-wrapper').slick({
+            dots: false,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 5,
+            slidesToScroll: 1,
         });
         var player = new Playerjs({id:"player", file:[
             ],
@@ -203,7 +196,7 @@
 
         var drake = dragula([document.getElementById("playlist")])
             .on('drag', function (el) {
-            el.className = el.className.replace('ex-moved', '');
+                el.className = el.className.replace('ex-moved', '');
             }).on('drop', function (el) {
                 el.className += ' ex-moved';
             }).on('over', function (el, container) {
@@ -219,7 +212,7 @@
             var indexs = [];
 
             Array.from(playlists).forEach(function (element) {
-               indexs.push(element.getAttribute("value"));
+                indexs.push(element.getAttribute("value"));
             });
 
             try {
@@ -240,13 +233,19 @@
 @endpush
 
 @push("styles")
-    <link rel="stylesheet" href="{{ asset("assets/libs/swiper/swiper-bundle.min.css") }}">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <style>
         #player {
             height: 320px!important;
         }
-        .swiper-slide{
-            width:100%!important;
+        .slick-prev,.slick-next{
+            position: absolute;
+        }
+        .slick-prev{
+            left: -15px;
+        }
+        .slick-next{
+            right: -15px;
         }
     </style>
 @endpush
