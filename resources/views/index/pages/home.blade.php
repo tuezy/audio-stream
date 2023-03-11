@@ -272,11 +272,8 @@
             font-size:20px;
             color: #000;
         }
-        #oframeplayer{
-            background-color: #fff!important;
-        }
-        pjsdiv{
-            background-size: contain!important;
-        }
+     .broadcast_date{
+         cursor:pointer;
+     }
     </style>
 @endpush
