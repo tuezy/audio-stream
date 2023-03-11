@@ -24,11 +24,13 @@
                                     <div class="swiper-wrapper">
                                     @foreach($playlists as $broadcast_date => $playlist)
                                         <div class="swiper-slide">
+                                            <div>
                                                 <div class="broadcast_date broadcast_date_{{$playlist[0]['id']}}"
-                                                      value="{{$playlist[0]['id']}}"
-                                                      onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
+                                                     value="{{$playlist[0]['id']}}"
+                                                     onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
                                                     {{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}
                                                 </div>
+                                            </div>
                                         </div>
                                     @endforeach
                                     </div>
