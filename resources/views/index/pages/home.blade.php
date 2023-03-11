@@ -245,5 +245,8 @@
         #player {
             height: 320px!important;
         }
+        .swiper-slide{
+            width:100%!important;
+        }
     </style>
 @endpush
