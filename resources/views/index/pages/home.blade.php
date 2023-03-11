@@ -24,11 +24,11 @@
                                     <div class="swiper-wrapper">
                                     @foreach($playlists as $broadcast_date => $playlist)
                                         <div class="swiper-slide">
-                                                <span class="broadcast_date broadcast_date_{{$playlist[0]['id']}}"
+                                                <div class="broadcast_date broadcast_date_{{$playlist[0]['id']}}"
                                                       value="{{$playlist[0]['id']}}"
                                                       onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
                                                     {{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}
-                                                </span>
+                                                </div>
                                         </div>
                                     @endforeach
                                     </div>
@@ -87,6 +87,7 @@
         });
         var player = new Playerjs({id:"player", file:[
             ],
+            poster: "{{asset("images/play-final.png")}}"
         });
 
         var playlists = document.getElementsByClassName("broadcast_date");
