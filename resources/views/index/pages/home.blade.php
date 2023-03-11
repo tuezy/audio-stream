@@ -240,6 +240,15 @@
         }
         .slick-prev,.slick-next{
             position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            color: transparent;
+            overflow: hidden;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+
         }
         .slick-prev{
             left: -15px;
