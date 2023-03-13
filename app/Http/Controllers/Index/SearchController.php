@@ -33,7 +33,7 @@ class SearchController extends IndexController
         }
 
         if($request->has('broadcast_date')){
-            $model->where('broadcast_date' , '=', $request->get('broadcast_date'));
+            $model->where('broadcast_date' , '=', $request->get('broadcast_date')->format("Y-m-d"));
         }
 
         if($request->has('category_id')){
