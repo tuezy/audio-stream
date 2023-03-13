@@ -29,7 +29,7 @@ class SearchController extends IndexController
             $model = Video::query();
         }
 
-        if($request->has('broadcast_on')){
+        if($request->has('broadcast_on') && in_array($request->get('broadcast_on'), array_values(\App\Models\Playlist::PLAYLIST_TYPES)){
             $model->where('broadcast_on' , '=', $request->get('broadcast_on'));
         }
 
