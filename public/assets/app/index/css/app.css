@@ -209,6 +209,8 @@ body{
     background-color: #242b30;
     color: #fff;
     padding: 10px 30px;
+    padding-left: 45px;
+    padding-right: 45px;
 }
 .playing__film{
 
