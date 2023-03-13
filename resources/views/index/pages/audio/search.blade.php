@@ -17,7 +17,7 @@
                    class="form-control border-0 dash-filter-picker shadow  flatpickr-input"
                    data-provider="flatpickr"
                    data-date-format="d-m-Y"
-                   data-deafult-date="10-02-2023">
+                   data-deafult-date="{{ \Illuminate\Support\Carbon::now()->format("d-m-Y") }}">
         </div>
     </div>
     <div class="media-form">
