@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\Video;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
@@ -33,7 +34,7 @@ class SearchController extends IndexController
         }
 
         if($request->has('broadcast_date')){
-            $model->where('broadcast_date' , '=', $request->get('broadcast_date')->format("Y-m-d"));
+            $model->where('broadcast_date' , '=', Carbon::make($request->get('broadcast_date'))->format("Y-m-d"));
         }
 
         if($request->has('category_id')){
