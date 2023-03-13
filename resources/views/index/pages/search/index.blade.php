@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="panel-danhsachphat">
-                            <span class="title">Danh sách phát</span>
+                            <span class="title">Kết quả tìm kiếm</span>
                             <a class="nav-link" data-bs-toggle="modal" id="create-btn-search" data-bs-target="#showModal"><span class="btn-taomoi">Tạo mới</span></a>
                         </div>
                         <div class="playing">
