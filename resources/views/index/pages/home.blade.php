@@ -254,10 +254,10 @@
             z-index: 1;
         }
         .slick-prev{
-            left: -35px;
+            left: -45px;
         }
         .slick-next{
-            right: -35px;
+            right: -45px;
         }
         .slick-prev:before{
             content: "\ea64";
