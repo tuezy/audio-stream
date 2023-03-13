@@ -45,7 +45,7 @@ class SearchController extends IndexController
             $model->where('title' , 'LIKE', '%'.$request->get('title').'%');
         }
 
-        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content')->limit(6)->get();
+        $cms = Cms::query()->where('visibility','=', 1)->select('title', 'content', 'slug')->limit(6)->get();
 
         return view("index.pages.search.index", [
             'items' => $model->paginate(15),
