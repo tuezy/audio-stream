@@ -142,6 +142,7 @@
         function audioplay(link, title){
             player.api("play", link);
             player.api("title", title);
+            player.api("poster", "{{asset("images/play-final.png")}}");
         }
 
         function updatePlayer(){
@@ -152,7 +153,9 @@
                 let aTitle = element.getAttribute("title");
                 player.api("push", [{
                     "file" : aHerf,
-                    "title" : aTitle
+                    "title" : aTitle,
+                    'poster': "{{asset("images/play-final.png")}}"
+
                 }])
             });
         }

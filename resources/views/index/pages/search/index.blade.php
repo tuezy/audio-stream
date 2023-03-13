@@ -158,6 +158,7 @@
         function audioplay(link, title){
             player.api("play", link);
             player.api("title", title);
+            player.api("poster", "{{asset("images/play-final.png")}}");
         }
 
         function updatePlayer(){
