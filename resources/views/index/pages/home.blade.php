@@ -84,25 +84,21 @@
             ],
             poster: "{{asset("images/play-final.png")}}"
         });
-
+        var activeTodayPlaylist = document.getElementById("activeTodayPlaylist");
+        var startSliderAt = 0;
+        if(activeTodayPlaylist){
+            startSliderAt = activeTodayPlaylist.getAttribute("initslide");
+        }
         $('.slick-wrapper').slick({
             dots: false,
             infinite: false,
             speed: 300,
             slidesToShow: 5,
             slidesToScroll: 1,
+            initialSlide: startSliderAt
         });
 
-        var activeTodayPlaylist = document.getElementById("activeTodayPlaylist");
-        var startSliderAt = 0;
-        if(activeTodayPlaylist){
-            startSliderAt = activeTodayPlaylist.getAttribute("initslide");
-            let id = activeTodayPlaylist.getAttribute("value");
-            if(startSliderAt > 0){
-                $("#activeTodayPlaylist").trigger("click");
-            }
 
-        }
 
 
         var playlists = document.getElementsByClassName("broadcast_date");
