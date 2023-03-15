@@ -2,15 +2,15 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
 
-                <div class="copy-rights mb-0">
-                <div>
-                    <img src="{{ asset("images/play-final.png") }}" alt="logo" class="img-fluid">
+            <div class="copy-rights mb-0">
+                <div class="mt-4">
+                    <img src="{{ asset("images/play-final.png") }}" alt="logo" class="img-fluid" style="width: 300px">
                 </div>
                 <p>Mã số thuế: 03055633881</p>
                 <p>Địa chỉ: {{ core()->getSetting('address') }}</p>
                 <p>© Bản quyền thuộc về Hoàng Thế Long</p>
 {{--                    {{ core()->getSetting('site_title') }} | Copyright © <script> document.write(new Date().getFullYear()) </script>--}}
-                </p>
+            </div>
             <div>
                 Hỗ trợ: {{ core()->getSetting('hotline') }}
             </div>
