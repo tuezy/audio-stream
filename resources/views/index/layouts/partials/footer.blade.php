@@ -2,8 +2,8 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
 
-            <div class="copy-rights mb-0">
-                <div class="mt-4">
+            <div class="my-4">
+                <div class="my-4">
                     <img src="{{ asset("images/play-final.png") }}" alt="logo" class="img-fluid" style="width: 300px">
                 </div>
                 <p>Mã số thuế: 03055633881</p>
