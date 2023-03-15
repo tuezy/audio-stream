@@ -22,7 +22,7 @@
                             <div class="playing__film">
                                 <div class="slick-wrapper">
                                     @php
-                                    $stt = 0;
+                                        $stt = 0;
                                     @endphp
                                     @foreach($playlists as $broadcast_date => $playlist)
                                         <div>
@@ -30,7 +30,7 @@
 
                                                  value="{{$playlist[0]['id']}}" initslide="{{ $stt++ }}"
                                                  @if(\Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") == \Illuminate\Support\Carbon::now()->format("d-m-Y"))
-                                                    id="activeTodayPlaylist"
+                                                     id="activeTodayPlaylist"
                                                  @endif
                                                  onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
                                                 {{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}
@@ -84,29 +84,26 @@
             ],
             poster: "{{asset("images/play-final.png")}}"
         });
-        var activeTodayPlaylist = document.getElementById("activeTodayPlaylist");
-        var startSliderAt = 0;
-        if(activeTodayPlaylist){
-            startSliderAt = activeTodayPlaylist.getAttribute("initslide");
-        }
-        $('.slick-wrapper').slick({
-            dots: false,
-            infinite: false,
-            speed: 300,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            initialSlide: startSliderAt
-        });
+
+
 
 
 
 
         var playlists = document.getElementsByClassName("broadcast_date");
+        var activeTodayPlaylist = document.getElementById("activeTodayPlaylist");
+
 
         if(playlists.length > 0){
-            const firstPlaylist = playlists[0].getAttribute("value");
-            playlists[0].classList.add('active');
-            loadPlaylist(firstPlaylist);
+            if(activeTodayPlaylist){
+                activeTodayPlaylist.classList.add('active');
+                loadPlaylist(activeTodayPlaylist.getAttribute("value"));
+            }else{
+                const firstPlaylist = playlists[0].getAttribute("value");
+                playlists[0].classList.add('active');
+                loadPlaylist(firstPlaylist);
+            }
+
         }else{
             console.log("Empty playlist");
         }
@@ -125,6 +122,22 @@
                 var videoSelected = document.getElementsByClassName(mediaSelected);
                 videoSelected[0].classList.add("media_selected");
             });
+        });
+
+
+
+        var startSliderAt = 0;
+        if(activeTodayPlaylist){
+            startSliderAt = activeTodayPlaylist.getAttribute("initslide");
+        }
+
+        $('.slick-wrapper').slick({
+            dots: false,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            initialSlide: parseInt(startSliderAt)
         });
 
         function changePlaylist(id,event){
@@ -291,8 +304,8 @@
             font-size:20px;
             color: #000;
         }
-     .broadcast_date{
-         cursor:pointer;
-     }
+        .broadcast_date{
+            cursor:pointer;
+        }
     </style>
 @endpush

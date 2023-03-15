@@ -24,6 +24,7 @@
                             </div>
                         </div>
                         <div id="playlist">
+                            @if($items)
                             @foreach($items as $item)
                                 <div class="media-item media-item__{{$item->id}}" value="{{$item->id}}">
                                     <div class="media-item__icon" onclick="audioplay('{{ asset($item->path) }}', '{{ $item->title }}')" target="media-item__{{$item->id}}">
@@ -50,8 +51,10 @@
                             <div class="my-3">
                                 {{ $items->links() }}
                             </div>
+                            @else
+                                <p>Không tìm thấy kết quả phù hợp với điều kiện tìm kiếm</p>
+                            @endif
                         </div>
-                        <button class="my-3 btn btn-outline-success btn-update-index-playlist d-none" onclick="updateIndexPlaylist()">Cập nhật Playlist</button>
 
                     </div>
                 </div>
