@@ -86,7 +86,7 @@
         if(activeTodayPlaylist){
             startSliderAt = activeTodayPlaylist.getAttribute("initslide");
         }
-
+        console.log(startSliderAt);
 
         $('.slick-wrapper').slick({
             dots: false,
@@ -94,7 +94,7 @@
             speed: 300,
             slidesToShow: 5,
             slidesToScroll: 1,
-            initialSlide: startSliderAt
+            initialSlide: parseInt(startSliderAt)
         });
         var player = new Playerjs({id:"player", file:[
             ],
