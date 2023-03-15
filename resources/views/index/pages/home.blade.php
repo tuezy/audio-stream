@@ -91,7 +91,6 @@
             speed: 300,
             slidesToShow: 5,
             slidesToScroll: 1,
-            initialSlide: parseInt(startSliderAt)
         });
 
         var activeTodayPlaylist = document.getElementById("activeTodayPlaylist");
