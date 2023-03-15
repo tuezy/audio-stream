@@ -444,7 +444,9 @@ Index Login Section
     padding-left: 150px;
     position: relative;
 }
-
+.copy-rights p{
+    margin-bottom: 0.33rem;
+}
 .user_panel_name:before{
     content: url(/assets/images/user-icon.png?2d4ae286f2c0c9ee7e78a5fffa4a04ec);
     position: absolute;
