@@ -80,7 +80,10 @@
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-
+        var player = new Playerjs({id:"player", file:[
+            ],
+            poster: "{{asset("images/play-final.png")}}"
+        });
 
         $('.slick-wrapper').slick({
             dots: false,
@@ -101,10 +104,7 @@
             }
 
         }
-        var player = new Playerjs({id:"player", file:[
-            ],
-            poster: "{{asset("images/play-final.png")}}"
-        });
+
 
         var playlists = document.getElementsByClassName("broadcast_date");
 
