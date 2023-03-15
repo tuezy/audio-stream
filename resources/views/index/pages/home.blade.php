@@ -21,10 +21,17 @@
                         <div class="playing">
                             <div class="playing__film">
                                 <div class="slick-wrapper">
+                                    @php
+                                    $stt = 0;
+                                    @endphp
                                     @foreach($playlists as $broadcast_date => $playlist)
                                         <div>
                                             <div class="broadcast_date broadcast_date_{{$playlist[0]['id']}}"
-                                                 value="{{$playlist[0]['id']}}"
+
+                                                 value="{{$playlist[0]['id']}}" initslide="{{ $stt++ }}"
+                                                 @if(\Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") == \Illuminate\Support\Carbon::now()->format("d-m-Y"))
+                                                    id="activeTodayPlaylist"
+                                                 @endif
                                                  onclick="changePlaylist({{$playlist[0]['id']}}, 'broadcast_date_{{$playlist[0]['id']}}')">
                                                 {{ \Illuminate\Support\Carbon::createFromFormat("Y-m-d", $broadcast_date)->format("d-m-Y") }}
                                             </div>
@@ -73,12 +80,21 @@
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
+        var initSlick = false;
+        var activeTodayPlaylist = document.getElementById("activeTodayPlaylist");
+        var startSliderAt = 0;
+        if(activeTodayPlaylist){
+            startSliderAt = activeTodayPlaylist.getAttribute("initslide");
+        }
+
+
         $('.slick-wrapper').slick({
             dots: false,
             infinite: false,
             speed: 300,
             slidesToShow: 5,
             slidesToScroll: 1,
+            initialSlide: startSliderAt
         });
         var player = new Playerjs({id:"player", file:[
             ],

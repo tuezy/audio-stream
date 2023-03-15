@@ -56,6 +56,7 @@ class HomeController extends IndexController
         $cms = Cms::query()->where('visibility','=', 1)
             ->select('title', 'content', 'short_content','slug')
             ->limit(6)->get();
+
         return view("index.pages.home", [
             'cms' => $cms,
             'user' => $this->user(),
