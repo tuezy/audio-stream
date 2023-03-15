@@ -80,13 +80,7 @@
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-        var initSlick = false;
-        var activeTodayPlaylist = document.getElementById("activeTodayPlaylist");
-        var startSliderAt = 0;
-        if(activeTodayPlaylist){
-            startSliderAt = activeTodayPlaylist.getAttribute("initslide");
-        }
-        console.log(startSliderAt);
+
 
         $('.slick-wrapper').slick({
             dots: false,
@@ -96,6 +90,17 @@
             slidesToScroll: 1,
             initialSlide: parseInt(startSliderAt)
         });
+
+        var activeTodayPlaylist = document.getElementById("activeTodayPlaylist");
+        var startSliderAt = 0;
+        if(activeTodayPlaylist){
+            startSliderAt = activeTodayPlaylist.getAttribute("initslide");
+            let id = activeTodayPlaylist.getAttribute("value");
+            if(startSliderAt > 0){
+                $("#activeTodayPlaylist").trigger("click");
+            }
+
+        }
         var player = new Playerjs({id:"player", file:[
             ],
             poster: "{{asset("images/play-final.png")}}"
