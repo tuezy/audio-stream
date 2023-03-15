@@ -2,11 +2,11 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <p class="copy-rights mb-0">
-                <p>Mã số thuế: 03055633881</p>
-                <p>Địa chỉ: {{ core()->getSetting('address') }}</p>
-                <p>© Bản quyền thuộc về Hoàng Thế Long</p>
-                </p>
+                <div class="copy-rights mb-0">
+                    <p>Mã số thuế: 03055633881</p>
+                    <p>Địa chỉ: {{ core()->getSetting('address') }}</p>
+                    <p>© Bản quyền thuộc về Hoàng Thế Long</p>
+                </div>
             </div>
             <div>
                 Hỗ trợ: {{ core()->getSetting('hotline') }}
