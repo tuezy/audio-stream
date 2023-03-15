@@ -1,10 +1,10 @@
-<footer class="custom-footer position-relative d-flex align-items-center">
+<footer class="custom-footer position-relative d-flex align-items-center" style="height: auto">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
 
                 <div class="copy-rights mb-0">
                 <div>
-                    <img src="{{ asset("images/play-final.png") }}" alt="logo">
+                    <img src="{{ asset("images/play-final.png") }}" alt="logo" class="img-fluid">
                 </div>
                 <p>Mã số thuế: 03055633881</p>
                 <p>Địa chỉ: {{ core()->getSetting('address') }}</p>
