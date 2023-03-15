@@ -1,4 +1,4 @@
-<footer class="custom-footer position-relative d-flex align-items-center" style="height: auto">
+<footer class="custom-footer position-relative d-flex align-items-center" >
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <div>
