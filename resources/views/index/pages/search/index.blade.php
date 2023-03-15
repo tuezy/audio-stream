@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div id="playlist">
-                            @if(!$items->empty())
+                            @if($items->count() > 0)
                             @foreach($items as $item)
                                 <div class="media-item media-item__{{$item->id}}" value="{{$item->id}}">
                                     <div class="media-item__icon" onclick="audioplay('{{ asset($item->path) }}', '{{ $item->title }}')" target="media-item__{{$item->id}}">
