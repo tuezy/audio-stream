@@ -19,7 +19,7 @@ class PlayController extends Controller
         $this->playlistRepository = $playlistRepository;
     }
 
-    public function play($broadcast_on, $customer_id){
+    public function redirect($broadcast_on, $customer_id){
 //        $broadcast_date = date('d-m-Y', time());
         $broadcast_date = date('Y-m-d', time());
         $playlist = $this->playlistRepository->where('broadcast_date', '=', $broadcast_date)
@@ -27,9 +27,16 @@ class PlayController extends Controller
             ->where('customer_id', '=', $customer_id)
             ->first();
         if($playlist){
-            return    redirect()->to("http://45.76.204.156:88/hls/public/users/{$customer_id}/audios/{$broadcast_date}/{$broadcast_on}/{$broadcast_on}.m3u8", 303);
+            return    redirect()->to($this->play($customer_id,$broadcast_date,$broadcast_on), 303);
         }
         abort(404);
 
+    }
+
+    public function play($customer_id,$broadcast_date,$broadcast_on){
+        $realPath = "{$customer_id}/audios/{$broadcast_date}/{$broadcast_on}/{$broadcast_on}.m3u8";
+        return route("play.playlist.m3u8", [
+            'path' => $realPath
+        ]);
     }
 }
