@@ -7,6 +7,7 @@ use App\Repository\Audio\AudioRepositoryContract;
 use App\Repository\Playlists\PlaylistRepositoryContract;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
@@ -75,6 +76,7 @@ class MakePlaylist extends Command
             $cmd .= $hlsDir . DIRECTORY_SEPARATOR .$playlist->broadcast_on .'.m3u8';
 
             $this->info($cmd);
+            Log::debug($cmd);
 
             $process = Process::fromShellCommandline($cmd);
 
