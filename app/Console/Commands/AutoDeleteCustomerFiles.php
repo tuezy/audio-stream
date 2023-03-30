@@ -50,7 +50,7 @@ class AutoDeleteCustomerFiles extends Command
     {
         $days = core()->getSetting('auto_delete_after', 7);
 
-        $date = Carbon::now()->subDays(1)->format("Y-m-d");
+        $date = Carbon::now()->subDays($days - 1)->format("Y-m-d");
 
         $playlists = $this->playlist->where('broadcast_date', '<=', $date)->get();
 
