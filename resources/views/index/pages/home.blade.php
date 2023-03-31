@@ -134,6 +134,7 @@
         $('.slick-wrapper').slick({
             dots: false,
             infinite: false,
+            arrows: true,
             speed: 300,
             slidesToShow: 5,
             slidesToScroll: 1,
