@@ -80,15 +80,11 @@
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
+        
         var player = new Playerjs({id:"player", file:[
             ],
             poster: "{{asset("images/play-final.png")}}"
         });
-
-
-
-
-
 
         var playlists = document.getElementsByClassName("broadcast_date");
         var activeTodayPlaylist = document.getElementById("activeTodayPlaylist");
@@ -127,19 +123,12 @@
 
 
         var startSliderAt = 0;
+        
         if(activeTodayPlaylist){
             startSliderAt = activeTodayPlaylist.getAttribute("initslide");
         }
-
-        $('.slick-wrapper').slick({
-            dots: false,
-            infinite: false,
-            arrows: true,
-            speed: 300,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            initialSlide: parseInt(startSliderAt)
-        });
+       
+       
 
         function changePlaylist(id,event){
             loadPlaylist(id);
@@ -190,7 +179,22 @@
             });
         }
 
-
+        $(document).ready(function(){
+            $('.slick-wrapper').slick({
+                dots: false,
+                infinite: false,
+                arrows: true,
+                speed: 300,
+                slidesToShow: 5,
+                // initialSlide: parseInt(startSliderAt),
+                slidesToScroll: 1,
+            });
+            
+            for (let index = 0; index < (parseInt(startSliderAt) / 5); index++) {
+                $('.slick-wrapper').slick('slickNext');
+            }
+            
+        });
     </script>
 
     <script>
