@@ -17,7 +17,7 @@
         <div class="media-form">
             <label for="media_type" class="label">Buổi Phát</label>
             <select type="text" class="form-control media_type" id="media_type" name="broadcast_on">
-                <option value="0">Chọn Buổi Phát</option>
+                <option value=''>Chọn Buổi Phát</option>
                 @foreach(\App\Models\Playlist::PLAYLIST_TYPES as $type => $playlist)
                     <option value="{{ $playlist }}">@lang("translation.".$type)</option>
                 @endforeach

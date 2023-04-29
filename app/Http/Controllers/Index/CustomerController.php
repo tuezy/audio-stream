@@ -65,11 +65,12 @@ class CustomerController extends IndexController
             'broadcast_on.required' => 'Bạn chưa chọn buổi phát',
             'title.required' => 'Bạn chưa nhập tiêu đề',
         ];
+
         $validation = Validator::make($input, $rules, $messages);
 
         if ($validation->fails())
         {
-            return redirect()->back()->with(['errors' => $validation->errors()]);
+            return redirect()->back()->withErrors($validation->errors());
         }
 
         $title = $input['title'];
