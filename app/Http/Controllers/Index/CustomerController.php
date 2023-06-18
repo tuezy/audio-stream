@@ -226,7 +226,7 @@ class CustomerController extends IndexController
             'user' => Auth::guard("customers")->user(),
             'playlist_status' => $playlist_status,
             'playlists' => Auth::guard("customers")->user()->playlist()
-                ->where('broadcast_date', '>=', Carbon::now()->subDays(core()->getSetting("auto_delete_after"))->format("Y-m-d"))
+                ->where('broadcast_date', '>=', Carbon::now()->format("Y-m-d"))
                 ->orderBy('broadcast_date', 'asc')
                 ->get()
         ]);
