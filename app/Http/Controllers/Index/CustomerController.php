@@ -12,6 +12,7 @@ use App\Repository\Playlists\PlaylistRepositoryContract;
 use App\Repository\Videos\VideoRepositoryContract;
 use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -220,7 +221,13 @@ class CustomerController extends IndexController
             }
         }
 
-
+        if($request->has('debug')){
+            $playlistsTesst = Auth::guard("customers")->user()->playlist();
+            dd($playlistsTesst->orderBy('broadcast_date', 'asc')->get(), $playlistsTesst
+                ->where('broadcast_date', '>=', Carbon::now()->subDays(core()->getSetting("auto_delete_after"))->format("Y-m-d"))
+                ->orderBy('broadcast_date', 'asc')
+                ->get());
+        }
 
         return view("index.pages.customers.panel", [
             'user' => Auth::guard("customers")->user(),
