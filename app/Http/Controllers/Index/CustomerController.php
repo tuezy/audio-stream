@@ -221,18 +221,14 @@ class CustomerController extends IndexController
             }
         }
 
-        if($request->has('debug')){
-            $playlistsTesst = Auth::guard("customers")->user()->playlist();
-            dd($playlistsTesst->orderBy('broadcast_date', 'asc')->get(), $playlistsTesst
-                ->where('broadcast_date', '>=', Carbon::now()->subDays(core()->getSetting("auto_delete_after"))->format("Y-m-d"))
-                ->orderBy('broadcast_date', 'asc')
-                ->get());
-        }
 
         return view("index.pages.customers.panel", [
             'user' => Auth::guard("customers")->user(),
             'playlist_status' => $playlist_status,
-            'playlists' => Auth::guard("customers")->user()->playlist()->orderBy('broadcast_date', 'asc')->get()
+            'playlists' => Auth::guard("customers")->user()->playlist()
+                ->where('broadcast_date', '>=', Carbon::now()->subDays(core()->getSetting("auto_delete_after"))->format("Y-m-d"))
+                ->orderBy('broadcast_date', 'asc')
+                ->get()
         ]);
     }
 
