@@ -71,7 +71,7 @@ class MakePlaylist extends Command
             foreach ($audios as $audio){
                 $cmd .= ' -i ' . storage_path('app/'. Str::replace('storage', 'public', $audio->path));
             }
-            $cmd .= ' -filter_complex \'[0:0][1:0]concat=n='.count($playlist->audio).':v=0:a=1[out]\' -map \'[out]\' -vn -ac 2 -acodec aac -start_number 0 -hls_time 10 -hls_list_size 0 -f hls ';
+            $cmd .= ' -filter_complex \'[0:a][1:a]concat=n='.count($playlist->audio).':v=0:a=1[out]\' -map \'[out]\' -c:a aac -b:a 128k -start_number 0 -hls_time 10 -hls_list_size 0 -f hls ';
 
             $cmd .= $hlsDir . DIRECTORY_SEPARATOR .$playlist->broadcast_on .'.m3u8';
 
