@@ -207,7 +207,9 @@ class CustomerController extends IndexController
         }
     }
     public function panel(Request $request){
+        $days = core()->getSetting('auto_delete_after', 7);
         $today = date('Y-m-d', time());
+        $dateShow = Carbon::now()->subDays($days - 1)->format("Y-m-d");
         $playlist_status = [];
         foreach (Playlist::PLAYLIST_TYPES as $broadcast_on){
             $playlist = $this->playlistRepository
@@ -226,7 +228,7 @@ class CustomerController extends IndexController
             'user' => Auth::guard("customers")->user(),
             'playlist_status' => $playlist_status,
             'playlists' => Auth::guard("customers")->user()->playlist()
-                ->where('broadcast_date', '>=', Carbon::now()->format("Y-m-d"))
+                ->where('broadcast_date', '>=', $dateShow)
                 ->orderBy('broadcast_date', 'asc')
                 ->get()
         ]);
