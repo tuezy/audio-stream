@@ -24,7 +24,7 @@ class CreateaudioTables extends Migration
             $table->string('path');
             $table->string('broadcast_date');
             $table->string('broadcast_on');
-            $table->foreignId('playlist_id')->references('id')->on('playlists')->nullOnDelete()->cascadeOnUpdate();
+            $table->foreignId('playlist_id')->references('id')->on('playlists');
             $table->foreignId('customer_id')->references('id')->on('customers');
 
 

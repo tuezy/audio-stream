@@ -6,6 +6,7 @@ use App\Helpers\Core as CoreHelper;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
@@ -32,7 +33,8 @@ class DashboardServiceProvider extends ServiceProvider
     }
 
     public function initSettingsPage(){
-        if(!Cache::has("settings")){
+
+        if(!Cache::has("settings") && Schema::hasTable("settings")){
             Cache::rememberForever('settings', function (){
                 $db =  DB::table("settings")->get(['key','value']);
                 $result = [];
