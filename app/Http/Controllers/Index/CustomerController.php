@@ -307,4 +307,11 @@ class CustomerController extends IndexController
 
         return redirect('/');
     }
+
+
+    public function configLivestream(Request $request){
+        return view("index.pages.customers.config-livestream", [
+
+        ]);
+    }
 }

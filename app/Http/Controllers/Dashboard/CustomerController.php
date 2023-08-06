@@ -67,13 +67,13 @@ class CustomerController extends Controller{
             'password' => ['required'],
         ]);
 
-        $user =  Customer::create([
+        $customer =  Customer::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => $request->get('password')
         ]);
 
-        Event::dispatch('customers.after.store', $user);
+        Event::dispatch('customers.after.store', $customer);
 
         return redirect()->back();
 
@@ -82,6 +82,9 @@ class CustomerController extends Controller{
     public function delete(){
         if(request()->has('ids')){
             $ids = request()->get('ids');
+            if(!is_array($ids)){
+                $ids = [$ids];
+            }
             try {
                 foreach ($ids as $id){
                     $playlists = Playlist::where('customer_id', '=', $id)->get();

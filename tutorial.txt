@@ -1,0 +1,2 @@
+https://stackoverflow.com/questions/43568168/how-to-change-nginx-rtmp-stream-name-after-call-on-publish
+https://stackoverflow.com/questions/55207981/nginx-rtmp-dynamic-stream-name

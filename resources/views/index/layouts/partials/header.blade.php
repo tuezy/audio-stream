@@ -56,6 +56,12 @@
                 <li class="nav-item">
                     <a class="nav-link @if(\Illuminate\Support\Str::contains(request()->url(), '/phim')) active @endif" href="{{ route("customers.panel") }}">Quản lý buổi phát thanh</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-3">|</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(\Illuminate\Support\Str::contains(request()->url(), '/livestream')) active @endif" href="{{ route("livestream.index") }}">Trực tuyến</a>
+                </li>
 
 
 
@@ -67,6 +73,9 @@
                         <span class="username">{{ \Illuminate\Support\Facades\Auth::guard("customers")->user()->name }}</span>
                     </div>
                     <div class="dropdown-menu dropdown-menu-end">
+                        <a href="{{ route("customers.livestream.config") }}" class="dropdown-item notify-item language py-2" data-lang="en" title="Phát sóng trực tiếp">
+                            Phát sóng trực tiếp
+                        </a>
                         <a href="{{ route("customers.panel") }}" class="dropdown-item notify-item language py-2" data-lang="en" title="English">
                             Thông tin
                         </a>

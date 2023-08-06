@@ -109,3 +109,11 @@ if (!function_exists('core')) {
         return app()->make('core');
     }
 }
+
+if (!function_exists('live_path')) {
+    function live_path($path = '')
+    {
+        $livePath = $path ? DIRECTORY_SEPARATOR."live". DIRECTORY_SEPARATOR . $path : DIRECTORY_SEPARATOR."live";
+        return app('path.storage'). $livePath;
+    }
+}
