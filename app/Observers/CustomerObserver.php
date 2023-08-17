@@ -17,7 +17,7 @@ class CustomerObserver
     public function created(Customer $customer)
     {
         $customer->live_channel = Str::substr($customer->email, 0 , strpos($customer->email, "@"));
-        $customer->live_key = Str::upper(md5(time() . $customer->email));
+        $customer->live_key = "";
         $customer->isLive = false;
         $customer->password = Hash::make($customer->password);
         $customer->save();
