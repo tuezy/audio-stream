@@ -1,6 +1,5 @@
 <?php
 return [
-    'rtmp-server' => 'rtmp://192.168.206.131/live',
-    'rtmp-server-live ' => 'rtmp://192.168.206.131/golive',
-    'rtmp-server-ip' => 'rtmp://192.168.206.131',
+    'rtmp-server' => env("RTMP_SERVER", 'rtmp://192.168.206.131/live/'),
+    'rtmp-server-hls' => env("RTMP_SERVER_HLS", 'http://192.168.206.131/'),
 ];

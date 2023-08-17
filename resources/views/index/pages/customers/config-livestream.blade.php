@@ -7,7 +7,12 @@
 
                     <input type="hidden" name="live_channel" value="{{ $customer->live_channel }}">
                     <input type="hidden" name="live_key" value="{{ $customer->live_key }}">
+
                     @csrf
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="use_default_channel" value="{{$customer->use_default_channel}}">
+                        <label for="use_default_channel">Sử dụng cấu hình không cần key</label>
+                    </div>
                     <input type="hidden" name="enable_livestream" value="{{ $customer->email }}">
                     <button class="btn btn-primary">Bật Chức Năng Livestream</button>
                 </form>
@@ -20,8 +25,13 @@
                 <div>
                     <div class="form-group media-form my-3">
                         <label for="" class="title-link-status">Link M3U8</label>
-                        <input type="text" class="form-control" value="http://192.168.206.130/hls/{{ $customer->live_key }}/index.m3u8">
+                        @if($customer->use_default_channel)
+                            <input type="text" class="form-control" value="{{ config("livestream.rtmp-server-hls") }}{{ $customer->live_channel }}/index.m3u8">
+                            @else
+                            <input type="text" class="form-control" value="{{ config("livestream.rtmp-server-hls") }}{{ $customer->live_channel }}/{{ $customer->live_key }}/index.m3u8">
+                        @endif
                     </div>
+
                 </div>
             </div>
             <div class="col-12 col-lg-6">
@@ -30,7 +40,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="">RTMP Server:</label>
-                    <input type="text" class="form-control" value="{{ config("livestream.rtmp-server") }}?channel={{ $customer->live_channel }}">
+                    <input type="text" class="form-control" value="{{ config("livestream.rtmp-server") }}{{ $customer->live_channel }}">
                 </div>
                 <div class="form-group">
                     <label for="">Key:</label>
@@ -41,9 +51,8 @@
                         <input type="hidden" name="live_channel" value="{{ $customer->live_channel }}">
                         <input type="hidden" name="live_key" value="{{ $customer->live_key }}">
                         @csrf
-                            <input type="hidden" name="disable_livestream" value="{{ $customer->email }}">
-                            <button class="btn btn-dark">Tắt Chức Năng Livestream</button>
-
+                        <input type="hidden" name="disable_livestream" value="{{ $customer->email }}">
+                        <button class="btn btn-dark">Tắt Chức Năng Livestream</button>
                     </form>
                 </div>
             </div>
@@ -59,8 +68,13 @@
             integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
             crossorigin="anonymous"></script>
     <script>
+        @if($customer->use_default_channel)
+            var hlsFile = "{{ config("rtmp-server-hls") }}{{ $customer->live_channel }}/index.m3u8";
+        @else
+            var hlsFile = "{{ config("rtmp-server-hls") }}{{ $customer->live_channel }}/{{ $customer->live_key }}/index.m3u8";
+        @endif
         var player = new Playerjs({id:"player", file:[
-            "http://192.168.206.130/hls/{{ $customer->live_key }}/index.m3u8"
+                hlsFile
             ],
             poster: "{{asset("images/play-final.png")}}"
         });
@@ -69,7 +83,7 @@
             player.api("title", title);
             player.api("poster", "{{asset("images/play-final.png")}}");
         }
-        audioplay("http://192.168.206.130/hls/{{ $customer->live_key }}/index.m3u8", "Live stream");
+        audioplay(hlsFile, "Live stream");
     </script>
 
 @endpush

@@ -29,9 +29,8 @@ class LiveController extends Controller
         $customer= $this->customerRepository
 
             ->where("live_channel", "=", $request->get("live_channel"));
-
         if($request->has("disable_livestream")){
-            $customer= $customer->where("isLive", "=", true)->where("live_key", "=", $request->get("live_key"))->where("email", "=", $request->get("disable_livestream"))->first();
+            $customer= $customer->where("isLive", "=", true)->where("live_channel", "=", $request->get("live_channel"))->where("email", "=", $request->get("disable_livestream"))->first();
         }
 
         if($request->has("enable_livestream")){
@@ -41,6 +40,11 @@ class LiveController extends Controller
         if($customer->id > 0){
             $customer->isLive = !$customer->isLive;
             $customer->live_key = $customer->isLive ? md5(time() . $customer->email) : "";
+
+            $customer->use_default_channel = $request->has("use_default_channel") ?? false;
+            if($customer->use_default_channel){
+                $customer->live_key = "";
+            }
         }
 
         $customer->save();

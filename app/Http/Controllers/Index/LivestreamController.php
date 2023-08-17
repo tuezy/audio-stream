@@ -29,7 +29,9 @@ class LivestreamController extends BaseController
     }
 
     public function channel($channel){
-        $customers = $this->customerRepository->where("live_channel", "=", $channel)->firstOrFail();
-        dd($customers);
+        $customer = $this->customerRepository->where("live_channel", "=", $channel)->firstOrFail();
+        return view("index.pages.livestream.customer-onair", [
+            'customer' => $customer
+        ]);
     }
 }

@@ -22,7 +22,8 @@ class Customer extends Authenticatable
         'password',
         'live_channel',
         'live_key',
-        'isLive'
+        'isLive',
+        'use_default_channel'
     ];
 
     /**
