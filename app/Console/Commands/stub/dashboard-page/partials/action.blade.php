@@ -5,12 +5,12 @@
     </button>
     <ul class="dropdown-menu dropdown-menu-end">
         @can('dashboard.'.$entity.'.edit')
-            <li><a class="dropdown-item edit-item-btn" onclick="showEditModal({{ $value->id }})"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
+            <li><a class="dropdown-item edit-item-btn" onclick="showPageEditModal({{ $value->id }})"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
 {{--            <li><a class="dropdown-item edit-item-btn" href="{{ route("dashboard.$entity.edit", [ 'id' => $value->id]) }}"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>--}}
         @endcan
         @can('dashboard.'.$entity.'.delete')
                 <li>
-                    <a class="dropdown-item remove-item-btn" onclick="singleDelete({{ $value->id }})">
+                    <a class="dropdown-item remove-item-btn" onclick="pageSingleDelete({{ $value->id }})">
                         <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
                     </a>
                 </li>

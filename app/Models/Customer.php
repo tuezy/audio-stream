@@ -20,6 +20,9 @@ class Customer extends Authenticatable
         'name',
         'email',
         'password',
+        'live_channel',
+        'live_key',
+        'isLive'
     ];
 
     /**
@@ -52,4 +55,5 @@ class Customer extends Authenticatable
     public function playlist(){
         return $this->hasMany(Playlist::class);
     }
+
 }

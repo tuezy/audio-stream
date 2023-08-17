@@ -20,7 +20,9 @@ class CmsController extends Controller{
     }
 
     public function index(CmsDatatables $datatables){
-        return $datatables->render("dashboard.pages.cms.index");
+        return $datatables->render("dashboard.pages.cms.index", [
+            'entity' => 'cms'
+        ]);
     }
 
     public function edit($id){

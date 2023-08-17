@@ -1,2 +1,131 @@
 https://stackoverflow.com/questions/43568168/how-to-change-nginx-rtmp-stream-name-after-call-on-publish
 https://stackoverflow.com/questions/55207981/nginx-rtmp-dynamic-stream-name
+
+1  yum update -y
+    2  yum install yum-utils
+    3  vi /etc/yum.repos.d/nginx.repo
+    4  yum -y install gcc gcc-c++ make zlib-devel pcre-devel openssl-devel
+    5  wget http://nginx.org/download/nginx-1.23.4.tar.gz
+    6  yum install wget -y
+    7  wget http://nginx.org/download/nginx-1.23.4.tar.gz
+    8  tar xfz nginx-1.23.4.tar.gz
+    9  yum install tar
+   10  tar xfz nginx-1.23.4.tar.gz
+   11  cd nginx-1.23.4
+   12  ls -all
+   15  git clone https://github.com/sergey-dryabzhinsky/nginx-rtmp-module.git
+   17  yum install -y  wget git unzip perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel pcre-devel
+   18  git clone https://github.com/sergey-dryabzhinsky/nginx-rtmp-module.git
+   19  cd nginx-1.23.4
+
+   26  wget https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/pcre2-10.42.tar.gz
+   27  tar xfz pcre2-10.42.tar.gz
+
+   32  cd ..
+   33  wget https://www.openssl.org/source/openssl-3.1.1.tar.gz
+   34  tar xfz openssl-3.1.1.tar.gz
+
+   43  wget https://www.zlib.net/fossils/zlib-1.2.13.tar.gz
+
+   46  tar xfz zlib-1.2.13.tar.gz
+   48  ls
+   49  cd nginx-1.23.4
+   50  ./configure --prefix=/etc/nginx --sbin-path=/usr/sbin/nginx --modules-path=/usr/lib64/nginx/modules --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --pid-path=/var/run/nginx.pid --lock-path=/var/run/nginx.lock --user=nginx --group=nginx --build=CentOS --builddir=nginx-1.18.0 --with-select_module --with-poll_module --with-threads --with-file-aio --with-http_ssl_module --with-http_v2_module --with-http_realip_module --with-http_addition_module --with-http_xslt_module=dynamic --with-http_image_filter_module=dynamic --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_auth_request_module --with-http_random_index_module --with-http_secure_link_module --with-http_degradation_module --with-http_slice_module --with-http_stub_status_module --http-log-path=/var/log/nginx/access.log --http-client-body-temp-path=/var/cache/nginx/client_temp --http-proxy-temp-path=/var/cache/nginx/proxy_temp --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp --http-scgi-temp-path=/var/cache/nginx/scgi_temp --with-mail=dynamic --with-mail_ssl_module --with-stream=dynamic --with-stream_ssl_module --with-stream_realip_module --with-stream_ssl_preread_module --with-compat --with-pcre=../pcre2-10.42 --with-pcre-jit --with-zlib=../zlib-1.2.13 --with-openssl=../openssl-3.1.1 --with-openssl-opt=no-nextprotoneg --add-module=../nginx-rtmp-module --with-debug
+   51  make
+   52  make install
+   55  vi /lib/systemd/system/nginx.service
+
+   ```
+[Unit]
+Description=The NGINX HTTP and reverse proxy server
+After=syslog.target network-online.target remote-fs.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+PIDFile=/run/nginx.pid
+ExecStartPre=/usr/sbin/nginx -t
+ExecStart=/usr/sbin/nginx
+ExecReload=/usr/sbin/nginx -s reload
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+```
+vi /etc/nginx/nginx.conf
+groupadd -r nginx
+useradd -r -s /sbin/nologin -d /dev/null -g nginx nginx
+
+   56  systemctl daemon-reload
+   57  systemctl start nginx
+   58  systemctl enable nginx
+   59  nginx -t
+   60  vi /etc/nginx/nginx.conf
+   61  groupadd -r nginx
+   62
+   63  nginx -t
+   64  cd /var/cache/nginx/
+   65  mkdir /var/cache/nginx/client_temp
+   66  mkdir /var/cache/
+   67  mkdir /var/cache/nginx
+   68  mkdir /var/cache/nginx/client_temp
+   69  nginx -t
+   70  /etc/nginx/
+   71  cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf_bak
+   72  nginx -t
+   73  mkdir -p /mnt/hls
+   74  chown -R nginx:nginx /mnt/hls
+   75  vi /etc/nginx/nginx.conf
+   76  systemctl restart nginx
+   77  mkdir -p /mnt/mp4s
+   78  cd /mnt/mp4s
+   79  wget https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4 -O
+   80  pwd
+   81  wget https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4 -O
+   82  myfile.mp4
+   83  wget https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4 -O myyfile.mp4
+   84  chown -R nginx:nginx /mnt/mp4s
+   85  yum install epel-release dnf-utils
+   86  yum-config-manager --set-enabled PowerTools
+   87  dnf install epel-release epel-next-release
+   88  dnf config-manager --set-enabled powertools
+   89  dnf install -y https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm
+   90  dnf install -y https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm
+   91  dnf -y install ffmpeg
+   92  dnf -y install ffmpeg-devel
+   93  pwd
+   94  ls
+   95  ffmpeg -re -i /mnt/mp4s/myfile.mp4 -vcodec libx264 -vprofile baseline -g 30 -acodec aac -strict -2 -f flv rtmp://103.186.65.162:1935/show/vod
+   96  wget https://file-examples.com/storage/fe396452246495b989f22f7/2017/04/file_example_MP4_1920_18MG.mp4 -O myfile.mp4
+   97  ffmpeg -re -i /mnt/mp4s/myfile.mp4 -vcodec libx264 -vprofile baseline -g 30 -acodec aac -strict -2 -f flv rtmp://103.186.65.162:1935/show/vod
+   98  iptables -I INPUT -p tcp --destination-port 1935 -j ACCEPT
+   99  ffmpeg -re -i /mnt/mp4s/myfile.mp4 -vcodec libx264 -vprofile baseline -g 30 -acodec aac -strict -2 -f flv rtmp://103.186.65.162:1935/show/vod
+  100  systemctl nginx restart
+  101  systemctl restart nginx
+  102  ffmpeg -re -i /mnt/mp4s/myfile.mp4 -vcodec libx264 -vprofile baseline -g 30 -acodec aac -strict -2 -f flv rtmp://103.186.65.162:1935/show/vod
+  103  nginx -t
+  104  nginx status
+  105  systemctl status nginx
+  106  ffmpeg -re -i /mnt/mp4s/myfile.mp4 -c:v libx264 -c:v aac -f flv rtmp://103.186.65.162:1935/show/vod
+  107  ffmpeg -re -i /mnt/mp4s/myfile.mp4 -c:v libx264 -acodec aac -f flv rtmp://103.186.65.162:1935/show/vod
+
+  109  firewall-cmd --zone=public --permanent --add-service=http
+  110  firewall-cmd --zone=public --permanent --add-service=https
+  111  firewall-cmd --reload
+  112  firewall-cmd --zone=public --permanent --add-port 8080/tcp
+  113  firewall-cmd --zone=public --permanent --add-port 1935/tcp
+  114  ffmpeg -re -i /mnt/mp4s/myfile.mp4 -c:v libx264 -acodec aac -f flv rtmp://103.186.65.162:1935/show/vod
+  115  firewall-cmd --reload
+  116  ffmpeg -re -i /mnt/mp4s/myfile.mp4 -c:v libx264 -acodec aac -f flv rtmp://103.186.65.162:1935/show/vod
+  117  firewall-cmd --list-all
+  118  ffmpeg -listen 1 -i rtmp://103.186.65.162:1935/stream -vn -ac 2 -acodec aac -start_number 0 -hls_time 10 -hls_list_size 0 -f hls playlist.m3u8
+  119  systemctl restart nginx
+  120  ffmpeg -listen 1 -i rtmp://103.186.65.162:1935/stream-audio -vn -ac 2 -acodec aac -start_number 0 -hls_time 10 -hls_list_size 0 -f hls playlist.m3u8
+  121  systemctl restart nginx
+  122  mkdir /mnt/streams-audio
+  123  chown nginx:nginx /mnt/streams-audio
+  124  systemctl restart nginx
+  125  systemctl restart nginx -R
+  126  chown nginx:nginx /mnt/streams-audio -R
+  127  systemctl restart nginx

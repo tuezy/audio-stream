@@ -88,21 +88,28 @@ class CategoryController extends Controller
         $input = $request->except('_token');
 
         $rules = array(
-                    'title'  => 'required|string'
+                    'title'  => 'required|string',
+                    'slug'  => 'string|nullable|unique:categories,slug,'.$id
                 );
+        $messages = array(
+            'slug.unique'  => __('dashboard.errors.slug.unique', [
+                'slug' => $input['slug']
+            ])
+        );
 
-        $validation = Validator::make($input, $rules);
+        $validation = Validator::make($input, $rules, $messages);
 
         if ($validation->fails())
         {
-            return Response::make($validation->errors()->first(), 400);
+            return redirect()->back()->with('error', $validation->errors()->first());
         }
-        $item->slug = null;
+//        $item->slug = null; // Thay đổi slug theo title
+        $item->slug = $input['slug'];
         $item->title = $input['title'];
 
         $item->save();
 
-        return redirect()->back()->with('success', 'Item Updated');
+        return redirect()->back()->with('success', __("dashboard.update-success"));
     }
 
     public function delete($id){

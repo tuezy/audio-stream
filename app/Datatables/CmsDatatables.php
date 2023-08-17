@@ -99,7 +99,7 @@ class CmsDatatables extends DatatablesService{
             'title' => 'Hành động',
             'raw' => true,
             'render' => function($value){
-                return view('dashboard.pages.cms.partials.action', ['value' => $value]);
+                return $this->renderActionPanel($value, 'cms', false);
             },
         ]);
     }

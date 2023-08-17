@@ -67,6 +67,7 @@ class RoleData extends DatatablesService{
             'render' => function($value){
                 return view('dashboard.pages.roles.partials.action', ['value' => $value]);
             },
+
         ]);
     }
 }

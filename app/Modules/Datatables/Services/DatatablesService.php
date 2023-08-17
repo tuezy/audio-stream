@@ -73,4 +73,12 @@ abstract class DatatablesService implements DatatablesHelperContract {
         ], $data));
     }
 
+    public function renderActionPanel($value, $entity, $modal = true){
+        return view('dashboard.ui.panels.actions', [
+            'entity' => $entity,
+            'value' => $value,
+            'modal' => $modal
+        ]);
+    }
+
  }

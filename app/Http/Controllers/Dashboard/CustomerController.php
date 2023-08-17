@@ -24,7 +24,9 @@ class CustomerController extends Controller{
     }
 
     public function index(CustomerTables $datatables){
-        return $datatables->render("dashboard.pages.customers.index");
+        return $datatables->render("dashboard.pages.customers.index", [
+            'entity' => "customers"
+        ]);
     }
 
 

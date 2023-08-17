@@ -79,10 +79,7 @@ class CategoryTables extends DatatablesService{
             'title' => 'Hành động',
             'raw' => true,
             'render' => function($value){
-                return view('dashboard.pages.categories.partials.action', [
-                    'value' => $value,
-                    'entity' => "categories"
-                ]);
+                return $this->renderActionPanel($value, 'categories');
             },
         ]);
     }

@@ -95,7 +95,7 @@ class CustomerTables extends DatatablesService{
             'title' => 'Hành động',
             'raw' => true,
             'render' => function($value){
-                return view('dashboard.pages.users.partials.action', ['value' => $value]);
+                return $this->renderActionPanel($value, 'audio');
             },
         ]);
     }

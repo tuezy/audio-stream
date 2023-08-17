@@ -103,7 +103,7 @@ class VideoController extends Controller
 
         $item->save();
 
-        return redirect()->back()->with('success', 'Item Updated');
+        return redirect()->back()->with('success', __("dashboard.update-success"));
     }
 
     public function delete($id){

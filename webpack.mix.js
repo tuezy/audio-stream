@@ -19,3 +19,5 @@ mix.postCss('resources/css/app.css', 'public/assets/app/index/css', [
 
         //
     ]);
+
+mix.copy('resources/js/dashboard/functions.js', 'public/assets/app/dashboard/js/functions.js');

@@ -93,10 +93,7 @@ class AudioTables extends DatatablesService{
             'title' => 'Hành động',
             'raw' => true,
             'render' => function($value){
-                return view('dashboard.pages.audio.partials.action', [
-                    'value' => $value,
-                    'entity' => "audio"
-                ]);
+                return $this->renderActionPanel($value, 'audio');
             },
         ]);
     }

@@ -35,7 +35,7 @@
                         <div class="col-md-3">
                             <button class="btn btn-soft-danger"
                                     id="remove-actions"
-                                    onclick="deleteMultiple()"
+                                    onclick="pageDeleteMultiple()"
                                     style="display: block;">
                                 <i class="ri-delete-bin-2-line"></i>
                             </button>
@@ -101,9 +101,7 @@
                         id: id
                     }
                 }).then(function (response) {
-                    console.log(response.data);
                     document.getElementById('updateContentEdit').innerHTML = response.data;
-                    console.log(response.data, document.getElementById('updateContentEdit'));
                     let myModal = new bootstrap.Modal(document.getElementById('showUpdateModal'), {
                         keyboard: false
                     });

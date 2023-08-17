@@ -5,7 +5,6 @@
                 <h5 class="modal-title" id="exampleModalLabel">Update Item</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
             </div>
-
             <form class="tablelist-form" autocomplete="off" method="POST" action="{{ $route }}">
                 @csrf
                 <div class="modal-body">
@@ -23,6 +22,13 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                    </div>
+                    <div class="mb-3">
+                        <figure>
+                            <audio controls src="{{ asset($item->path) }}">
+                                <a href="{{ $item->path }}"> Download audio </a>
+                            </audio>
+                        </figure>
                     </div>
                 </div>
                 <div class="modal-footer">

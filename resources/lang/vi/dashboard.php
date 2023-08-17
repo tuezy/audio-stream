@@ -17,6 +17,9 @@ return [
         'login' => [
             'email' => 'Thông tin đăng nhập không đúng.',
             'password' => 'Thông tin đăng nhập không đúng.'
+        ],
+        'slug' => [
+            'unique' => 'Đường dẫn :slug này đã có rồi'
         ]
     ]
 ];

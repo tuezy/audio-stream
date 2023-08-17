@@ -18,7 +18,9 @@ class RoleController extends Controller{
     }
 
     public function index(RoleData $datatables){
-        return $datatables->render("dashboard.pages.roles.index");
+        return $datatables->render("dashboard.pages.roles.index", [
+            'entity' => 'roles'
+        ]);
     }
 
     public function edit($id){
@@ -65,8 +67,15 @@ class RoleController extends Controller{
     public function delete(){
         if(request()->has('ids')){
             $ids = request()->get('ids');
+            if(!is_array($ids)){
+                $ids = [$ids];
+            }
             try {
-                Role::destroy($ids);
+                foreach ($ids as $id){
+                    $role = Role::with("permissions")->findOrFail($id);
+                    $role->permissions()->sync([]);
+                    $role->delete();
+                }
                 return response()->json(['success' => true], 200);
             }catch (\Exception $exception){
                 return $exception->getMessage();

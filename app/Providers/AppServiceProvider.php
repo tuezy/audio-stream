@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Helpers\Core as CoreHelper;
 use App\Helpers\Services\Acl\Bouncer;
+use App\Models\Customer;
 use App\Modules\Datatables\Providers\DatatablesServiceProvider;
+use App\Observers\CustomerObserver;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
@@ -47,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Customer::observe(CustomerObserver::class);
         Paginator::useBootstrap();
     }
 }

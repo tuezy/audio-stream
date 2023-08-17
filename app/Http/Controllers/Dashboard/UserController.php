@@ -25,7 +25,9 @@ class UserController extends Controller{
     }
 
     public function index(UserDatatables $datatables){
-        return $datatables->render("dashboard.pages.users.index");
+        return $datatables->render("dashboard.pages.users.index", [
+            'entity' => 'users'
+        ]);
     }
 
     public function edit($id){

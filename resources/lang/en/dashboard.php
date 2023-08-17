@@ -17,6 +17,9 @@ return [
         'login' => [
             'email' => 'The provided credentials do not match our records.',
             'password' => 'The provided credentials do not match our records.'
+        ],
+        'slug' => [
+            'unique' => 'The slug :slug has already been taken.'
         ]
     ]
 ];

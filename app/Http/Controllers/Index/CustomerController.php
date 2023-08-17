@@ -310,8 +310,9 @@ class CustomerController extends IndexController
 
 
     public function configLivestream(Request $request){
+        $user = Auth::guard("customers")->user();
         return view("index.pages.customers.config-livestream", [
-
+            'customer' => $user
         ]);
     }
 }

@@ -23,13 +23,26 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="slug-field" class="form-label">SLug</label>
+                        <input type="text" name='slug' id="slug-field"
+                               class="form-control @error('slug') is-invalid @enderror"
+                               placeholder="Slug"
+                               value="{{ $item->slug }}"
+                        />
+                        @error('title')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div class="hstack gap-2 justify-content-end">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
                         <button type="submit" class="btn btn-success" id="add-btn">Cập nhật</button>
-                        <!-- <button type="button" class="btn btn-success" id="edit-btn">Update</button> -->
                     </div>
                 </div>
             </form>

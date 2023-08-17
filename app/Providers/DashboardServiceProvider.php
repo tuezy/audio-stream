@@ -33,8 +33,10 @@ class DashboardServiceProvider extends ServiceProvider
     }
 
     public function initSettingsPage(){
-
-        if(!Cache::has("settings") && Schema::hasTable("settings")){
+        if(!Schema::hasTable("settings")){
+            return ;
+        }
+        if(!Cache::has("settings")){
             Cache::rememberForever('settings', function (){
                 $db =  DB::table("settings")->get(['key','value']);
                 $result = [];

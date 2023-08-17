@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repository\Categories\CategoryRepositoryCache;
 use App\Repository\Categories\CategoryRepositoryContract;
+use App\Repository\Customers\CustomerRepositoryCache;
+use App\Repository\Customers\CustomerRepositoryContract;
 use App\Repository\Developments\DevelopmentContract;
 use App\Repository\Developments\DevelopmentRepositoryCache;
 use App\Repository\Playlists\PlaylistRepository;
@@ -29,6 +31,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(SettingRepositoryContract::class, SettingRepositoryCache::class);
         $this->app->singleton(DevelopmentContract::class, DevelopmentRepositoryCache::class);
         $this->app->singleton(CategoryRepositoryContract::class, CategoryRepositoryCache::class);
+        $this->app->singleton(CustomerRepositoryContract::class, CustomerRepositoryCache::class);
 //        $this->app->singleton(PlaylistRepositoryContract::class, PlaylistRepositoryCache::class);
     }
 
