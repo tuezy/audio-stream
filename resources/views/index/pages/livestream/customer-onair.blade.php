@@ -17,9 +17,9 @@
             crossorigin="anonymous"></script>
     <script>
         @if($customer->use_default_channel)
-        var hlsFile = "{{ config("rtmp-server-hls") }}{{ $customer->live_channel }}/index.m3u8";
+        var hlsFile = "{{ config("livestream.rtmp-server-hls") }}{{ $customer->live_channel }}/index.m3u8";
         @else
-        var hlsFile = "{{ config("rtmp-server-hls") }}{{ $customer->live_channel }}/{{ $customer->live_key }}/index.m3u8";
+        var hlsFile = "{{ config("livestream.rtmp-server-hls") }}{{ $customer->live_channel }}/{{ $customer->live_key }}/index.m3u8";
         @endif
         var player = new Playerjs({id:"player", file:[
                 hlsFile
