@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -107,8 +108,20 @@ class LiveController extends Controller
     }
 
     public function update(){
+        $request = request();
+        $commands = "";
+        if($request->has("app")){
+            $commands .= "app=" . $request->get("app");
+        }
+        if($request->has("name")){
+            if(!is_null($request->get("name"))){
+                $commands .= "&name=" . $request->get("name");
+            }
+        }
+
         if(!File::exists(storage_path(request()->get("app")))){
-            throw new \Exception("Stop Customer Livestream");
+            Http::get("http://koding.men/control/drop/publisher?". $commands);
+            return redirect("http://koding.men/control/drop/publisher?". $commands);
         }
     }
     public function done_livestream(){
