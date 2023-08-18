@@ -39,7 +39,7 @@ class NginxReload extends Command
      */
     public function handle()
     {
-        $process = Process::fromShellCommandline("nginx -s reload");
+        $process = Process::fromShellCommandline("/usr/sbin/nginx -s reload");
 
         $process->setTimeout(null);
         $process->setIdleTimeout(null);
