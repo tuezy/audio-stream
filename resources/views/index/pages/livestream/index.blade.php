@@ -14,12 +14,12 @@
                     <div class="customer_streaming text-center mb-4">
                         <div class="__image shadow mb-3">
                             <a href="{{ route("livestream.customer.channel", [
-    'channel' => $customer->live_channel
+    'channel' => $customer['channel']
 ]) }}">
                                 <img src="{{asset("images/play-final.png")}}" alt="images/play-final.png" class="img-fluid">
                             </a>
                         </div>
-                        <div class="h4">{{ $customer->name }}</div>
+                        <div class="h4">{{ $customer['channel'] }}</div>
                     </div>
                 </div>
 

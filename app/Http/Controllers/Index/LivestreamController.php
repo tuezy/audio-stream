@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Finder\Finder;
 
 class LivestreamController extends BaseController
 {
@@ -21,8 +22,19 @@ class LivestreamController extends BaseController
     }
 
     public function index(){
-        $customers = $this->customerRepository->where("isLive", "=", true)->get();
+        $customers = [];
 
+        $allChannels = (new Finder())->in(storage_path("live-stream"))->files()->name("index.m3u8");
+
+        if($allChannels->count()){
+            foreach ($allChannels as $channel){
+                $epl = explode("/", $channel->getRelativePathname());
+                $customers[]['channel'] = $epl[0];
+                $customers[]['path'] = $channel->getRelativePathname();
+
+                $customers[]['key'] = $epl[1] != 'index.m3u8' ? $epl[1] : null;
+            }
+        }
         return view("index.pages.livestream.index", [
             'customers' => $customers
         ]);
