@@ -1,0 +1,462 @@
+yum update -y
+    2  reboot
+    3  cat -f /usr/local/directadmin/custombuild/install.txt
+    4  tail -f /usr/local/directadmin/custombuild/install.txt
+    5  passwd admin
+    6  tail -f /var/log/directadmin/custombuild.1679638937.12244.log
+    7  date
+    8  ln -sf /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
+    9  date
+   10  bash <(curl -fsSL https://download.directadmin.com/setup.sh) 'yIvyvzIpvA8fG6bZowBrbVwzmX2XiyYVaMfEeeqA/DQ='
+   11  date
+   12  bash <(curl -fsSL https://download.directadmin.com/setup.sh) 'yIvyvzIpvA8fG6bZowBrbVwzmX2XiyYVaMfEeeqA/DQ='
+   13  ping google.com
+   14  vi /etc/resolv.conf
+   15  ping google.com
+   16  vi /etc/resolv.conf
+   17  nmtui
+   18  service network restart
+   19  nmcli networking on
+   20  ping 8.8.8.8
+   21  ping google.com
+   22  vi /etc/resolv.conf
+   23  nmcli networking on
+   24  ping google.com
+   25  nano /etc/sysconfig/network-scripts/ifcfg-eth0
+   26  vi /etc/resolv.conf
+   27  nmcli networking on
+   28  ping google.com
+   29  bash <(curl -fsSL https://download.directadmin.com/setup.sh) 'yIvyvzIpvA8fG6bZowBrbVwzmX2XiyYVaMfEeeqA/DQ='
+   30  tail -f /usr/local/directadmin/custombuild/install.txt
+   31  reboot
+   32  df -h
+   33  exit
+   34  curl 127.0.0.1
+   35  redis-cli ping
+   36  nginx
+   37  loggout
+   38  exit
+   39  dnf install git
+   40  git
+   41  dnf -y install https://download.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+   42  yum-config-manager --enable powertools
+   43  dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm -y
+   44  dnf install --nogpgcheck https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm -y
+   45  dnf install -y ffmpeg
+   46  ffmpeg -version
+   47  pwd
+   48  <html>Webserver is functioning normally</html>
+   49  ffmpeg -i /var/www/html/audio/1.mp3 -i /var/www/html/audio/2.mp3 -filter_complex '[0:0][1:0]concat=n=2:v=0:a=1[out]' -map '[out]' -vn -ac 2 -acodec aac -start_number 0 -hls_time 10 -hls_list_size 0 -f hls /var/www/html/playlist.m3u8
+   50  ffmpeg -i /var/www/html/audio/1.mp3 -i /var/www/html/audio/2.mp3 -filter_complex '[0:0][1:0]concat=n=2:v=0:a=1[out]' -map '[out]' -vn -ac 2 -acodec aac -start_number 0 -hls_time 10 -hls_list_size 0 -f hls /var/www/html/hls/playlist.m3u8
+   51  ls
+   52  systemsctl status httpd
+   53  service status httpd
+   54  service httpd status
+   55  ls
+   56  cd /
+   57  ls
+   58  cd usr
+   59  ls
+   60  cd src
+   61  ls
+   62  curl localhost
+   63  service httpd restart
+   64  curl localhost
+   65  php -v
+   66  mysql
+   67  mysql - u root - p
+   68  mysql -u root -p
+   69  php -v
+   70  php- v
+   71  curl localhost
+   72  service httpd status
+   73  nginx -v
+   74  ngnix -t
+   75  nginx -t
+   76  vi /etc/nginx/nginx.conf
+   77  php -v
+   78  cd /var/www
+   79  ls
+   80  cd html
+   81  ls
+   82  cd hls
+   83  ls
+   84  cd ..
+   85  ls
+   86  cd ..
+   87  ls
+   88  dnf install git
+   89  git
+   90  composer
+   91  dnf install php-cli php-json php-zip wget unzip
+   92  curl -sS https://getcomposer.org/installer |php
+   93  mv composer.phar /usr/local/bin/composer
+   94  composer
+   95  wget
+   96  dnf install wget
+   97  ls
+   98  cd html
+   99  ls
+  100  vi /etc/nginx/nginx.conf
+  101  /var/www/html
+  102  cd /var/www/html
+  103  ls
+  104  cd /home/admin/domains/truyenthanhsohoa.vn/public_html
+  105  wget http://truyenthanhsohoa.vn/hlsaudio.tar.gz
+  106  tar -xf hlsaudio.tar.gz
+  107  ls
+  108  service nginx reload
+  109  ngninx -t
+  110  nginx -t
+  111  service httpd status
+  112  service nginx restart
+  113  ls
+  114  service nginx restart
+  115  ipconfig
+  116  ìconfig
+  117  ifconfig
+  118  service nginx restart
+  119  ls
+  120  cd hlsaudio
+  121  composer install
+  122  admin composer install
+  123  composer install
+  124  vi .env
+  125  composer install
+  126  composer update
+  127  php artisan key:generate
+  128  chmod 0755 storage -R
+  129  ls -a
+  130  ls -i
+  131  ls -ah
+  132  ls
+  133  ls -help
+  134  lh --help
+  135  ls --help
+  136  ls -a
+  137  ls -A
+  138  ls -i
+  139  curl localhost
+  140  curl hlsaudio.koding.men
+  141  curl hlsaudio.thuong.men
+  142  service nginx restart
+  143  pwd
+  144  redis-cli ping
+  145  dnf install redis -y
+  146  redis-cli ping
+  147  vi /etc/redis.conf
+  148  service redis restart
+  149  vi .env
+  150  redis-cli ping
+  151  redis-cli
+  152  vi .env
+  153  redis-cli
+  154  cd ..
+  155  chown $USER:$USER hlsaudio -R
+  156  php artisan permission:reload-dashboard
+  157  cd hlsaudio
+  158  permission:reload-dashboard
+  159  php artisan permission:reload-dashboard
+  160  php artisan storage:link
+  161  php artisan key:generate
+  162  vi .env
+  163  php artisan config:clear
+  164  yum -y install supervisor
+  165  service redis enable
+  166  systemctl
+  167  systemctl enable redis
+  168  systemctl enable supervior
+  169  systemctl enable superviord
+  170  systemctl enable supervisord
+  171  systemctl start supervisord
+  172  systemctl restart supervisord
+  173  supervisorctl
+  174  cd ..
+  175  chown admin:admin hlsaudio -R
+  176  systemctl nginx restart
+  177  systemctl restart nginx
+  178  ls
+  179  rm hlsaudio.tar.gz
+  180  mv hlsaudio/* .
+  181  ls
+  182  pwd
+  183  vi .env
+  184  ls -A
+  185  ls
+  186  cp hlsaudio/.env .env
+  187  vi .env
+  188  php artisan config:clear
+  189  vi .env
+  190  php artisan optimieze:clear
+  191  php artisan optimize:clear
+  192  systemctl restart nginx
+  193  php artisan storage:link
+  194  pwd
+  195  cd public
+  196  ls -a
+  197  ls -l
+  198  cd ..
+  199  chown admin:admin public_html -R
+  200  cd public_html
+  201  ls -l
+  202  git pull
+  203  ls -l
+  204  cp hlsaudio/.git .git
+  205  cp hlsaudio/.git .git -r
+  206  git pull
+  207  git status
+  208  git stash
+  209  git pull
+  210  php artisan optimize:clear
+  211  git pull
+  212  systemctl restart php
+  213  systemctl restart phpd
+  214  systemctl restart php-fpm
+  215  systemctl restart php74
+  216  systemctl
+  217  systemctl restart php-fpm74
+  218  redis-cli
+  219  systemctl restart php-fpm74
+  220  nginx -t
+  221  systemctl restart nginx
+  222  php --ini
+  223  systemctl restart php-fpm74
+  224  /pwd
+  225  pwd
+  226  git pull
+  227  supervisorctl
+  228  ps aux
+  229  php artisan queue:restart
+  230  systemctl restart superviord
+  231  systemctl restart supervisord
+  232  systemctl status supervisord
+  233  systemctl restart supervisord
+  234  systemctl status supervisord
+  235  vi .env
+  236  php artisan config:clear
+  237  git pull
+  238  crontab -e
+  239  pwd
+  240  crontab -e
+  241  /home/admin/domains/truyenthanhsohoa.vn/public_html/
+  242  cd /home/admin/domains/truyenthanhsohoa.vn/public_html/
+  243  git pull
+  244  git add .
+  245  git commit -m "fix arrows slick"
+  246  git push
+  247  vim /usr/local/directadmin/conf/directadmin.conf
+  248  vi /usr/local/directadmin/conf/directadmin.conf
+  249  exit
+  250  cd /usr/local/directadmin/custombuild/
+  251  cd /usr/local/directadmin
+  252  ./directadmin set backup_gzip 1
+  253  ./directadmin set zstd 2
+  254  ./directadmin set zstd 0
+  255  service directadmin restart
+  256  cd /home/admin/admin_backups
+  257  ll
+  258  date
+  259  top -c
+  260  ll
+  261  rm user.admin.ktpa.tar.gz
+  262  nginx -t
+  263  vi /etc/nginx/nginx.conf
+  264  cd /
+  265  ls
+  266  cd home
+  267  ls -l
+  268  cd /home/admin/domains/truyenthanhsohoa.vn/public_html/
+  269  git status
+  270  git add .
+  271  git commit -m "fix admin show password"
+  272  git push
+  273  git reset --hard
+  274  git pull
+  275  git status
+  276  git stash
+  277  vi resources/views/dashboard/pages/auth/login.blade.php
+  278  git pull
+  279  git status
+  280  git stash
+  281  git add .
+  282  git commit -m "add"
+  283  git push
+  284  git push origin HEAD:msin
+  285  git push origin HEAD:main
+  286  git pull
+  287  git status
+  288  git pull
+  289  git pull main main
+  290  git status
+  291  cd /home/admin/domains/truyenthanhsohoa.vn/public_html/
+  292  git status
+  293  ls -la
+  294  nginx -t
+  295  vi /etc/nginx/nginx.conf
+  296  vi /usr/local/directadmin/data/users/admin/nginx.conf
+  297  nginx -t
+  298  systemctl restart nginx
+  299  vi /usr/local/directadmin/data/users/admin/nginx.conf
+  300  nginx -t
+  301  systemctl restart nginx
+  302  systemctl restart php-fpm
+  303  systemctl restart php.fpm
+  304  systemctl restart php
+  305  curl localhost
+  306  curl truyenthanhsohoa.vn
+  307  curl truyenthanhsohoa.vn/login
+  308  vi /usr/local/directadmin/data/users/admin/nginx.conf
+  309  vi include /etc/nginx/webapps.ssl.conf
+  310  vi /etc/nginx/webapps.ssl.conf
+  311  cd /home/admin/domains/truyenthanhsohoa.vn/public_html/
+  312  php artisan config:clear
+  313  vi /usr/local/directadmin/data/users/admin/nginx.conf
+  314  vi /etc/nginx/webapps.conf
+  315  vi /usr/local/directadmin/data/users/admin/nginx.conf
+  316  vi /usr/local/directadmin/data/users/admin/nginx_php.conf
+  317  vi /usr/local/directadmin/data/users/admin/nginx.conf
+  318  nginx -t
+  319  systemctl restart nginx
+  320  vi .env
+  321  php artisan config:clear
+  322  chown root:root /usr/local/directadmin/data/users/admin/nginx.conf
+  323  chown root:root /usr/local/directadmin/data/users/admin/nginx_php.conf
+  324  systemctl restart nginx
+  325  cd /home/admin/domains/truyenthanhsohoa.vn/public_html
+  326  vi .env
+  327  php artisan config:clear
+  328  vi .env
+  329  git add .
+  330  git commit -m "fix: show errors"
+  331  git push
+  332  git push origin HEAD:main
+  333  git push origin HEAD:current
+  334  git push origin HEAD:version-0.0.2
+  335  cd /home/admin/domains/truyenthanhsohoa.vn/public_html/
+  336  git push
+  337  chown $USER:$USER storage -r
+  338  chown $USER:$USER storage -R
+  339  chown admin:admin storage -R
+  340  chmod 777 storage -R
+  341  touch storage/test.txt
+  342  umask 0777 storage -R
+  343  touch storage/test2.txt
+  344  umask grw+ storage -R
+  345  umask grw+ storage
+  346  umask 022 storage
+  347  touch storage/test2.txt3
+  348  umask 777 storage
+  349  touch storage/test2.txt34
+  350  umask 000 storage
+  351  touch storage/test2.txt341
+  352  umask -1-1-1 storage
+  353  chmod 777 storage -R
+  354  touch a.txt
+  355  touch storage/test2.txt341a
+  356  umask 0000 storage
+  357  touch storage/test2.txt341a3
+  358  umask 111 storage
+  359  touch storage/test2.txt341a32
+  360  umask u=rwx,g=rwx,o=rwx storage
+  361  touch storage/test2.txt341a323
+  362  cd
+  363  /home/admin/domains/truyenthanhsohoa.vn/public_html/
+  364  cd /home/admin/domains/truyenthanhsohoa.vn/public_html/
+  365  git status
+  366  git rebase --continue
+  367  git commit -m "rebase"
+  368  git push
+  369  cd /home/admin/domains/truyenthanhsohoa.vn/public_html/
+  370  git status
+  371  cd /home/admin/domains/truyenthanhsohoa.vn/public_html/
+  372  git status
+  373  rm hlsaudio -rf
+  374  git status
+  375  cd /home/admin/domains/truyenthanhsohoa.vn/public_html/
+  376  chown admin:admin storage
+  377  chown admin:admin storage -R
+  378  git status
+  379  git checkout -b current
+  380  git push
+  381  git push --set-upstream origin current
+  382  cd ..
+  383  supervisorctl reread
+  384  supervisorctl
+  385  vi /etc/supervisor/conf.d
+  386  vi /etc/supervisord.conf
+  387  cd /etc/supervisor/c
+  388  cd /etc/supervisor
+  389  ls -l
+  390  cd /etc/supervisor/conf.d
+  391  systemctl restart supervisord
+  392  supervisorctl reread
+  393  supervisorctl update
+  394  cd /home/admin/domains/truyenthanhsohoa.vn/public_html/
+  395  git pull
+  396  nginx -t
+  397  vi /etc/nginx/nginx.conf
+  398  vi /usr/local/directadmin/data/users/admin/nginx.conf
+  399  vi /etc/nginx/webapps.conf
+  400  vi /usr/local/directadmin/data/users/admin/nginx_php.conf
+  401  nginx -t
+  402  vi /etc/nginx/nginx.conf
+  403  vi /usr/local/directadmin/data/users/admin/
+  404  cd /usr/local/directadmin/data/users/admin/
+  405  ls
+  406  ll
+  407  vi /etc/nginx/webapps.conf
+  408  csf -x
+  409  vi /usr/local/directadmin/custombuild/options.conf
+  410  nginx -t
+  411  vi /etc/nginx/nginx.conf
+  412  vi /usr/local/directadmin/data/users/admin/nginx.conf
+  413  cd /home/admin/domains/truyenthanhsohoa.vn/public_html
+  414  ll
+  415  nginx -t
+  416  systemctl restart nginx
+  417  git status
+  418  git stash
+  419  git pull
+  420  php artisan make:playlist 315
+  421  histories
+  422  history
+  423  nginx -t
+  424  vi /etc/nginx/nginx.conf
+  425  cd etc/nginx
+  426  cd /etc/nginx
+  427  ll
+  428  vi webapps.conf
+  429  vi include /usr/local/directadmin/data/users/admin/nginx.conf
+  430  vi /usr/local/directadmin/data/users/admin/nginx.conf
+  431  nginx -t
+  432  systemctl nginx reload
+  433  nginx reload
+  434  systemctl restart nginx
+  435  ngin -t
+  436  nginx -t
+  437  systemctl restart nginx
+  438  nginx -t
+  439  systemctl restart nginx
+  440  chmod 0777 /home/admin/domains/truyenthanhsohoa.vn/public_html/storage -R
+  441  nginx -t
+  442  vi /etc/nginx/nginx.conf
+  443  chown admin:admin /home/admin/domains/truyenthanhsohoa.vn/public_html/storage/ -R
+  444  cd
+  445  "/home/admin/domains/truyenthanhsohoa.vn/public_html/storage/app/public/hls/public/users/23/audios/2023-08-07/phat-thanh-buoi-toi/"
+  446  cd /home/admin/domains/truyenthanhsohoa.vn/public_html
+  447  php artisan cache:clear
+  448  ngin -t
+  449  nginx -t
+  450  vi /usr/local/directadmin/data/users/admin/nginx.conf
+  451  nginx -t
+  452  systemctl restart nginx
+  453  pwd
+  454  git status
+  455  git reset --hard
+  456  nginx -t
+  457  vi /etc/nginx/nginx.conf
+  458  history
+  459  yum -y install supervisor
+  460  history >> cat history.txt
+  461  history >>  history.txt
+  462  history

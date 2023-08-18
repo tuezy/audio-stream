@@ -11,9 +11,13 @@ application livestream/{{modelName}} {
         # disable consuming the stream from nginx as rtmp
         deny play all;
 
-        on_publish http://192.168.1.10/audio/public/api/live/publish_livestream;
+        on_publish {{on_publish}};
+        on_done {{on_done}};
+
+
+        #on_publish http://192.168.1.10/audio/public/api/live/publish_livestream;
 
         #on_play http://192.168.1.10/audio/public/api/live;
-        on_done http://192.168.1.10/audio/public/api/live/done_livestream;
+        #on_done http://192.168.1.10/audio/public/api/live/done_livestream;
         #on_update http://192.168.1.10/audio/public/api/live;
  }

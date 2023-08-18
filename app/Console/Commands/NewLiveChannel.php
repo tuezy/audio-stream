@@ -57,10 +57,14 @@ class NewLiveChannel extends Command
             [
                 '{{modelName}}',
                 '{{serverPath}}',
+                 '{{on_publish}}',
+                 '{{on_done}}'
             ],
             [
                 $name,
-                storage_path("live-stream/$name")
+                storage_path("live-stream/$name"),
+                route("api.livestream.publish"),
+                route("api.livestream.done_livestream"),
             ],
             $this->getStub()
         );
