@@ -48,8 +48,5 @@ class RemoveCustomerChannel extends Command
             File::delete($phpFile);
         }
 
-        if(!File::exists($phpFile)){
-            Artisan::call("nginx:reload");
-        }
     }
 }
