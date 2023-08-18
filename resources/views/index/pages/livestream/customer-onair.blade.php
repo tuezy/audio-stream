@@ -1,9 +1,19 @@
 @extends("index.main")
 @section("content")
-    <div class="container my-5">
-        <div class="row">
-            <div class="media-player">
-                <div id="player"></div>
+    <div class="container">
+        <div class="block-title text-center mb-4">
+            <span>Thành viên <span class="text-uppercase text-danger fw-bold">{{ $customer->live_channel }}</span> đang phát sóng trực tuyến</span>
+        </div>
+    </div>
+    <div id="customer-onair" class="py-5">
+        <div class="container my-5">
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-12">
+                    <div class="media-player">
+                        <div id="player"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -24,7 +34,8 @@
         var player = new Playerjs({id:"player", file:[
                 hlsFile
             ],
-            poster: "{{asset("images/play-final.png")}}"
+            poster: "{{asset("images/play-final.png")}}",
+            autoplay: 1
         });
         function audioplay(link, title){
             player.api("play", link);
@@ -32,6 +43,7 @@
             player.api("poster", "{{asset("images/play-final.png")}}");
         }
         audioplay(hlsFile, "Live stream");
+
     </script>
 
 @endpush

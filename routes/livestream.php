@@ -10,3 +10,6 @@ Route::middleware('auth:customers')->group(function (){
 
 });
 
+Route::prefix("livestream")->name("livestream.")->group(function (){
+    Route::get("/customer/{channel}", [\App\Http\Controllers\Index\LivestreamController::class, "channel"])->name("customer.channel");
+});

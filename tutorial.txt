@@ -92,7 +92,7 @@ useradd -r -s /sbin/nologin -d /dev/null -g nginx nginx
    88  dnf config-manager --set-enabled powertools
    89  dnf install -y https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm
    90  dnf install -y https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm
-   91  dnf -y install ffmpeg
+   91  dnf -y install ffmpeg ffmpeg-devel
    92  dnf -y install ffmpeg-devel
    93  pwd
    94  ls

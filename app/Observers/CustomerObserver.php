@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Customer;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -21,6 +22,8 @@ class CustomerObserver
         $customer->isLive = false;
         $customer->password = Hash::make($customer->password);
         $customer->save();
+
+        Artisan::call("new:channel ".$customer->live_channel);
     }
 
     /**
@@ -42,7 +45,7 @@ class CustomerObserver
      */
     public function deleted(Customer $customer)
     {
-        //
+        Artisan::call("remove:channel ".$customer->live_channel);
     }
 
     /**
@@ -64,6 +67,6 @@ class CustomerObserver
      */
     public function forceDeleted(Customer $customer)
     {
-        //
+        Artisan::call("remove:channel ".$customer->live_channel);
     }
 }

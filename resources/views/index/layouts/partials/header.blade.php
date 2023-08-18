@@ -15,6 +15,7 @@
         </div>
     </div>
 </div>
+@auth
 <nav class="p-0 navbar-expand-lg navbar-landing fixed-top" id="navbar">
     <div class="container">
         <button class="navbar-toggler py-0 fs-20 text-body" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,3 +94,4 @@
 
     </div>
 </nav>
+@endauth
