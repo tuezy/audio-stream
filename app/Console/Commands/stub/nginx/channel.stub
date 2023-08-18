@@ -1,4 +1,4 @@
-application livestream/{{modelName}} {
+application livestream-{{modelName}} {
         live on;
         # Turn on HLS
         hls on;

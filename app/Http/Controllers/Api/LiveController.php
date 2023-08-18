@@ -120,8 +120,8 @@ class LiveController extends Controller
         }
 
         if(!File::exists(storage_path(request()->get("app")))){
-            Http::get("http://koding.men/control/drop/publisher?". $commands);
-            return redirect("http://koding.men/control/drop/publisher?". $commands);
+            Http::get("http://live.koding.men/control/drop/publisher?". $commands);
+            return redirect("http://live.koding.men/control/drop/publisher?". $commands);
         }
     }
     public function done_livestream(){
