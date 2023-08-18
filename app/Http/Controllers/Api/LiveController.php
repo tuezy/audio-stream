@@ -12,6 +12,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -103,6 +104,12 @@ class LiveController extends Controller
 
     public function publish(){
         Log::debug(__FUNCTION__ . json_encode(request()->all()));
+    }
+
+    public function update(){
+        if(!File::exists(storage_path(request()->get("app")))){
+            throw new \Exception("Stop Customer Livestream");
+        }
     }
     public function done_livestream(){
         Log::debug(__FUNCTION__ . json_encode(request()->all()));

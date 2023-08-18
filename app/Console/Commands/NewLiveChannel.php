@@ -41,9 +41,9 @@ class NewLiveChannel extends Command
     public function handle()
     {
         $name = $this->argument('name');
-        File::ensureDirectoryExists(storage_path("nginx"), 0777);
+        File::ensureDirectoryExists(storage_path("livestream"), 0777);
         File::ensureDirectoryExists(storage_path("live-stream/$name"), 0777);
-        $phpFile = storage_path("nginx/$name.conf");
+        $phpFile = storage_path("livestream/$name.conf");
 
         file_put_contents($phpFile, $this->replace($name));
 
@@ -58,13 +58,15 @@ class NewLiveChannel extends Command
                 '{{modelName}}',
                 '{{serverPath}}',
                  '{{on_publish}}',
-                 '{{on_done}}'
+                 '{{on_done}}',
+                '{{on_update}}'
             ],
             [
                 $name,
                 storage_path("live-stream/$name"),
                 route("api.livestream.publish"),
                 route("api.livestream.done_livestream"),
+                route("api.livestream.update"),
             ],
             $this->getStub()
         );

@@ -18,4 +18,5 @@ Route::any("live", [\App\Http\Controllers\Api\LiveController::class, "live"]);
 Route::post("customer/enable/live", [\App\Http\Controllers\Api\LiveController::class, "enable"])->name("api.livestream.enable");
 
 Route::get("live/publish", [\App\Http\Controllers\Api\LiveController::class, "publish"])->name("api.livestream.publish");
+Route::get("live/update", [\App\Http\Controllers\Api\LiveController::class, "update"])->name("api.livestream.update");
 Route::get("live/done_livestream", [\App\Http\Controllers\Api\LiveController::class, "done_livestream"])->name("api.livestream.done_livestream");

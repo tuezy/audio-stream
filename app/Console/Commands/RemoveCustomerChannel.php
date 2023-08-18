@@ -40,7 +40,7 @@ class RemoveCustomerChannel extends Command
     public function handle()
     {
         $name = $this->argument('name');
-        $phpFile = storage_path("nginx/$name.conf");
+        $phpFile = storage_path("livestream/$name.conf");
 
 
 
