@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -48,6 +49,7 @@ class LiveController extends Controller
         }
 
         $customer->save();
+        Artisan::call("remove:channel ".$customer->live_channel);
 
         return back()->with("success", "Thành công");
     }
@@ -100,7 +102,7 @@ class LiveController extends Controller
     }
 
     public function publish(){
-
+        Log::debug(__FUNCTION__ . json_encode(request()->all()));
     }
     public function publish_done(){
         Log::debug(__FUNCTION__ . json_encode(request()->all()));
@@ -108,6 +110,8 @@ class LiveController extends Controller
     public function publish_livestream(){
         Log::debug(__FUNCTION__ . json_encode(request()->all()));
     }
-    public function done_livestream(){}
+    public function done_livestream(){
+        Log::debug(__FUNCTION__ . json_encode(request()->all()));
+    }
 
 }

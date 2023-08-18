@@ -42,11 +42,16 @@ class RemoveCustomerChannel extends Command
         $name = $this->argument('name');
         $phpFile = storage_path("nginx/$name.conf");
 
-        File::deleteDirectory(storage_path("live-stream/$name"));
+
 
         if(!File::exists($phpFile)){
             File::delete($phpFile);
         }
 
+        if(!File::exists($phpFile)){
+            Artisan::call("nginx:reload");
+        }
+
+        File::deleteDirectory(storage_path("live-stream/$name"));
     }
 }
