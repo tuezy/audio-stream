@@ -119,7 +119,7 @@ class LiveController extends Controller
             }
         }
 
-        if(!File::exists(storage_path(request()->get("app")))){
+        if(!File::exists(storage_path(Str::replace('-','/', request()->get("app"). ".conf")))){
             Http::get("http://live.koding.men/control/drop/publisher?". $commands);
             return redirect("http://live.koding.men/control/drop/publisher?". $commands);
         }
