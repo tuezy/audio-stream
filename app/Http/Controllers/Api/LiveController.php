@@ -104,7 +104,7 @@ class LiveController extends Controller
     }
 
     public function publish(){
-        Log::debug(__FUNCTION__ . json_encode(request()->all()));
+        return $this->live();
     }
 
     public function update(){
