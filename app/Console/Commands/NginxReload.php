@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\RunCmd;
 use Illuminate\Bus\Queueable;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -45,14 +46,6 @@ class NginxReload extends Command implements ShouldQueue
      */
     public function handle()
     {
-        $process = Process::fromShellCommandline("/usr/sbin/nginx -s reload");
-
-        $process->setTimeout(null);
-        $process->setIdleTimeout(null);
-
-        $process->run();
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
+        RunCmd::dispatch();
     }
 }

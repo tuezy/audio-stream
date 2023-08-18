@@ -8,6 +8,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class RunCmd implements ShouldQueue
 {
@@ -30,6 +32,14 @@ class RunCmd implements ShouldQueue
      */
     public function handle()
     {
-        //
+        $process = Process::fromShellCommandline("/usr/sbin/nginx -s reload");
+
+        $process->setTimeout(null);
+        $process->setIdleTimeout(null);
+
+        $process->run();
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
     }
 }
