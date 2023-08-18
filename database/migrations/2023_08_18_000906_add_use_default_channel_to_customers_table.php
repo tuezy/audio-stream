@@ -14,7 +14,7 @@ class AddUseDefaultChannelToCustomersTable extends Migration
     public function up()
     {
         Schema::table('customers', function (Blueprint $table) {
-            $table->boolean("use_default_channel", false);
+            $table->boolean("use_default_channel")->default(false);
         });
     }
 
