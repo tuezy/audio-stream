@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 
 class RemoveCustomerChannel extends Command
 {
@@ -53,5 +54,6 @@ class RemoveCustomerChannel extends Command
         }
 
         File::deleteDirectory(storage_path("live-stream/$name"));
+
     }
 }
