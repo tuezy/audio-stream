@@ -44,7 +44,7 @@ class RemoveCustomerChannel extends Command
 
 
 
-        if(!File::exists($phpFile)){
+        if(File::exists($phpFile)){
             File::delete($phpFile);
         }
 

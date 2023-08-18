@@ -104,12 +104,6 @@ class LiveController extends Controller
     public function publish(){
         Log::debug(__FUNCTION__ . json_encode(request()->all()));
     }
-    public function publish_done(){
-        Log::debug(__FUNCTION__ . json_encode(request()->all()));
-    }
-    public function publish_livestream(){
-        Log::debug(__FUNCTION__ . json_encode(request()->all()));
-    }
     public function done_livestream(){
         Log::debug(__FUNCTION__ . json_encode(request()->all()));
     }
