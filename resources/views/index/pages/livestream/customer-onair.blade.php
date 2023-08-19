@@ -1,22 +1,33 @@
 @extends("index.main")
 @section("content")
-    <div class="container">
-        <div class="block-title text-center mb-4">
-            <span>Thành viên <span class="text-uppercase text-danger fw-bold">{{ $customer->live_channel }}</span> đang phát sóng trực tuyến</span>
+    @if(
+        file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . $customer->live_channel . DIRECTORY_SEPARATOR . "index.m3u8")) ||
+        file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . "index.m3u8"))
+    )
+        <div class="container">
+            <div class="block-title text-center mb-4">
+                <span>Thành viên <span class="text-uppercase text-danger fw-bold">{{ $customer->live_channel }}</span> đang phát sóng trực tuyến</span>
+            </div>
         </div>
-    </div>
-    <div id="customer-onair" class="py-5">
-        <div class="container my-5">
+        <div id="customer-onair" class="py-5">
+            <div class="container my-5">
 
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-12">
-                    <div class="media-player">
-                        <div id="player"></div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-12">
+                        <div class="media-player">
+                            <div id="player"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @else
+        <div class="container">
+            <div class="block-title text-center mb-4">
+                <span>Thành viên <span class="text-uppercase text-danger fw-bold">{{ $customer->live_channel }}</span> đã kết thúc buổi livestream</span>
+            </div>
+        </div>
+    @endif
 @endsection
 
 @push("scripts")
