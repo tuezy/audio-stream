@@ -108,9 +108,26 @@ class LiveController extends Controller
         return true;
     }
 
-    public function publish(){
+    public function publish(Request $request){
+        if($request->has('app')){
+            $channel = str_replace("livestream-", "", $request->get("app"));
+        }
+        if($request->has('name')){
+            $name = $request->get("name");
+        }
+        $customerByChannel = Customer::where("live_channel", "=", $channel)
+            ->where("isLive", "=", true)->firstOrFail();
 
-        Log::debug(__FUNCTION__ . json_encode(request()->all()));
+        if($customerByChannel->use_default_channel){
+            return true;
+        }
+
+        if($customerByChannel->live_key == $name){
+            return true;
+        }
+
+        abort(404);
+
     }
 
     public function update(){
