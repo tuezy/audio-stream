@@ -1,4 +1,5 @@
 @extends("index.main")
+
 @if(
     file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . $customer->live_channel . DIRECTORY_SEPARATOR . "index.m3u8")) ||
     file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . $customer->live_channel . DIRECTORY_SEPARATOR . $customer->live_key ."/index.m3u8"))
@@ -46,7 +47,8 @@
                     hlsFile
                 ],
                 poster: "{{asset("images/play-final.png")}}",
-                autoplay: 1
+                autoplay: 1,
+                autoplaymute: 0,
             });
             function audioplay(link, title){
                 player.api("play", link);

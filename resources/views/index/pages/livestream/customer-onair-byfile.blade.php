@@ -34,7 +34,8 @@
                 hlsFile
             ],
             poster: "{{asset("images/play-final.png")}}",
-            autoplay: 1
+            autoplay: 1,
+            autoplaymute: 0,
         });
         function audioplay(link, title){
             player.api("play", link);
