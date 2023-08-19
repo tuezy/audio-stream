@@ -60,7 +60,6 @@ class LiveController extends Controller
         $request = request();
 
         Log::debug(json_encode(request()->all()));
-
         if($request->has("call")){
 
             $swfurl = $request->has("swfurl") ? $request->get("swfurl") : '';
@@ -104,25 +103,12 @@ class LiveController extends Controller
     }
 
     public function publish(){
-        return $this->live();
+
+        Log::debug(__FUNCTION__ . json_encode(request()->all()));
     }
 
     public function update(){
-        $request = request();
-        $commands = "";
-        if($request->has("app")){
-            $commands .= "app=" . $request->get("app");
-        }
-        if($request->has("name")){
-            if(!is_null($request->get("name"))){
-                $commands .= "&name=" . $request->get("name");
-            }
-        }
-
-        if(!File::exists(storage_path(Str::replace('-','/', request()->get("app"). ".conf")))){
-            Http::get("http://live.koding.men/control/drop/publisher?". $commands);
-            return redirect("http://live.koding.men/control/drop/publisher?". $commands);
-        }
+        Log::debug(__FUNCTION__ . json_encode(request()->all()));
     }
     public function done_livestream(){
         Log::debug(__FUNCTION__ . json_encode(request()->all()));
