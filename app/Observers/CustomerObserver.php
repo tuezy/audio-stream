@@ -18,6 +18,7 @@ class CustomerObserver
     public function created(Customer $customer)
     {
         $customer->live_channel = Str::substr($customer->email, 0 , strpos($customer->email, "@"));
+        $customer->live_channel = str_replace(".", "", $customer->live_channel);
         $customer->live_key = "";
         $customer->isLive = false;
         $customer->save();
