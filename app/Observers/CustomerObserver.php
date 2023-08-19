@@ -20,7 +20,6 @@ class CustomerObserver
         $customer->live_channel = Str::substr($customer->email, 0 , strpos($customer->email, "@"));
         $customer->live_key = "";
         $customer->isLive = false;
-        $customer->password = Hash::make($customer->password);
         $customer->save();
 
         Artisan::call("new:channel ".$customer->live_channel);

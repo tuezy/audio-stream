@@ -69,10 +69,10 @@ class CustomerController extends Controller{
             'password' => ['required'],
         ]);
 
-        $customer =  Customer::create([
+        $customer =  Customer::createOrUpdate([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
-            'password' => $request->get('password')
+            'password' => Hash::make($request->get('password'))
         ]);
 
         Event::dispatch('customers.after.store', $customer);
