@@ -1,7 +1,7 @@
 @extends("index.main")
 @if(
     file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . $customer->live_channel . DIRECTORY_SEPARATOR . "index.m3u8")) ||
-    file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . $customer->live_channel . DIRECTORY_SEPARATOR . $customer->live_key ."index.m3u8"))
+    file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . $customer->live_channel . DIRECTORY_SEPARATOR . $customer->live_key ."/index.m3u8"))
 )
     @section("content")
 
@@ -38,7 +38,7 @@
             var hlsFile = "{{ config("livestream.rtmp-server-hls") }}{{ $customer->live_channel }}/index.m3u8";
             @endif
             @if(
-    file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . $customer->live_channel . DIRECTORY_SEPARATOR . $customer->live_key ."index.m3u8"))
+    file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . $customer->live_channel . DIRECTORY_SEPARATOR . $customer->live_key ."/index.m3u8"))
 )
             var hlsFile = "{{ config("livestream.rtmp-server-hls") }}{{ $customer->live_channel }}/{{ $customer->live_key }}/index.m3u8";
             @endif
