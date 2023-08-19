@@ -1,7 +1,7 @@
 @extends("index.main")
 @if(
     file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . $customer->live_channel . DIRECTORY_SEPARATOR . "index.m3u8")) ||
-    file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . "index.m3u8"))
+    file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . $customer->live_channel . DIRECTORY_SEPARATOR . $customer->live_key ."index.m3u8"))
 )
     @section("content")
 
@@ -32,9 +32,14 @@
                 integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
                 crossorigin="anonymous"></script>
         <script>
-            @if($customer->use_default_channel)
+            @if(
+    file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . $customer->live_channel . DIRECTORY_SEPARATOR . "index.m3u8"))
+)
             var hlsFile = "{{ config("livestream.rtmp-server-hls") }}{{ $customer->live_channel }}/index.m3u8";
-            @else
+            @endif
+            @if(
+    file_exists(storage_path("live-stream".DIRECTORY_SEPARATOR . $customer->live_channel . DIRECTORY_SEPARATOR . $customer->live_key ."index.m3u8"))
+)
             var hlsFile = "{{ config("livestream.rtmp-server-hls") }}{{ $customer->live_channel }}/{{ $customer->live_key }}/index.m3u8";
             @endif
             var player = new Playerjs({id:"player", file:[
