@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Symfony\Component\Finder\Finder;
 
 class LivestreamController extends BaseController
@@ -40,9 +41,24 @@ class LivestreamController extends BaseController
     }
 
     public function channel($channel){
-        $customer = $this->customerRepository->where("live_channel", "=", $channel)->firstOrFail();
-        return view("index.pages.livestream.customer-onair", [
-            'customer' => $customer
-        ]);
+        $customer = $this->customerRepository->where("live_channel", "=", $channel)->first();
+
+        if($customer->id){
+            return view("index.pages.livestream.customer-onair", [
+                'customer' => $customer
+            ]);
+        }
+
+        if(File::exists($dir = storage_path("live-stream/".$channel))){
+            $finder = (new Finder())->in($dir)->files()->name("index.m3u8");
+            if($finder->count() > 0){
+               foreach($finder as $file){
+                   return view("index.pages.livestream.customer-onair-byfile", [
+                       'file' => $file->getRelativePathname()
+                   ]);
+               }
+            }
+        }
+
     }
 }
