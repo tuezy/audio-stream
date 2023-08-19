@@ -69,9 +69,8 @@ class CustomerController extends Controller{
             'password' => ['required'],
         ]);
 
-        $customer =  Customer::createOrUpdate([
+        $customer =  Customer::updateOrCreate(['email' => $request->get('email')],[
             'name' => $request->get('name'),
-            'email' => $request->get('email'),
             'password' => Hash::make($request->get('password'))
         ]);
 
