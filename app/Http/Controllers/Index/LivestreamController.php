@@ -27,12 +27,11 @@ class LivestreamController extends BaseController
         $allChannels = (new Finder())->in(storage_path("live-stream"))->files()->name("index.m3u8");
 
         if($allChannels->count()){
-            foreach ($allChannels as $channel){
+            foreach ($allChannels as $stt => $channel){
                 $epl = explode("/", $channel->getRelativePathname());
-                $customers[]['channel'] = $epl[0];
-                $customers[]['path'] = $channel->getRelativePathname();
-
-                $customers[]['key'] = $epl[1] != 'index.m3u8' ? $epl[1] : null;
+                $customers[$stt]['channel'] = $epl[0];
+                $customers[$stt]['path'] = $channel->getRelativePathname();
+                $customers[$stt]['key'] = $epl[1] != 'index.m3u8' ? $epl[1] : null;
             }
         }
         return view("index.pages.livestream.index", [
