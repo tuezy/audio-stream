@@ -43,7 +43,7 @@ class LivestreamController extends BaseController
     public function channel($channel){
         $customer = $this->customerRepository->where("live_channel", "=", $channel)->first();
 
-        if($customer->id){
+        if(isset($customer->id)){
             return view("index.pages.livestream.customer-onair", [
                 'customer' => $customer
             ]);
@@ -52,13 +52,15 @@ class LivestreamController extends BaseController
         if(File::exists($dir = storage_path("live-stream/".$channel))){
             $finder = (new Finder())->in($dir)->files()->name("index.m3u8");
             if($finder->count() > 0){
-               foreach($finder as $file){
-                   return view("index.pages.livestream.customer-onair-byfile", [
-                       'file' => $file->getRelativePathname()
-                   ]);
-               }
+                foreach($finder as $file){
+                    return view("index.pages.livestream.customer-onair-byfile", [
+                        'file' => $file->getRelativePathname(),
+                        'channel' => $channel
+                    ]);
+                }
             }
         }
 
+        abort(404);
     }
 }

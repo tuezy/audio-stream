@@ -28,9 +28,8 @@ class LiveController extends Controller
         $this->customerRepository = $customerRepository;
     }
 
-    public function enable(Request $request){
+    public function enableCustomerChannel(Request $request){
         $customer= $this->customerRepository
-
             ->where("live_channel", "=", $request->get("live_channel"));
         if($request->has("disable_livestream")){
             $customer= $customer->where("isLive", "=", true)->where("live_channel", "=", $request->get("live_channel"))->where("email", "=", $request->get("disable_livestream"))->first();
@@ -51,7 +50,14 @@ class LiveController extends Controller
         }
 
         $customer->save();
-        Artisan::call("remove:channel ".$customer->live_channel);
+
+        if($request->has("disable_livestream")) {
+            Artisan::call("remove:channel " . $customer->live_channel);
+        }
+
+        if($request->has("enable_livestream")) {
+            Artisan::call("new:channel " . $customer->live_channel);
+        }
 
         return back()->with("success", "Thành công");
     }
