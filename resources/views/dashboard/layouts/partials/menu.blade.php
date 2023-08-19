@@ -38,7 +38,12 @@
 
 
 
-@foreach(['categories','audio', 'videos', 'playlists'] as $key)
+@foreach([
+    'categories',
+    'audio',
+//    'videos',
+    'playlists'
+    ] as $key)
     @can("dashboard.".$key.".index")
         @php
             $menuShow =  $currentRoute == 'dashboard.'.$key.'.index' ? 'active' : '';
