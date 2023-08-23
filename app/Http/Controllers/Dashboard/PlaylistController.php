@@ -111,8 +111,15 @@ class PlaylistController extends Controller
     public function delete($id){
         if(request()->has('ids')){
             $ids = request()->get('ids');
+            if(!is_array($ids)){
+                $ids = [$ids];
+            }
             try {
-                Playlist::destroy($ids);
+                foreach ($ids as $id){
+                    $playlist = Playlist::with("audio")->find($id);
+                    $playlist->audio()->sync([]);
+                    $playlist->delete();
+                }
                 return response()->json(['success' => true], 200);
             }catch (\Exception $exception){
                 return $exception->getMessage();
