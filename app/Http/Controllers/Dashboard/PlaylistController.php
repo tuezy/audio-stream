@@ -117,7 +117,7 @@ class PlaylistController extends Controller
             try {
                 foreach ($ids as $id){
                     $playlist = Playlist::with("audio")->find($id);
-                    $playlist->audio()->sync([]);
+                    $playlist->audio()->delete();
                     $playlist->delete();
                 }
                 return response()->json(['success' => true], 200);
