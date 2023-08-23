@@ -133,8 +133,16 @@ class LiveController extends Controller
     public function update(){
         Log::debug(__FUNCTION__ . json_encode(request()->all()));
     }
-    public function done_livestream(){
-        Log::debug(__FUNCTION__ . json_encode(request()->all()));
+    public function done_livestream(Request $request){
+        if($request->has('app')){
+            $channel = str_replace("livestream-", "", $request->get("app"));
+        }
+        if($request->has('name')){
+            $name = $request->get("name");
+        }
+        $customerByChannel = Customer::where("live_channel", "=", $channel)
+            ->where("isLive", "=", true)->firstOrFail();
+
     }
 
 }

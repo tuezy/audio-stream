@@ -13,6 +13,7 @@
                         <input type="checkbox" class="form-check-input" name="use_default_channel" value="{{$customer->use_default_channel}}">
                         <label for="use_default_channel">Sử dụng cấu hình không cần key</label>
                     </div>
+                    <p>Check vào ô *Sử dụng cấu hình không cần key* nếu bạn có cần thiết lập thu livestream cho các thiết bị không thể nhập key</p>
                     <input type="hidden" name="enable_livestream" value="{{ $customer->email }}">
                     <button class="btn btn-primary">Bật Chức Năng Livestream</button>
                 </form>
