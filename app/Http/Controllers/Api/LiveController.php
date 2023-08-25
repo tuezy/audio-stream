@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Symfony\Component\Finder\Finder;
 
 class LiveController extends Controller
 {
@@ -93,7 +94,6 @@ class LiveController extends Controller
 
             }
 
-
             if($request->get("call") == 'publish'){
                 return $customer->isLive;
             }
@@ -112,12 +112,26 @@ class LiveController extends Controller
         if($request->has('app')){
             $channel = str_replace("livestream-", "", $request->get("app"));
         }
+
         if($request->has('name')){
             $name = $request->get("name");
         }
+
+
+
         $customerByChannel = Customer::where("live_channel", "=", $channel)
             ->where("isLive", "=", true)->firstOrFail();
 
+        $allChannels = (new Finder())->in(storage_path("live-stream"))->files()->name("index.m3u8");
+
+        if($allChannels->count() > 0){
+            foreach ($allChannels as $stt => $channel){
+                $epl = explode("/", $channel->getRelativePathname());
+                if($epl[0] == $customerByChannel->live_channel){
+                    return false;
+                }
+            }
+        }
         if($customerByChannel->use_default_channel){
             return true;
         }
