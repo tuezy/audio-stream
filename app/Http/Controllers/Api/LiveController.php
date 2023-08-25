@@ -128,7 +128,7 @@ class LiveController extends Controller
             foreach ($allChannels as $stt => $channel){
                 $epl = explode("/", $channel->getRelativePathname());
                 if($epl[0] == $customerByChannel->live_channel){
-                    return false;
+                    abort(503);
                 }
             }
         }
