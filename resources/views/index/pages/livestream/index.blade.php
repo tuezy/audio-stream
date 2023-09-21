@@ -1,5 +1,6 @@
 @extends("index.main")
 @section("content")
+    @include("index.pages.livestream.partials.config-livestream")
     <div class="container">
         <div class="row">
             <div class="col-12">

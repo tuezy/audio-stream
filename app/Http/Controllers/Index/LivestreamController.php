@@ -23,6 +23,9 @@ class LivestreamController extends BaseController
     }
 
     public function index(){
+
+        $user = Auth::guard("customers")->user();
+
         $customers = [];
 
         $allChannels = (new Finder())->in(storage_path("live-stream"))->files()->name("index.m3u8");
@@ -36,7 +39,8 @@ class LivestreamController extends BaseController
             }
         }
         return view("index.pages.livestream.index", [
-            'customers' => $customers
+            'customers' => $customers,
+            'customer' => $user
         ]);
     }
 

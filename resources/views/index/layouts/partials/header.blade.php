@@ -64,8 +64,6 @@
                     <a class="nav-link @if(\Illuminate\Support\Str::contains(request()->url(), '/livestream')) active @endif" href="{{ route("livestream.index") }}">Trực tuyến</a>
                 </li>
 
-
-
             </ul>
 
             <div class="user_panel">
@@ -74,11 +72,11 @@
                         <span class="username">{{ \Illuminate\Support\Facades\Auth::guard("customers")->user()->name }}</span>
                     </div>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a href="{{ route("customers.livestream.config") }}" class="dropdown-item notify-item language py-2" data-lang="en" title="Phát sóng trực tiếp">
-                            Phát sóng trực tiếp
-                        </a>
+{{--                        <a href="{{ route("customers.livestream.config") }}" class="dropdown-item notify-item language py-2" data-lang="en" title="Phát sóng trực tiếp">--}}
+{{--                            Phát sóng trực tiếp--}}
+{{--                        </a>--}}
                         <a href="{{ route("customers.panel") }}" class="dropdown-item notify-item language py-2" data-lang="en" title="English">
-                            Thông tin
+                            <i class="bx bx-user-circle font-size-16 align-middle me-1"></i><span>Thông tin</span>
                         </a>
 
                         <a class="dropdown-item " href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

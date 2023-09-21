@@ -112,6 +112,7 @@ class kodingRepository extends Command
         }
 
         $this->model($name);
+
         $repositoryContract = $this->repository($name, 'repository-contract');
         $repository = $this->repository($name, 'repository');
         $repositoryCache = $this->repository($name, 'repository-cache');
