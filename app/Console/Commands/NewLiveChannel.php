@@ -64,9 +64,9 @@ class NewLiveChannel extends Command
             [
                 $name,
                 storage_path("live-stream/$name"),
-                route("api.livestream.publish"),
-                route("api.livestream.done_livestream"),
-                route("api.livestream.update"),
+                $this->removeHttpx(route("api.livestream.publish")),
+                $this->removeHttpx(route("api.livestream.done_livestream")),
+                $this->removeHttpx(route("api.livestream.update")),
             ],
             $this->getStub()
         );
@@ -75,5 +75,15 @@ class NewLiveChannel extends Command
     protected function getStub()
     {
         return file_get_contents(app_path("Console/Commands/stub/nginx/channel.stub"));
+    }
+
+    private function removeHttpx($str){
+        return str_replace([
+            "http://",
+            "https://"
+        ],[
+            "",
+            ""
+        ], $str);
     }
 }
