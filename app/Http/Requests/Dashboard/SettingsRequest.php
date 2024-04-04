@@ -32,10 +32,13 @@ class SettingsRequest extends FormRequest
         $settings = config("settings");
 
         $validation = [];
-
         foreach ($settings as $setting){
             foreach($setting as $config){
                 $validation[$config['key']] = $config['validation'] ?? '';
+
+                if($config['type'] == 'boolean' && !$this->request->has($config['key']) ) {
+                    $validation[$config['key']] = 'false';
+                }
                 if(empty($validation[$config['key']])) unset($validation[$config['key']]);
             }
         }

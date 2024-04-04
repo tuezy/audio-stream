@@ -30,10 +30,9 @@ class SettingController extends Controller
     }
 
     public function store(SettingsRequest $request){
-
         $validated = $request->validated();
 
-        foreach ($validated as $key => $value){
+        foreach (array_merge($request->rules(), $validated, $request->except("_token")) as $key => $value){
 
             if($value == 'on'){
                 $value = 'true';
